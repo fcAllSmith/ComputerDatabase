@@ -11,6 +11,11 @@ public class DatabaseManager {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * 
+	 * @param query 
+	 * @return return a ResultSet of the entity or entities selected
+	 */
 	public ResultSet queryGet(String query){
 		Database db = Database.getInstance();
 		Connection connection  = db.getConnection(); 
@@ -24,6 +29,20 @@ public class DatabaseManager {
 		}
 	}
 	
-	
-
+	/**
+	 * 
+	 * @param query
+	 * @return true if entity has been updated or inserted
+	 */
+	public boolean queryPost(String query){
+		Database db = Database.getInstance();
+		Connection connection = db.getConnection();
+		try {
+			Statement stm = connection.createStatement();
+			return (stm.executeUpdate(query) > 0);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return false; 
+	}
 }
