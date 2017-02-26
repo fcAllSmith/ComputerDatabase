@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny;
+package com.excilys.computerdb.fconsigny.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,6 @@ public class Database {
 	private static final String JDB_DRIVER = "com.mysql.jdbc.Driver"; 
 	
 	private Database() {
-		// TODO Auto-generated constructor stub
 		openConnection();
 	}
 	
@@ -28,13 +27,18 @@ public class Database {
 			String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2";
 			try{
 				this.connection = DriverManager.getConnection(customPDO,"root","kXZXLPTXMMRR13");
+				System.out.println("Connected");
 			}catch(SQLException error){
 				System.out.println(error.toString());
 			}finally{
-				System.out.println("Connected");
+				
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Connection getConnection(){
+		return this.connection;
 	}
 }
