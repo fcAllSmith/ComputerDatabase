@@ -1,3 +1,5 @@
+package com.excilys.computerdb.fconsigny.app;
+
 
 public class AppLauncher {
 
