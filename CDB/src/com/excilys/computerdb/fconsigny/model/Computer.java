@@ -51,5 +51,10 @@ public class Computer {
 		return companyId;
 	}
 
+	@Override
+	public String toString(){
+		//return " ID : " + this.id + " Name : " + this.name + " introduced : " + this.getIntroduced().toString() + " discontinued" + this.discontinued.toString() + " company" + this.companyId;
+		return "ID : " + " Name : " + this.name + " Company id : " + this.companyId;
+	}
 
 }

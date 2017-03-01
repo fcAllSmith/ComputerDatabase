@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
+
+import com.excilys.computerdb.fconsigny.dao.ComputerDaoImpl;
+import com.excilys.computerdb.fconsigny.model.Computer;
 
 public class AppLauncher {
 
@@ -15,6 +19,18 @@ public class AppLauncher {
 		showText("4 - Select a computer with an id");
 		
 		userCommand(getUserCommand());
+		ComputerDaoImpl da  = new ComputerDaoImpl();
+		Computer comp;
+		try {
+			comp = da.findById(5);
+			showText(comp.toString());
+			for(Computer computer : da.findAll()){
+				showText(computer.toString());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 	
 	public static void userCommand(String strInput){
@@ -36,7 +52,8 @@ public class AppLauncher {
 	
 	public static String getUserCommand(){
 		String inputText = null; 
-		BufferedReader br = new BufferedReader(new InputStream(System.in));
+        InputStreamReader inputStrReader = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(inputStrReader);
 		try {
 			inputText = br.readLine();
 		} catch (IOException e) {
