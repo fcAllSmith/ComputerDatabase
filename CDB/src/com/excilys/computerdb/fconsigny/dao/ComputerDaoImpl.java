@@ -29,23 +29,25 @@ public class ComputerDaoImpl implements ComputerDao {
 		// TODO Auto-generated method stub
 		DatabaseManager dm = new DatabaseManager();
 		ResultSet rs = dm.queryGet(QUERY_SELECT_BY_ID + id);
+
 		try {
 			rs.next();
-		} catch (SQLException e) {
-
-			try {
+			try{
 				Computer computer = new Computer(rs.getLong(COL_ID));
 				computer.setName(rs.getString(COL_NAME));
 				//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
 				//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
 				computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
 				// TODO Auto-generated catch block
-				e.printStackTrace();
 				return computer;
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			}catch (SQLException e) {
+				e.printStackTrace();
 			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
 		return null;
 	}
 

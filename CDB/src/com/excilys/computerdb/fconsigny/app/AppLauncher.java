@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 
 import com.excilys.computerdb.fconsigny.dao.ComputerDaoImpl;
+import com.excilys.computerdb.fconsigny.exceptions.ComputerException;
 import com.excilys.computerdb.fconsigny.model.Computer;
+import com.excilys.computerdb.fconsigny.services.ComputerServices;
 
 public class AppLauncher {
 
@@ -21,9 +23,19 @@ public class AppLauncher {
 		userCommand(getUserCommand());
 		ComputerDaoImpl da  = new ComputerDaoImpl();
 		Computer comp;
-		comp = da.findById(5);
+		comp = da.findById(10);
 		showText(comp.toString());
 		for(Computer computer : da.findAll()){
+			showText(computer.toString());
+		}
+		
+		try {
+			showText(new ComputerServices().getUniqueComputer(1000).toString());
+		} catch (ComputerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(Computer computer : new ComputerServices().getAllComputers()){
 			showText(computer.toString());
 		}
 	}
