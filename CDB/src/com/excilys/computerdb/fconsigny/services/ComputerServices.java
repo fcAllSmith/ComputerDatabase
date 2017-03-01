@@ -39,20 +39,26 @@ public class ComputerServices {
 			return Collections.emptyList();
 		}
 	}
-	
+
+	public List<Computer> getAllComputersWithLimiter(int limit, int offset){
+		return cDao.findAllWithLimiter(limit, offset);
+	}
+
 	public Computer saveComputer(Computer entity){
 		Computer savedComputer = null; 
-		
+
 		try {
 			if(cDao.findById(entity.getId()) == null){
-				savedComputer = cDao.makePersistent(entity);
+				//TODO : CREATE COMPUTER
+				//savedComputer = cDao.makePersistent(entity);
+			}
+			else{
+				//TODO upload computer
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return savedComputer;
-		
 	}
 
 }

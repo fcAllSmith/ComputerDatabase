@@ -10,5 +10,5 @@ public interface ComputerDao {
 	
 	public List findAll()  throws SQLException;
 	
-	public abstract Computer makePersistent(Computer entity);
+	public List findAllWithLimiter(int limit,int offset);
 }

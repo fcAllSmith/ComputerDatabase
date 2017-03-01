@@ -19,20 +19,8 @@ public class AppLauncher {
 		showText("4 - Select a computer with an id");
 
 		userCommand(getUserCommand());
-		ComputerDaoImpl da  = new ComputerDaoImpl();
-		Computer comp;
-		comp = da.findById(10);
-		showText(comp.toString());
-		for(Computer computer : da.findAll()){
-			showText(computer.toString());
-		}
-		
-		try {
-			showText(new ComputerServices().getUniqueComputer(1000).toString());
-		} catch (ComputerException e) {
-			e.printStackTrace();
-		}
-		for(Computer computer : new ComputerServices().getAllComputers()){
+	
+		for(Computer computer : new ComputerServices().getAllComputersWithLimiter(10, 0)){
 			showText(computer.toString());
 		}
 	}

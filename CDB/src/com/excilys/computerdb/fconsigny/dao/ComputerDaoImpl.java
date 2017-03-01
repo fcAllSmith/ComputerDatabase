@@ -39,7 +39,7 @@ public class ComputerDaoImpl implements ComputerDao {
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,8 +68,23 @@ public class ComputerDaoImpl implements ComputerDao {
 	}
 
 	@Override
-	public Computer makePersistent(Computer entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Computer> findAllWithLimiter(int limit,int offset) {
+		DatabaseManager dm = new DatabaseManager();
+		String query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset;
+		ResultSet rs = dm.queryGet(query);
+		List<Computer> computerList = new ArrayList<Computer>(); 
+		try {
+			while(rs.next()){
+				Computer computer = new Computer(rs.getLong(COL_ID));
+				computer.setName(rs.getString(COL_NAME));
+				//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
+				//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
+				computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
+				computerList.add(computer);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return computerList;
 	}
 }

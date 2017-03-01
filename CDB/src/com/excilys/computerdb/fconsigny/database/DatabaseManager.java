@@ -7,9 +7,7 @@ import java.sql.Statement;
 
 public class DatabaseManager {
 
-	public DatabaseManager() {
-		// TODO Auto-generated constructor stub
-	}
+	public DatabaseManager() {}
 	
 	/**
 	 * 
@@ -23,7 +21,6 @@ public class DatabaseManager {
 			Statement stm = connection.createStatement();
 			return stm.executeQuery(query);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}

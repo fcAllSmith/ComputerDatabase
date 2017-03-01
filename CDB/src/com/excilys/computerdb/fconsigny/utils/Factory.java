@@ -7,5 +7,5 @@ public class Factory {
 
 	public static ComputerDao getComputerDao(){
 		return new ComputerDaoImpl();
-	}
+	} 
 }
