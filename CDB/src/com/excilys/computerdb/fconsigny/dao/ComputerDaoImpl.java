@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.excilys.computerdb.fconsigny.model.Computer;
 
-public interface ComputerDao {
-	public Computer findById(long id);
-	public List findAll();
+public class ComputerDaoImpl {
+
+	public ComputerDaoImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
 }
