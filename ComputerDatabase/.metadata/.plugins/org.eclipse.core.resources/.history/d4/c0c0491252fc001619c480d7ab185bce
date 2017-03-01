@@ -1,0 +1,14 @@
+package com.excilys.computerdb.fconsigny.dao;
+
+public class CompanyDao {
+
+	private static final String SELECT_ALL_COMPUTERS = "SELECT * FROM computer;";
+	private static final String SELECT_BY_ID = "SELECT * FROM computer WHERE id =";
+	private static final String COL_ID = "id";
+	private static final String COL_NAME = "name";
+	
+	public CompanyDao() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

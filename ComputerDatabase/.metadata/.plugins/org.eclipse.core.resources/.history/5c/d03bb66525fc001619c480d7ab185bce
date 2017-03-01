@@ -1,0 +1,9 @@
+package com.excilys.computerdb.fconsigny.dao;
+
+public class ComputerDao {
+
+	public ComputerDao() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
