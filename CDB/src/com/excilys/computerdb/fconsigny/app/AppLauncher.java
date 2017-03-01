@@ -2,9 +2,7 @@ package com.excilys.computerdb.fconsigny.app;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.SQLException;
 
 import com.excilys.computerdb.fconsigny.dao.ComputerDaoImpl;
 import com.excilys.computerdb.fconsigny.exceptions.ComputerException;
@@ -32,7 +30,6 @@ public class AppLauncher {
 		try {
 			showText(new ComputerServices().getUniqueComputer(1000).toString());
 		} catch (ComputerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for(Computer computer : new ComputerServices().getAllComputers()){

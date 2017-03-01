@@ -1,7 +1,6 @@
 package com.excilys.computerdb.fconsigny.services;
 
 import com.excilys.computerdb.fconsigny.dao.ComputerDao;
-import com.excilys.computerdb.fconsigny.dao.ComputerDaoImpl;
 import com.excilys.computerdb.fconsigny.exceptions.ComputerException;
 import com.excilys.computerdb.fconsigny.model.Computer;
 import com.excilys.computerdb.fconsigny.utils.Factory;
@@ -49,7 +48,6 @@ public class ComputerServices {
 				savedComputer = cDao.makePersistent(entity);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

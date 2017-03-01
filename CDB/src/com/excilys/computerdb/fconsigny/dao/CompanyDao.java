@@ -15,9 +15,7 @@ public class CompanyDao {
 	private static final String COL_ID = "id";
 	private static final String COL_NAME = "name";
 	
-	public CompanyDao() {
-		// TODO Auto-generated constructor stub
-	}
+	public CompanyDao() {}
 	
 	public List<Company> querySelectAll(){
 		ResultSet resQuery = new DatabaseManager().queryGet(SELECT_ALL_COMPUTERS);

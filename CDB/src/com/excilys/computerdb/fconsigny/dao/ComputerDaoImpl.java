@@ -20,13 +20,10 @@ public class ComputerDaoImpl implements ComputerDao {
 	private final static String COL_DISCONTINUED ="discontinued";
 	private final static String COL_COMPANY_ID = "company_id";
 
-	public ComputerDaoImpl() {
-		// TODO Auto-generated constructor stub
-	}
+	public ComputerDaoImpl() {}
 
 	@Override
 	public Computer findById(long id) {
-		// TODO Auto-generated method stub
 		DatabaseManager dm = new DatabaseManager();
 		ResultSet rs = dm.queryGet(QUERY_SELECT_BY_ID + id);
 
@@ -38,7 +35,6 @@ public class ComputerDaoImpl implements ComputerDao {
 				//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
 				//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
 				computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
-				// TODO Auto-generated catch block
 				return computer;
 			}catch (SQLException e) {
 				e.printStackTrace();
@@ -53,7 +49,6 @@ public class ComputerDaoImpl implements ComputerDao {
 
 	@Override
 	public List<Computer> findAll() {
-		// TODO Auto-generated method stub
 		DatabaseManager dm = new DatabaseManager();
 		ResultSet rs = dm.queryGet(QUERY_SELECT_ALL);
 		List<Computer> computerList  = new ArrayList<Computer>();
@@ -70,5 +65,11 @@ public class ComputerDaoImpl implements ComputerDao {
 			e.printStackTrace();
 		}
 		return computerList;
+	}
+
+	@Override
+	public Computer makePersistent(Computer entity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
