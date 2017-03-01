@@ -40,5 +40,21 @@ public class ComputerServices {
 			return Collections.emptyList();
 		}
 	}
+	
+	public Computer saveComputer(Computer entity){
+		Computer savedComputer = null; 
+		
+		try {
+			if(cDao.findById(entity.getId()) == null){
+				savedComputer = cDao.makePersistent(entity);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return savedComputer;
+		
+	}
 
 }
