@@ -19,40 +19,54 @@ public class ComputerDaoImpl implements ComputerDao {
 	private final static String COL_INTRODUCED = "introduced";
 	private final static String COL_DISCONTINUED ="discontinued";
 	private final static String COL_COMPANY_ID = "company_id";
-	
+
 	public ComputerDaoImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public Computer findById(long id) throws SQLException {
+	public Computer findById(long id) {
 		// TODO Auto-generated method stub
 		DatabaseManager dm = new DatabaseManager();
 		ResultSet rs = dm.queryGet(QUERY_SELECT_BY_ID + id);
-		rs.next();
-		Computer computer = new Computer(rs.getLong(COL_ID));
-		computer.setName(rs.getString(COL_NAME));
-		//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
-		//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
-		computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
-		return computer;
+		try {
+			rs.next();
+		} catch (SQLException e) {
+
+			try {
+				Computer computer = new Computer(rs.getLong(COL_ID));
+				computer.setName(rs.getString(COL_NAME));
+				//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
+				//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
+				computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return computer;
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 	@Override
-	public List<Computer> findAll()  throws SQLException {
+	public List<Computer> findAll() {
 		// TODO Auto-generated method stub
 		DatabaseManager dm = new DatabaseManager();
 		ResultSet rs = dm.queryGet(QUERY_SELECT_ALL);
 		List<Computer> computerList  = new ArrayList<Computer>();
-		while(rs.next()){
-			Computer computer = new Computer(rs.getLong(COL_ID));
-			computer.setName(rs.getString(COL_NAME));
-			//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
-			//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
-			computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
-			computerList.add(computer);
+		try {
+			while(rs.next()){
+				Computer computer = new Computer(rs.getLong(COL_ID));
+				computer.setName(rs.getString(COL_NAME));
+				//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
+				//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
+				computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
+				computerList.add(computer);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return computerList;
 	}
-
 }
