@@ -7,8 +7,10 @@ import java.sql.Statement;
 
 public class DatabaseManager {
 
+	private Connection connection;
+
 	public DatabaseManager() {}
-	
+
 	/**
 	 * 
 	 * @param query 
@@ -16,7 +18,7 @@ public class DatabaseManager {
 	 */
 	public ResultSet queryGet(String query){
 		Database db = Database.getInstance();
-		Connection connection  = db.getConnection(); 
+		this.connection  = db.getConnection(); 
 		try {
 			Statement stm = connection.createStatement();
 			return stm.executeQuery(query);
@@ -25,7 +27,7 @@ public class DatabaseManager {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param query
@@ -33,7 +35,7 @@ public class DatabaseManager {
 	 */
 	public boolean queryPost(String query){
 		Database db = Database.getInstance();
-		Connection connection = db.getConnection();
+		this.connection = db.getConnection();
 		try {
 			Statement stm = connection.createStatement();
 			return (stm.executeUpdate(query) > 0);
@@ -41,5 +43,14 @@ public class DatabaseManager {
 			e.printStackTrace();
 		} 
 		return false; 
+	}
+
+	public void closeConnection(){
+		try {
+			this.connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -8,17 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.excilys.computerdb.fconsigny.database.DatabaseManager;
+import com.excilys.computerdb.fconsigny.mapper.ComputerMapper;
 import com.excilys.computerdb.fconsigny.model.Computer;
 
 public class ComputerDaoImpl implements ComputerDao {
 
 	private final static String QUERY_SELECT_ALL = "SELECT * FROM computer;";
 	private final static String QUERY_SELECT_BY_ID = "SELECT * FROM computer WHERE id =";
-	private final static String COL_ID = "id"; 
-	private final static String COL_NAME ="name";
-	private final static String COL_INTRODUCED = "introduced";
-	private final static String COL_DISCONTINUED ="discontinued";
-	private final static String COL_COMPANY_ID = "company_id";
+	private final static String QUERY_DELETE = "DELETE FROM computer WHERE id=";
+
+	public final static String COL_ID = "id"; 
+	public final static String COL_NAME ="name";
+	public final static String COL_INTRODUCED = "introduced";
+	public final static String COL_DISCONTINUED ="discontinued";
+	public final static String COL_COMPANY_ID = "company_id";
 
 	public ComputerDaoImpl() {}
 
@@ -29,16 +32,8 @@ public class ComputerDaoImpl implements ComputerDao {
 
 		try {
 			rs.next();
-			try{
-				Computer computer = new Computer(rs.getLong(COL_ID));
-				computer.setName(rs.getString(COL_NAME));
-				//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
-				//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
-				computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
-				return computer;
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
+			Computer computer = ComputerMapper.resultSetIntoComputer(rs);
+			return computer;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,11 +49,7 @@ public class ComputerDaoImpl implements ComputerDao {
 		List<Computer> computerList  = new ArrayList<Computer>();
 		try {
 			while(rs.next()){
-				Computer computer = new Computer(rs.getLong(COL_ID));
-				computer.setName(rs.getString(COL_NAME));
-				//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
-				//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
-				computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
+				Computer computer = ComputerMapper.resultSetIntoComputer(rs);
 				computerList.add(computer);
 			}
 		} catch (SQLException e) {
@@ -73,18 +64,35 @@ public class ComputerDaoImpl implements ComputerDao {
 		String query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset;
 		ResultSet rs = dm.queryGet(query);
 		List<Computer> computerList = new ArrayList<Computer>(); 
+		
 		try {
 			while(rs.next()){
-				Computer computer = new Computer(rs.getLong(COL_ID));
-				computer.setName(rs.getString(COL_NAME));
-				//computer.setIntroduced(LocalDateTime.ofInstant(rs.getTimestamp(COL_INTRODUCED).toInstant(),ZoneId.systemDefault()));
-				//computer.setDiscontinued(LocalDateTime.ofInstant(rs.getTimestamp(COL_DISCONTINUED).toInstant(),ZoneId.systemDefault()));
-				computer.setCompanyId(rs.getLong(COL_COMPANY_ID));
+				Computer computer = ComputerMapper.resultSetIntoComputer(rs);
 				computerList.add(computer);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return computerList;
 	}
+	
+	
+	public boolean deleteById(int id) throws SQLException {
+		DatabaseManager dm = new DatabaseManager();
+		String query = QUERY_DELETE.concat(Integer.toString(id) + ";") ; 
+		return dm.queryPost(query);
+	}
+	
+	public boolean insertComputer(Computer computer){
+		return false;
+	}
+	
+	
 }

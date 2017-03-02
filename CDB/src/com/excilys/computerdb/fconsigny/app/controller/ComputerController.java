@@ -9,6 +9,7 @@ import java.util.List;
 import com.excilys.computerdb.fconsigny.app.IApp;
 import com.excilys.computerdb.fconsigny.app.ui.UiViewCompany;
 import com.excilys.computerdb.fconsigny.exceptions.ComputerException;
+import com.excilys.computerdb.fconsigny.mapper.ComputerMapper;
 import com.excilys.computerdb.fconsigny.model.Computer;
 import com.excilys.computerdb.fconsigny.services.ComputerServices;
 
@@ -55,11 +56,6 @@ public class ComputerController {
 	 * [3] companyId
 	 */
 	public void createComputer(String[] args){
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy HH:mm:ss a");
-		Computer computer = new Computer(Integer.parseInt(args[0]));
-		computer.setName(args[1]);
-		computer.setIntroduced(LocalDateTime.parse(args[2], formatter));
-		computer.setDiscontinued(LocalDateTime.parse(args[3], formatter));
-		computer.setCompanyId(Integer.parseInt(args[4]));
+		Computer computer = ComputerMapper.stringIntoComputer(args);
 	}
 }
