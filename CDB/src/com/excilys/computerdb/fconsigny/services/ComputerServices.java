@@ -3,14 +3,14 @@ package com.excilys.computerdb.fconsigny.services;
 import com.excilys.computerdb.fconsigny.dao.ComputerDao;
 import com.excilys.computerdb.fconsigny.exceptions.ComputerException;
 import com.excilys.computerdb.fconsigny.model.Computer;
-import com.excilys.computerdb.fconsigny.utils.Factory;
+import com.excilys.computerdb.fconsigny.utils.ComputerFactory;
 
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
 public class ComputerServices {
-	private ComputerDao cDao = Factory.getComputerDao();
+	private ComputerDao cDao = ComputerFactory.getComputerDao();
 
 	public Computer getUniqueComputer(long id) throws ComputerException{
 

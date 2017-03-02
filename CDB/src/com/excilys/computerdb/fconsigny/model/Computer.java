@@ -30,7 +30,6 @@ public class Computer {
 		this.companyId = companyId;
 	}
 
-	
 	public long getId() {
 		return id;
 	}

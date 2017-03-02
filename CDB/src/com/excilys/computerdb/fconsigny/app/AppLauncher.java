@@ -4,9 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.excilys.computerdb.fconsigny.dao.ComputerDaoImpl;
-import com.excilys.computerdb.fconsigny.exceptions.ComputerException;
+import com.excilys.computerdb.fconsigny.exceptions.CompanyException;
+import com.excilys.computerdb.fconsigny.model.Company;
 import com.excilys.computerdb.fconsigny.model.Computer;
+import com.excilys.computerdb.fconsigny.services.CompanyServices;
 import com.excilys.computerdb.fconsigny.services.ComputerServices;
 
 public class AppLauncher {
@@ -19,9 +20,19 @@ public class AppLauncher {
 		showText("4 - Select a computer with an id");
 
 		userCommand(getUserCommand());
-	
+
 		for(Computer computer : new ComputerServices().getAllComputersWithLimiter(10, 0)){
 			showText(computer.toString());
+		}
+		
+		for(Company company : new CompanyServices().getAllCompanies()){
+			showText(company.getName());
+		}
+		
+		try {
+			showText(new CompanyServices().getUniqueCompany(5).getName());
+		} catch (CompanyException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -51,7 +62,7 @@ public class AppLauncher {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		return inputText;
 	}
 
