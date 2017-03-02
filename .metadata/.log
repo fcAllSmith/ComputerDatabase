@@ -61,3 +61,18 @@ Command-line arguments:  -data file:/home/excilys/Excilys/ComputerDatabase/ -os 
 
 !ENTRY org.eclipse.jst.server.tomcat.core 4 0 2017-03-02 16:46:35.074
 !MESSAGE Several ports (8005, 8080) required by Tomcat v8.5 Server at localhost are already in use. The server may already be running in another process, or a system process may be using the port. To start this server you will need to stop the other process or change the port number(s).
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2017-03-02 17:24:12.902
+!MESSAGE Several ports (8005, 8080, 8009) required by Tomcat v8.5 Server at localhost are already in use. The server may already be running in another process, or a system process may be using the port. To start this server you will need to stop the other process or change the port number(s).
+
+!ENTRY org.eclipse.wst.server.core 4 0 2017-03-02 17:29:21.733
+!MESSAGE Server Tomcat v8.5 Server at localhost failed to start.
+
+!ENTRY org.eclipse.wst.server.core 4 0 2017-03-02 17:30:26.052
+!MESSAGE Server Tomcat v8.5 Server at localhost failed to start.
+
+!ENTRY org.eclipse.wst.server.core 4 0 2017-03-02 17:38:13.573
+!MESSAGE Server Tomcat v8.5 Server at localhost failed to start.
+
+!ENTRY org.eclipse.wst.server.core 4 0 2017-03-02 17:39:11.225
+!MESSAGE Server Tomcat v8.5 Server at localhost failed to start.

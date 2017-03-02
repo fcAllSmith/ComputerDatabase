@@ -62,3 +62,36 @@
 2017-03-02 16:56:44,424 [Worker-22] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CDB/src
 2017-03-02 16:56:44,424 [Worker-22] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /CDB/src/test/java because it overlaps with /CDB/src
 2017-03-02 16:56:44,759 [Worker-22] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-03-02 17:24:05,193 [Worker-32] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 17:24:05,383 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 17:24:05,383 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/main/resources
+2017-03-02 17:24:05,385 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 17:24:05,385 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/test/resources
+2017-03-02 17:28:58,086 [Worker-27] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-03-02 17:28:58,375 [Worker-27] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 17:28:58,524 [Worker-27] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CDB/src
+2017-03-02 17:28:58,524 [Worker-27] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /CDB/src/test/java because it overlaps with /CDB/src
+2017-03-02 17:28:58,655 [Worker-27] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2017-03-02 17:41:20,376 [Worker-36] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 17:41:20,749 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 17:41:20,749 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/main/resources
+2017-03-02 17:41:20,753 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 17:41:20,753 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/test/resources
+2017-03-02 17:49:38,445 [Worker-44] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-03-02 17:49:38,688 [Worker-44] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 17:49:38,832 [Worker-44] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CDB/src
+2017-03-02 17:49:38,833 [Worker-44] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /CDB/src/test/java because it overlaps with /CDB/src
+2017-03-02 17:49:38,962 [Worker-44] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2017-03-02 17:49:56,225 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 17:49:56,226 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/main/resources
+2017-03-02 17:49:56,229 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 17:49:56,229 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/test/resources
+2017-03-02 17:50:22,429 [Worker-35] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-03-02 17:50:22,648 [Worker-35] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 17:50:22,872 [Worker-35] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.pom
+2017-03-02 17:50:22,953 [Worker-35] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.pom
+2017-03-02 17:50:22,994 [Worker-35] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.jar
+2017-03-02 17:50:23,288 [Worker-35] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/5.1.17/mysql-connector-java-5.1.17.jar
+2017-03-02 17:50:23,869 [Worker-35] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CDB/src
+2017-03-02 17:50:23,869 [Worker-35] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /CDB/src/test/java because it overlaps with /CDB/src
+2017-03-02 17:50:23,984 [Worker-35] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec

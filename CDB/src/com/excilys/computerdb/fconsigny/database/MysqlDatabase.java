@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 public class MysqlDatabase {
 
-
 	/* DB Constant  **/
 	private static final String DB_HOST = "jdbc:mysql://localhost:3306/";
 	private static final String DB_NAME ="computer-database-db2";
