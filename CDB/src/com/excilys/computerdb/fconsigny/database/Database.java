@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.excilys.computerdb.fconsigny.app.log.DoLogger;
+
 public class Database {
 
 	private static Database instance; 
@@ -29,6 +31,7 @@ public class Database {
 				this.connection = DriverManager.getConnection(customPDO,"root","kXZXLPTXMMRR13");
 				System.out.println("Connected");
 			}catch(SQLException error){
+				DoLogger.doLog(Database.class,"Enable to reach the database");
 				System.out.println(error.toString());
 			}finally{
 				

@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.excilys.computerdb.fconsigny.app.log.DoLogger;
+
 public class DatabaseManager {
 
 	private Connection connection;
@@ -23,6 +25,7 @@ public class DatabaseManager {
 			Statement stm = connection.createStatement();
 			return stm.executeQuery(query);
 		} catch (SQLException e) {
+			DoLogger.doLog(DatabaseManager.class, "The query GET : " + query + " didn't work" );
 			e.printStackTrace();
 			return null;
 		}
@@ -40,6 +43,7 @@ public class DatabaseManager {
 			Statement stm = connection.createStatement();
 			return (stm.executeUpdate(query) > 0);
 		} catch (SQLException e) {
+			DoLogger.doLog(DatabaseManager.class, "The query POST : " + query + " didn't work" );
 			e.printStackTrace();
 		} 
 		return false; 
@@ -49,7 +53,7 @@ public class DatabaseManager {
 		try {
 			this.connection.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			DoLogger.doLog(DatabaseManager.class, "Enable to close the connection with the database");
 			e.printStackTrace();
 		}
 	}
