@@ -1,0 +1,18 @@
+package com.excilys.computerdb.fconsigny.database;
+
+import java.sql.ResultSet;
+
+public class DatabaseManager {
+
+	public DatabaseManager() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public ResultSet queryGet(){
+		Database db = Database.getInstance();
+		db.getConnection(); 
+	}
+	
+	
+
+}

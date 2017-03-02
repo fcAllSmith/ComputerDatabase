@@ -1,0 +1,55 @@
+package com.excilys.computerdb.fconsigny.model;
+
+import java.time.LocalDateTime;
+
+public class Computer {
+
+	private long id; 
+	private String name; 
+	private LocalDateTime introduced; 
+	private LocalDateTime discontinued; 
+	private long companyId; 
+	
+	public Computer(long id) {
+		this.id = id; 
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setIntroduced(LocalDateTime ctime) {
+		this.introduced = ctime;
+	}
+
+	public void setPtime(LocalDateTime ptime) {
+		this.discontinued = ptime;
+	}
+
+	public void setCompanyId(long companyId) {
+		this.companyId = companyId;
+	}
+
+	
+	public long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public LocalDateTime getCtime() {
+		return introduced;
+	}
+
+	public LocalDateTime getPtime() {
+		return discontinued;
+	}
+
+	public long getCompanyId() {
+		return companyId;
+	}
+
+
+}

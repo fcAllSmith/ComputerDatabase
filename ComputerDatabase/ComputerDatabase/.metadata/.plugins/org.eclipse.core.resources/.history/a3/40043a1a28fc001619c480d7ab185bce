@@ -1,0 +1,16 @@
+package com.excilys.computerdb.fconsigny.dao;
+
+import com.excilys.computerdb.fconsigny.database.DatabaseManager;
+
+public class ComputerDao {
+
+	public static final String SELECT_ALL_COMPUTERS = "SELECT * FROM computer;";
+	public ComputerDao() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void querySelectAll(){
+		ResultQuery resQuery = new DatabaseManager().queryGet(SELECT_ALL_COMPUTERS);
+	}
+
+}
