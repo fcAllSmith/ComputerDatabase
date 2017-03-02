@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.excilys.computerdb.fconsigny.database.ConnectionUtil;
+import com.excilys.computerdb.fconsigny.database.MysqlDatabase;
+
 //All request has to go through the /* filter 
 @WebFilter(filterName = "jdbcFilter", urlPatterns = { "/*" })
 public class JdbcFilter implements Filter{
@@ -37,7 +40,7 @@ public class JdbcFilter implements Filter{
 			try {
 				conn = MysqlDatabase.getMySQLConnection();
 				conn.setAutoCommit(false);
-				SessionUtil.storeConnection(request, conn);
+				//SessionUtil.storeConnection(request, conn);
 				chain.doFilter(request, response);
 				conn.commit();
 			} catch (Exception error) {

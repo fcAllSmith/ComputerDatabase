@@ -1,3 +1,64 @@
 2017-03-02 16:09:32,254 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2017-03-02 16:09:32,797 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.1-SNAPSHOT @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
 2017-03-02 16:10:46,860 [Worker-2] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2017-03-02 16:23:01,660 [Worker-15] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 16:23:01,923 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 16:23:01,923 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/main/resources
+2017-03-02 16:23:01,925 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 16:23:01,925 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/test/resources
+2017-03-02 16:24:59,856 [Worker-15] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/servlet-api/2.5/servlet-api-2.5.pom
+2017-03-02 16:24:59,917 [Worker-15] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/servlet-api/2.5/servlet-api-2.5.pom
+2017-03-02 16:24:59,949 [Worker-15] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar
+2017-03-02 16:25:00,052 [Worker-15] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar
+2017-03-02 16:25:13,751 [Worker-18] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-03-02 16:25:14,116 [Worker-18] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 16:25:14,300 [Worker-18] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CDB/src
+2017-03-02 16:25:14,300 [Worker-18] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /CDB/src/test/java because it overlaps with /CDB/src
+2017-03-02 16:25:14,391 [Worker-18] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2017-03-02 16:29:05,615 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/sun/faces/jsf-api/2.0.0-b10/jsf-api-2.0.0-b10.pom
+2017-03-02 16:29:05,742 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/sun/faces/jsf-api/2.0.0-b10/jsf-api-2.0.0-b10.pom
+2017-03-02 16:29:05,946 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/sun/faces/jsf-api/2.0.0-b10/jsf-api-2.0.0-b10.jar
+2017-03-02 16:29:06,207 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/sun/faces/jsf-api/2.0.0-b10/jsf-api-2.0.0-b10.jar
+2017-03-02 16:29:16,489 [Worker-14] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-03-02 16:29:16,726 [Worker-14] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 16:29:16,848 [Worker-14] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CDB/src
+2017-03-02 16:29:16,848 [Worker-14] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /CDB/src/test/java because it overlaps with /CDB/src
+2017-03-02 16:29:16,916 [Worker-14] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2017-03-02 16:32:37,326 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.pom
+2017-03-02 16:32:37,351 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.pom
+2017-03-02 16:32:37,378 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/net/java/jvnet-parent/1/jvnet-parent-1.pom
+2017-03-02 16:32:37,412 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/net/java/jvnet-parent/1/jvnet-parent-1.pom
+2017-03-02 16:32:37,443 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.jar
+2017-03-02 16:32:37,492 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.jar
+2017-03-02 16:33:01,818 [Worker-15] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-03-02 16:33:02,188 [Worker-15] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 16:33:02,303 [Worker-15] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CDB/src
+2017-03-02 16:33:02,304 [Worker-15] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /CDB/src/test/java because it overlaps with /CDB/src
+2017-03-02 16:33:02,364 [Worker-15] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2017-03-02 16:34:58,986 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.pom
+2017-03-02 16:34:59,011 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.pom
+2017-03-02 16:34:59,041 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar
+2017-03-02 16:34:59,107 [Worker-21] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar
+2017-03-02 16:35:08,764 [Worker-14] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-03-02 16:35:08,999 [Worker-14] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 16:35:09,110 [Worker-14] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CDB/src
+2017-03-02 16:35:09,110 [Worker-14] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /CDB/src/test/java because it overlaps with /CDB/src
+2017-03-02 16:35:09,153 [Worker-14] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2017-03-02 16:35:39,862 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 16:35:39,862 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/main/resources
+2017-03-02 16:35:39,865 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 16:35:39,865 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/test/resources
+2017-03-02 16:36:35,910 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 16:36:35,910 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/main/resources
+2017-03-02 16:36:35,912 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 16:36:35,912 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/test/resources
+2017-03-02 16:43:45,220 [Worker-2] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2017-03-02 16:52:46,088 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 16:52:46,089 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/main/resources
+2017-03-02 16:52:46,093 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-02 16:52:46,093 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/excilys/Excilys/ComputerDatabase/CDB/src/test/resources
+2017-03-02 16:56:43,657 [Worker-22] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-03-02 16:56:44,186 [Worker-22] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.excilys.formation.fconsigny:com.excilys.computerdb:0.0.3 @ /home/excilys/Excilys/ComputerDatabase/CDB/pom.xml.
+2017-03-02 16:56:44,424 [Worker-22] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CDB/src
+2017-03-02 16:56:44,424 [Worker-22] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /CDB/src/test/java because it overlaps with /CDB/src
+2017-03-02 16:56:44,759 [Worker-22] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec

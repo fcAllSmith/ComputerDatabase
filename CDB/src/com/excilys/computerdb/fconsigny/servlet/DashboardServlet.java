@@ -1,7 +1,5 @@
 package com.excilys.computerdb.fconsigny.servlet;
 
-public class DashboardServlet {
-
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -21,9 +19,6 @@ import com.excilys.computerdb.fconsigny.services.ComputerServices;
 public class DashboardServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public ViewDashboardServlet() {
-    super();
-  }
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
