@@ -7,7 +7,8 @@ import com.excilys.computerdb.fconsigny.model.Company;
 
 public interface CompanyDao {
 
-	public Company findById(long id)  throws SQLException;
+  public Company findById(long id)  throws SQLException;
 
-	public List findAll()  throws SQLException;
+  public List findAll()  throws SQLException;
+  
 }

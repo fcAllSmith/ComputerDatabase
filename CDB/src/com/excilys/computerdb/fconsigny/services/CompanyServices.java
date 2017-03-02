@@ -11,22 +11,23 @@ import com.excilys.computerdb.fconsigny.utils.CompanyFactory;
 
 public class CompanyServices {
 
-	private CompanyDao cDao =  CompanyFactory.getCompanyDao();
+  private CompanyDao cDao =  CompanyFactory.getCompanyDao();
 
-	public Company getUniqueCompany(long id) throws CompanyException{
-		try {
-			return cDao.findById(id);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new CompanyException("Company not found");
-		}
-	}
-	public List<Company> getAllCompanies(){
-		try {
-			return cDao.findAll();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Collections.emptyList();
-		} 
-	}
+  public Company getUniqueCompany(long id) throws CompanyException {
+    try {
+      return cDao.findById(id);
+    } catch (SQLException error) {
+    	error.printStackTrace();
+        throw new CompanyException("Company not found");
+    }
+  }
+	
+  public List<Company> getAllCompanies() {
+    try {
+      return cDao.findAll();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    return Collections.emptyList();
+    } 
+  }
 }

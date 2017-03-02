@@ -6,63 +6,53 @@ import java.io.InputStreamReader;
 
 public abstract class AppView {
 
-	public static void main(String[] args) {
-		showText("-- Welcom  to Computer Database --");
-		showText("1 - Select all companies");
-		showText("2 - Select company with an id");
-		showText("3 - Select all computers");
-		showText("4 - Select a computer with an id");
+  public static void main(String[] args) {
+    showText("-- Welcom  to Computer Database --");
+    showText("1 - Companies");
+    showText("2 - Computers");
+    
+    userCommand(getUserCommand());
+  }
 
-		userCommand(getUserCommand());
-	}
+  public static void userCommand(String strInput) {
+    int cmd = Integer.parseInt(strInput); 
+    switch (cmd) {
+      case 1:
+        break; 
+      case 2: 
+        break; 
+      default:
+        break; 
+    }
+  }
 
-	public static void userCommand(String strInput){
-		int cmd = Integer.parseInt(strInput); 
-		switch(cmd){
-		case 1:
-			break; 
-		case 2: 
-			break; 
-		case 3:
-			break;
-		case 4: 
-			break;
-		default:
+  public static String getUserCommand() {
+    String inputText = null; 
+    InputStreamReader inputStrReader = new InputStreamReader(System.in);
+    BufferedReader br = new BufferedReader(inputStrReader);
+    try {
+      inputText = br.readLine();
+    } catch (IOException error) {
+      error.printStackTrace();
+    }
+    return inputText;
+  }
 
-			break; 
-		}
-	}
-
-	public static String getUserCommand(){
-		String inputText = null; 
-		InputStreamReader inputStrReader = new InputStreamReader(System.in);
-		BufferedReader br = new BufferedReader(inputStrReader);
-		try {
-			inputText = br.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return inputText;
-	}
-
-	public static void showText(String strToPrint){
-		System.out.println(strToPrint);
-	}
+  public static void showText(String strToPrint){
+    System.out.println(strToPrint);
+  }
 	
-	public String readInputText(){
-		String inputText = null; 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+  public String readInputText(){
+    String inputText = null; 
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      inputText = br.readLine();
+    } catch (IOException error) {
+      error.printStackTrace();
+      inputText = null;
+    }
 
-		try {
-			inputText = br.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			inputText = null;
-		}
-
-		return inputText;
-	}
+    return inputText;
+  }
 
 }

@@ -5,7 +5,7 @@ import com.excilys.computerdb.fconsigny.dao.ComputerDaoImpl;
 
 public class ComputerFactory {
 
-	public static ComputerDao getComputerDao(){
-		return new ComputerDaoImpl();
-	} 
+  public static ComputerDao getComputerDao(){
+    return new ComputerDaoImpl();
+  } 
 }

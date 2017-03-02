@@ -2,22 +2,20 @@ package com.excilys.computerdb.fconsigny.model;
 
 public class Company {
 
-	private long id; 
-	private String name; 
+  private long id; 
+  private String name; 
 	
-	public Company(long id) {
-		// TODO Auto-generated constructor stub
-	}
+  public Company(long id) {}
 	
-	public long getId(){
-		return this.id;
-	}
+  public long getId(){
+    return this.id;
+  }
 	
-	public void setName(String name){
-		this.name = name;
-	}
+  public void setName(String name){
+    this.name = name;
+  }
 	
-	public String getName(){
-		return this.name; 
-	}
+  public String getName(){
+    return this.name; 
+  }
 }

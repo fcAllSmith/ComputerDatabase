@@ -5,7 +5,7 @@ import com.excilys.computerdb.fconsigny.dao.CompanyDaoImpl;
 
 public class CompanyFactory {
 
-	public static CompanyDao getCompanyDao(){
-		return new CompanyDaoImpl();
-	}
+  public static CompanyDao getCompanyDao(){
+    return new CompanyDaoImpl();
+  }
 }
