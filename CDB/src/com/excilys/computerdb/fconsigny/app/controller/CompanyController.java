@@ -18,8 +18,12 @@ public class CompanyController {
 
 	public void loadListCompany(){
 		List<Company> companyList = new CompanyServices().getAllCompanies();
-		for(Company company : companyList){
-			((UiViewCompany)view).showText(company.toString());
+		if(companyList.isEmpty()){
+			((UiViewCompany)view).showText("No company found");
+		}else{
+			for(Company company : companyList){
+				((UiViewCompany)view).showText(company.toString());
+			}	
 		}
 	}
 

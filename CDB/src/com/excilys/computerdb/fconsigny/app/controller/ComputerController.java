@@ -21,14 +21,18 @@ public class ComputerController {
 
 	public void loadListComputer(){
 		List<Computer> computerList  = new ComputerServices().getAllComputers();
-		for(Computer computer : computerList){
-			((UiViewCompany)view).showText(computer.toString());
+		if(computerList.isEmpty()){
+			((UiViewCompany)view).showText("No computer found");
+		}else{
+			for(Computer computer : computerList){
+				((UiViewCompany)view).showText(computer.toString());
+			}	
 		}
 	}
-	
+
 	public void loadComputerById(String strInputId){
 		int id = Integer.parseInt(strInputId);
-		
+
 		try {
 			Computer computer = new ComputerServices().getUniqueComputer(id);
 			((UiViewCompany)view).showText(computer.toString());
@@ -37,11 +41,11 @@ public class ComputerController {
 			((UiViewCompany)view).showText("No computer found");
 		}
 	}
-	
+
 	public void deleteComputer(String strInputId){
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @param args 
@@ -51,7 +55,7 @@ public class ComputerController {
 	 * [3] companyId
 	 */
 	public void createComputer(String[] args){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy HH:mm:ss a");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy HH:mm:ss a");
 		Computer computer = new Computer(Integer.parseInt(args[0]));
 		computer.setName(args[1]);
 		computer.setIntroduced(LocalDateTime.parse(args[2], formatter));
