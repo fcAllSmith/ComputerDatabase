@@ -1,39 +1,19 @@
-package com.excilys.computerdb.fconsigny.app;
+package com.excilys.computerdb.fconsigny;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.excilys.computerdb.fconsigny.exceptions.CompanyException;
-import com.excilys.computerdb.fconsigny.model.Company;
-import com.excilys.computerdb.fconsigny.model.Computer;
-import com.excilys.computerdb.fconsigny.services.CompanyServices;
-import com.excilys.computerdb.fconsigny.services.ComputerServices;
-
-public class AppLauncher {
+public abstract class AppView {
 
 	public static void main(String[] args) {
-		showText("-- Welcom  to Computer Database");
+		showText("-- Welcom  to Computer Database --");
 		showText("1 - Select all companies");
 		showText("2 - Select company with an id");
 		showText("3 - Select all computers");
 		showText("4 - Select a computer with an id");
 
 		userCommand(getUserCommand());
-
-		for(Computer computer : new ComputerServices().getAllComputersWithLimiter(10, 0)){
-			showText(computer.toString());
-		}
-		
-		for(Company company : new CompanyServices().getAllCompanies()){
-			showText(company.getName());
-		}
-		
-		try {
-			showText(new CompanyServices().getUniqueCompany(5).getName());
-		} catch (CompanyException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public static void userCommand(String strInput){
@@ -69,4 +49,20 @@ public class AppLauncher {
 	public static void showText(String strToPrint){
 		System.out.println(strToPrint);
 	}
+	
+	public String readInputText(){
+		String inputText = null; 
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		try {
+			inputText = br.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			inputText = null;
+		}
+
+		return inputText;
+	}
+
 }
