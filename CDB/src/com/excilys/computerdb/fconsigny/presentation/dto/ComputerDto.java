@@ -3,9 +3,9 @@ package com.excilys.computerdb.fconsigny.presentation.dto;
 public class ComputerDto {
 	
 	private long id; 
-	private String name;
-	private String inserted; 
-	private String discontinued; 
+	private String name = "";
+	private String inserted = ""; 
+	private String discontinued = ""; 
 	private long companyId;
 	
 	public ComputerDto(){
