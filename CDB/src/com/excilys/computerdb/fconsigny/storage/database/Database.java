@@ -28,7 +28,7 @@ public class Database {
       Class.forName(JDB_DRIVER);
       String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2";
       try {
-        this.connection = DriverManager.getConnection(customPDO,"root","kXZXLPTXMMRR13");
+        this.connection = DriverManager.getConnection(customPDO,"root","pwd");
         System.out.println("Connected");
       } catch(SQLException error) {
         DoLogger.doLog(Database.class,"Enable to reach the database");

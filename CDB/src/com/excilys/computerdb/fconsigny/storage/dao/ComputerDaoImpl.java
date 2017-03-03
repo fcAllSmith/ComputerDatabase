@@ -29,13 +29,20 @@ public class ComputerDaoImpl implements ComputerDao {
   public Computer findById(long id) {
     DatabaseManager dm = new DatabaseManager();
     ResultSet rs = dm.queryGet(QUERY_SELECT_BY_ID + id);
+   
     try {
-      rs.next();
-      Computer computer = MysqlComputerMapper.resultSetIntoComputer(rs);
-      return computer;
-    } catch (SQLException error) {
-    	error.printStackTrace();
-    }
+		if(rs.isBeforeFirst()) {
+			try {
+			      rs.next();
+			      return MysqlComputerMapper.resultSetIntoComputer(rs);
+			    } catch (SQLException error) {
+			    	error.printStackTrace();
+			    }	
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+    
     return null;
   }
 

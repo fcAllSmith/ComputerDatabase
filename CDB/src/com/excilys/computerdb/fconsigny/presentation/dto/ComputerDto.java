@@ -52,6 +52,9 @@ public class ComputerDto {
 		this.companyId = companyId;
 	}
 
-	
+	@Override
+	public String toString(){
+		return " ID : " + this.id + " NAME : " + this.name + " INTRODUCED " + this.inserted + " DISCONTINUED : " + this.discontinued + " COMPANY :" + this.companyId; 
+	}
 	
 }

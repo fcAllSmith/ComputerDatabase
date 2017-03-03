@@ -37,10 +37,6 @@ public abstract class AppView {
     }
     return inputText;
   }
-
-  public static void showText(String strToPrint){
-    System.out.println(strToPrint);
-  }
 	
   public String readInputText(){
     String inputText = null; 

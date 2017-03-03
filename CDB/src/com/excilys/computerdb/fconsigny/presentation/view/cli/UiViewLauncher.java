@@ -16,7 +16,6 @@ public class UiViewLauncher extends AppView implements IApp{
     showText("2 - Companies");
     showText( "What do you want to do ? :");
 		
-    readInputText();
     onInputKey(readInputText());
   }
 

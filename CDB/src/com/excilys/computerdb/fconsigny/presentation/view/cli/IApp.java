@@ -9,5 +9,9 @@ public interface IApp {
   public void refreshUi();
   
   public void destroyView();
+  
+  public default void showText(String message){
+	  System.out.println(message);
+  };
 
 }

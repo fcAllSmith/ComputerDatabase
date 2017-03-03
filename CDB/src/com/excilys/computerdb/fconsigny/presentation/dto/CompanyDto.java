@@ -4,11 +4,11 @@ public class CompanyDto {
 
 	private long id; 
 	private String name = "";
-	
+
 	public CompanyDto(){
-		
+
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -23,5 +23,10 @@ public class CompanyDto {
 
 	public void setName(String name) {
 		this.name = name;
-	}	
+	}
+
+	@Override
+	public String toString(){
+		return " ID : " + this.id + " Company Name : " + this.name;
+	}
 }

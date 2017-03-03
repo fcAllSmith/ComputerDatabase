@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 
 @WebServlet(urlPatterns = { "/dashboard"})
 public class DashboardServlet extends HttpServlet {
@@ -27,7 +27,7 @@ public class DashboardServlet extends HttpServlet {
     String username = request.getParameter("login");
     request.setAttribute("username", username);
 
-    List<Computer> computerList = new ComputerServices().getAllComputers();
+    List<ComputerDto> computerList = new ComputerServices().getAllComputers();
     request.setAttribute("computerList", computerList);
 
     RequestDispatcher dispatcher = this.getServletContext()

@@ -1,11 +1,8 @@
 package com.excilys.computerdb.fconsigny.presentation.controller;
 
-import com.excilys.computerdb.fconsigny.business.model.Company;
 import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
+import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
-import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewCompany;
-import com.excilys.computerdb.fconsigny.storage.exceptions.CompanyException;
-import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 import java.util.List;
 
@@ -17,23 +14,23 @@ public class CompanyController {
   }
 
   public void loadListCompany() {
-    List<Company> companyList = new CompanyServices().getAllCompanies();
+    List<CompanyDto> companyList = new CompanyServices().getAllCompanies();
     if(companyList.isEmpty()){
-      ((UiViewCompany)view).showText("No company found");
+     this.view.showText("No company found");
     }else{
-      for(Company company : companyList){
-        ((UiViewCompany)view).showText(company.toString());
+      for(CompanyDto company : companyList){
+        this.view.showText(company.toString());
       }	
     }
   }
 
-  public void loadCompanyById(int id) {
+  public void loadCompanyById(String strInput) {
     try {
-      Company company = new CompanyServices().getUniqueCompany(id);
-      ((UiViewCompany)view).showText(company.toString());;
+      Company company = new CompanyServices().getUniqueCompany(Integer.parseInt(strInput));
+      this.view.showText(company.toString());;
     } catch (CompanyException error) {
       error.printStackTrace();
-      ((AppView) view).showText("No result found");
+      this.view.showText("No result found");
     }
   }
 }

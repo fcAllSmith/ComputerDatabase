@@ -2,27 +2,26 @@ package com.excilys.computerdb.fconsigny.presentation.controller;
 
 import java.util.List;
 
-import com.excilys.computerdb.fconsigny.business.model.Computer;
-import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
-import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewCompany;
-import com.excilys.computerdb.fconsigny.storage.exceptions.ComputerException;
-import com.excilys.computerdb.fconsigny.storage.mapper.MysqlComputerMapper;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
+
+import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 
 public class ComputerController {
 
-	private IApp view;
+	private UiViewComputer view;
 	public ComputerController(IApp view) {	
-		this.view = view;
+		this.view = (UiViewComputer)view;
 	}
 
 	public void loadListComputer(){
-		List<Computer> computerList  = new ComputerServices().getAllComputers();
+		List<ComputerDto> computerList  = new ComputerServices().getAllComputers();
 		if(computerList.isEmpty()){
-			((UiViewCompany)view).showText("No computer found");
+			this.view.showText("No computer found");
 		}else{
-			for(Computer computer : computerList){
-				((UiViewCompany)view).showText(computer.toString());
+			for(ComputerDto computer : computerList){
+				this.view.showText(computer.toString());
 			}	
 		}
 	}
@@ -30,12 +29,11 @@ public class ComputerController {
 	public void loadComputerById(String strInputId){
 		int id = Integer.parseInt(strInputId);
 
-		try {
-			Computer computer = new ComputerServices().getUniqueComputer(id);
-			((UiViewCompany)view).showText(computer.toString());
-		} catch (ComputerException e) {
-			e.printStackTrace();
-			((UiViewCompany)view).showText("No computer found");
+		ComputerDto computer = new ComputerServices().getUniqueComputer(id);
+		if(computer != null){
+			this.view.showText(computer.toString());	
+		}else{
+			this.view.showText("No computer found");
 		}
 	}
 
@@ -52,6 +50,6 @@ public class ComputerController {
 	 * [3] companyId
 	 */
 	public void createComputer(String[] args){
-		Computer computer = MysqlComputerMapper.stringIntoComputer(args);
+		//ComputerDto computer = MysqlComputerMapper.stringIntoComputer(args);
 	}
 }
