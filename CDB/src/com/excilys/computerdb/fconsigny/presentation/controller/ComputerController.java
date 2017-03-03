@@ -7,7 +7,7 @@ import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewCompany;
 import com.excilys.computerdb.fconsigny.storage.exceptions.ComputerException;
-import com.excilys.computerdb.fconsigny.storage.mapper.ComputerMapper;
+import com.excilys.computerdb.fconsigny.storage.mapper.MysqlComputerMapper;
 
 public class ComputerController {
 
@@ -52,6 +52,6 @@ public class ComputerController {
 	 * [3] companyId
 	 */
 	public void createComputer(String[] args){
-		Computer computer = ComputerMapper.stringIntoComputer(args);
+		Computer computer = MysqlComputerMapper.stringIntoComputer(args);
 	}
 }

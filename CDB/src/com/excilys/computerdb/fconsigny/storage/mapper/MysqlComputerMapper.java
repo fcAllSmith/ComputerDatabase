@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.storage.dao.ComputerDaoImpl;
 
-public abstract class ComputerMapper {
+public abstract class MysqlComputerMapper {
 
   public static Computer resultSetIntoComputer(ResultSet resultSet){
     try {

@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.storage.database.DatabaseManager;
-import com.excilys.computerdb.fconsigny.storage.mapper.ComputerMapper;
+import com.excilys.computerdb.fconsigny.storage.mapper.MysqlComputerMapper;
 
 public class ComputerDaoImpl implements ComputerDao {
 
@@ -31,7 +31,7 @@ public class ComputerDaoImpl implements ComputerDao {
     ResultSet rs = dm.queryGet(QUERY_SELECT_BY_ID + id);
     try {
       rs.next();
-      Computer computer = ComputerMapper.resultSetIntoComputer(rs);
+      Computer computer = MysqlComputerMapper.resultSetIntoComputer(rs);
       return computer;
     } catch (SQLException error) {
     	error.printStackTrace();
@@ -46,7 +46,7 @@ public class ComputerDaoImpl implements ComputerDao {
     List<Computer> computerList  = new ArrayList<Computer>();
     try {
       while (rs.next()) {
-        Computer computer = ComputerMapper.resultSetIntoComputer(rs);
+        Computer computer = MysqlComputerMapper.resultSetIntoComputer(rs);
         computerList.add(computer);
       }
     } catch (SQLException error) {
@@ -64,7 +64,7 @@ public class ComputerDaoImpl implements ComputerDao {
 		
     try {
       while (rs.next()) {
-        Computer computer = ComputerMapper.resultSetIntoComputer(rs);
+        Computer computer = MysqlComputerMapper.resultSetIntoComputer(rs);
         computerList.add(computer);
       }
     } catch (SQLException e) {
