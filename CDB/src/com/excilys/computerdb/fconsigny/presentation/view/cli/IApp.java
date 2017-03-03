@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.presentation;
+package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 

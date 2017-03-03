@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.presentation.servlet;
+package com.excilys.computerdb.fconsigny.presentation.view.servlet;
 
 public class DbUtil {
 

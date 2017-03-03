@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.presentation.servlet;
+package com.excilys.computerdb.fconsigny.presentation.view.servlet;
 
 import java.io.IOException;
 import java.util.List;

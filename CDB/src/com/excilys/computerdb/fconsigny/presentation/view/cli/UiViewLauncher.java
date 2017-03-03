@@ -1,6 +1,5 @@
-package com.excilys.computerdb.fconsigny.presentation.ui;
+package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
-import com.excilys.computerdb.fconsigny.presentation.IApp;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 public class UiViewLauncher extends AppView implements IApp{

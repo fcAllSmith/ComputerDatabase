@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.presentation.servlet.filter;
+package com.excilys.computerdb.fconsigny.presentation.view.servlet.filter;
 
 import java.io.IOException;
 import java.sql.Connection;

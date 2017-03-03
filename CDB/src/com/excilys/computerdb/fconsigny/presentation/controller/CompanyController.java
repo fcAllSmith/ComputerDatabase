@@ -2,8 +2,8 @@ package com.excilys.computerdb.fconsigny.presentation.controller;
 
 import com.excilys.computerdb.fconsigny.business.model.Company;
 import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
-import com.excilys.computerdb.fconsigny.presentation.IApp;
-import com.excilys.computerdb.fconsigny.presentation.ui.UiViewCompany;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewCompany;
 import com.excilys.computerdb.fconsigny.storage.exceptions.CompanyException;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 

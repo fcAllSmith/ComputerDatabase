@@ -1,9 +1,8 @@
-package com.excilys.computerdb.fconsigny.presentation.ui;
+package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
 import java.io.IOException;
 
 import com.excilys.computerdb.fconsigny.app.controller.CompanyController;
-import com.excilys.computerdb.fconsigny.presentation.IApp;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 public class UiViewCompany extends AppView implements IApp {

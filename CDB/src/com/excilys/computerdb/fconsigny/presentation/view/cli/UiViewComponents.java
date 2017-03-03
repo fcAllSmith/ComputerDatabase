@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.presentation.ui;
+package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
 public abstract class UiViewComponents {
 

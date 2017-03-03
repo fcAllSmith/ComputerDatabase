@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
-import com.excilys.computerdb.fconsigny.presentation.IApp;
-import com.excilys.computerdb.fconsigny.presentation.ui.UiViewCompany;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewCompany;
 import com.excilys.computerdb.fconsigny.storage.exceptions.ComputerException;
 import com.excilys.computerdb.fconsigny.storage.mapper.ComputerMapper;
 
