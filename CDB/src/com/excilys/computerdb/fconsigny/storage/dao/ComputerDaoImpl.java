@@ -79,7 +79,7 @@ public class ComputerDaoImpl implements ComputerDao {
     return computerList;
   }
 	
-  public boolean deleteById(int id) throws SQLException {
+  public boolean deleteById(int id) {
     DatabaseManager dm = new DatabaseManager();
     String query = QUERY_DELETE.concat(Integer.toString(id) + ";") ; 
     return dm.queryPost(query);

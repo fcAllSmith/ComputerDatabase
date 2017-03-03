@@ -6,9 +6,9 @@ import java.util.List;
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 
 public interface ComputerDao {
-	public Computer findById(long id)  throws SQLException;
+	public Computer findById(long id);
 	
-	public List findAll()  throws SQLException;
+	public List<Computer> findAll();
 	
-	public List findAllWithLimiter(int limit,int offset);
+	public List<Computer> findAllWithLimiter(int limit,int offset);
 }

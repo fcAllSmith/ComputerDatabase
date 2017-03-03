@@ -9,6 +9,6 @@ public interface CompanyDao {
 
   public Company findById(long id)  throws SQLException;
 
-  public List findAll()  throws SQLException;
+  public List<Company> findAll()  throws SQLException;
   
 }
