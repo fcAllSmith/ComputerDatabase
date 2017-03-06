@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.excilys.computerdb.fconsigny.presentation.controller.cli.CompanyController;
 import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
+import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 
 @WebServlet(urlPatterns = { "/computer"})
 public class AddComputerServlet extends HttpServlet{
@@ -26,18 +27,18 @@ public class AddComputerServlet extends HttpServlet{
 			throws ServletException, IOException {
 
 		
-		List<ComputerDto> computerDtoList = 
+	//	List<ComputerDto> computerDtoList = 
 		
-		request.setAttribute("companyList", companyList);
-		RequestDispatcher dispatcher = this.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/AddComputerFile.jsp");
+		//request.setAttribute("companyList", companyList);
+		//RequestDispatcher dispatcher = this.getServletContext()
+				//.getRequestDispatcher("/WEB-INF/views/AddComputerFile.jsp");
 
-		dispatcher.forward(request, response);
+		//dispatcher.forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		//doGet(request, response);
 	}
 }

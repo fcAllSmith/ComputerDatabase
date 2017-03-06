@@ -1,8 +1,9 @@
 package com.excilys.computerdb.fconsigny.presentation.view.servlet;
 
+import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,10 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
-import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
-
-@WebServlet(urlPatterns = { "/dashboard"})
+@WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -40,7 +38,7 @@ public class DashboardServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
   
-    doGet(request, response);
+    //doGet(request, response);
 
   }
 

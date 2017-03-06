@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 
 
 //All request has to go through the /* filter 
-@WebFilter(filterName = "jdbcFilter", urlPatterns = { "/*" })
-public class JdbcFilter implements Filter{
+@WebFilter(filterName = "cdbFilter", urlPatterns = {"/*"})
+public class JdbcFilter implements Filter {
 
 	@Override
 	public void destroy() {}
