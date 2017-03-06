@@ -10,25 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.excilys.computerdb.fconsigny.business.model.Company;
-import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
+import com.excilys.computerdb.fconsigny.presentation.controller.cli.CompanyController;
+import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
 
 @WebServlet(urlPatterns = { "/computer"})
 public class AddComputerServlet extends HttpServlet{
 
-	private List<Company> companyList;
-
-	/**
-	 * Default serial VersionId.
-	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	private CompanyController companyController;
+	private List<CompanyDto> companyList;
+	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		companyList = loadCompany();
-		//Set list into the view
+		
+		List<ComputerDto> computerDtoList = 
+		
 		request.setAttribute("companyList", companyList);
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views/AddComputerFile.jsp");
@@ -41,15 +40,4 @@ public class AddComputerServlet extends HttpServlet{
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
-	/**
-	 *  load a company list in order to print it in a list 
-	 * @return List of companies we want to be sure that the computer added 
-	 *     is affected to a company which exist.
-	 */
-	public List<Company> loadCompany() {
-		//company listLoader
-		return new CompanyServices().getAllCompanies();
-	}
-
 }

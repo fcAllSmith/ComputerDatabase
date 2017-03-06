@@ -2,20 +2,19 @@ package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
 import java.io.IOException;
 
-import com.excilys.computerdb.fconsigny.presentation.controller.CompanyController;
-
+import com.excilys.computerdb.fconsigny.presentation.controller.cli.CompanyController;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 public class UiViewCompany extends AppView implements IApp {
 
 	AppView appParentView ;
-	private static CompanyController companyController;
+	private CompanyController companyController;
 
 	@Override
 	public void createView(AppView appParentView) {
 		if(this.appParentView == null && companyController == null){
 			this.appParentView = appParentView ;
-			companyController = new CompanyController(this);
+			this.companyController = new CompanyController(this);
 		}
 		refreshUi();
 	}
@@ -39,11 +38,11 @@ public class UiViewCompany extends AppView implements IApp {
 			int cmd = Integer.parseInt(strInput);
 			switch (cmd) {
 			case 1 : 
-				companyController.loadListCompany();
+				this.companyController.loadListCompany();
 				break;
 			case 2:
 				showText("Company id : "); 
-				companyController.loadCompanyById(readInputText());
+				this.companyController.loadCompanyById(readInputText());
 				break;
 			default : 
 				destroyView();
@@ -56,7 +55,7 @@ public class UiViewCompany extends AppView implements IApp {
 
 	@Override
 	public void destroyView() {
-		UiViewCompany.companyController = null;
+		this.companyController = null;
 		((IApp) appParentView).refreshUi();
 	}
 

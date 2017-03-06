@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.presentation.controller;
+package com.excilys.computerdb.fconsigny.presentation.controller.cli;
 
 import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
@@ -25,12 +25,7 @@ public class CompanyController {
   }
 
   public void loadCompanyById(String strInput) {
-    try {
-      Company company = new CompanyServices().getUniqueCompany(Integer.parseInt(strInput));
+    CompanyDto company = new CompanyServices().getUniqueCompany(Integer.parseInt(strInput));
       this.view.showText(company.toString());;
-    } catch (CompanyException error) {
-      error.printStackTrace();
-      this.view.showText("No result found");
-    }
   }
 }

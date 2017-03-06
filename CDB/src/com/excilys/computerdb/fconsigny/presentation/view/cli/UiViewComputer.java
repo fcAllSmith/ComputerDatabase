@@ -2,7 +2,7 @@ package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
 import java.io.IOException;
 
-import com.excilys.computerdb.fconsigny.presentation.controller.ComputerController;
+import com.excilys.computerdb.fconsigny.presentation.controller.cli.ComputerController;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 public class UiViewComputer extends AppView implements IApp {

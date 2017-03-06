@@ -1,5 +1,8 @@
 package com.excilys.computerdb.fconsigny.presentation.view.servlet.filter;
 
+import com.excilys.computerdb.fconsigny.storage.database.ConnectionUtil;
+import com.excilys.computerdb.fconsigny.storage.database.MysqlDatabase;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Collection;
@@ -13,14 +16,8 @@ import javax.servlet.ServletRegistration;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import com.excilys.computerdb.fconsigny.storage.database.ConnectionUtil;
-import com.excilys.computerdb.fconsigny.storage.database.MysqlDatabase;
 
 //All request has to go through the /* filter 
 @WebFilter(filterName = "jdbcFilter", urlPatterns = { "/*" })

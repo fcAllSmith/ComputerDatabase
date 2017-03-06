@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.presentation.controller;
+package com.excilys.computerdb.fconsigny.presentation.controller.cli;
 
 import java.util.List;
 

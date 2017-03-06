@@ -7,9 +7,9 @@ import java.io.InputStreamReader;
 public abstract class AppView {
 
   public static void main(String[] args) {
-    showText("-- Welcom  to Computer Database --");
-    showText("1 - Companies");
-    showText("2 - Computers");
+    System.out.println("-- Welcom  to Computer Database --");
+    System.out.println("1 - Companies");
+    System.out.println("2 - Computers");
     
     userCommand(getUserCommand());
   }
