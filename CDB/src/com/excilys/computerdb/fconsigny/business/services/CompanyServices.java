@@ -1,5 +1,6 @@
 package com.excilys.computerdb.fconsigny.business.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.excilys.computerdb.fconsigny.business.factory.CompanyFactory;
@@ -9,13 +10,17 @@ import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
 
 public class CompanyServices {
 
-  private CompanyDao cDao =  CompanyFactory.getCompanyDao();
+	public CompanyServices() throws SQLException{
+		super();
+	}
 
-  public CompanyDto getUniqueCompany(long id) {
-      return CompanyDtoMapper.transformToDto(cDao.findById(id));   
-  }
-	
-  public List<CompanyDto> getAllCompanies() {
-      return CompanyDtoMapper.transformListToDto(cDao.findAll());
-  }
+	private CompanyDao cDao =  CompanyFactory.getCompanyDao();
+
+	public CompanyDto getUniqueCompany(long id) {
+		return CompanyDtoMapper.transformToDto(cDao.findById(id));   
+	}
+
+	public List<CompanyDto> getAllCompanies() {
+		return CompanyDtoMapper.transformListToDto(cDao.findAll());
+	}
 }

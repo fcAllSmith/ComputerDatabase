@@ -5,9 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="./css/font-awesome.css" rel="stylesheet" media="screen">
-<link href="./css/main.css" rel="stylesheet" media="screen">
+<h:outputStylesheet library="css" name="bootstrap.min.css" target="head" />
+<h:outputStylesheet library="css" name="font-awesome.css" target="head" />
+<h:outputStylesheet library="css" name="main.css" target="head" />
+<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="../css/font-awesome.css" rel="stylesheet" media="screen">
+<link href="../css/main.css" rel="stylesheet" media="screen">
 <title>Insert title here</title>
 </head>
 <body>
@@ -32,7 +35,7 @@
 				</form>
 			</div>
 			<div class="pull-right">
-				<a class="btn btn-success" id="addComputer" href="addComputer.html">Add
+				<a class="btn btn-success" id="addComputer" href="#">Add
 					Computer</a> <a class="btn btn-default" id="editComputer" href="#"
 					onclick="$.fn.toggleEditMode();">Edit</a>
 			</div>
@@ -80,7 +83,7 @@
 				<tr>
 					<td class="editMode"><input type="checkbox" name="cb"
 						class="cb" value="0"></td>
-					<td><a href="editComputer.html" onclick="">Connection
+					<td><a href="CDB/computer/edit" onclick="">Connection
 							Machine</a></td>
 					<td>1987-01-01</td>
 					<td></td>

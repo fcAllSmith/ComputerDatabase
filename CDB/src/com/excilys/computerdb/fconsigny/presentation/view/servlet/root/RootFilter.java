@@ -1,7 +1,4 @@
-package com.excilys.computerdb.fconsigny.presentation.view.servlet.filter;
-
-import com.excilys.computerdb.fconsigny.storage.database.ConnectionUtil;
-import com.excilys.computerdb.fconsigny.storage.database.MysqlDatabase;
+package com.excilys.computerdb.fconsigny.presentation.view.servlet.root;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,39 +15,48 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import com.excilys.computerdb.fconsigny.business.factory.ServletFactory;
+import com.excilys.computerdb.fconsigny.storage.database.ConnectionUtil;
 
-//All request has to go through the /* filter 
+
+/**
+ *   
+ *   In charge to load the proper ViewController. 
+ * @author excilys.
+ *
+ */
 @WebFilter(filterName = "cdbFilter", urlPatterns = {"/*"})
-public class JdbcFilter implements Filter {
-
+public class RootFilter implements Filter {
+	
 	@Override
 	public void destroy() {}
-	
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		HttpServletRequest req = (HttpServletRequest) request;
-		if (this.needJdbc(req)) {
-			System.out.println("Open Connection for: " + req.getServletPath());
-			Connection conn = null;
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		Connection connection = null;
+		if (needJdbc(httpRequest)) {
 			try {
-				conn = MysqlDatabase.getMySQLConnection();
-				conn.setAutoCommit(false);
-				//SessionUtil.storeConnection(request, conn);
-				chain.doFilter(request, response);
-				conn.commit();
+				connection = ServletFactory.getSession();	
+				ServletFactory.storeConnection(httpRequest, connection);
+				chain.doFilter(httpRequest, response);
+				connection.commit();
+
 			} catch (Exception error) {
 				error.printStackTrace();
-				ConnectionUtil.rollbackQuietly(conn);
+				ConnectionUtil.rollbackQuietly(connection);
+				ConnectionUtil.closeQuietly(connection);
 			} finally {
-				ConnectionUtil.closeQuietly(conn);
+				ConnectionUtil.closeQuietly(connection);
 			}
 		} else {       
 			chain.doFilter(request, response);
 		}
+		
 	}
-	
+
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {}
 
@@ -78,5 +84,5 @@ public class JdbcFilter implements Filter {
 		}
 		return false;
 	}
-	
+
 }

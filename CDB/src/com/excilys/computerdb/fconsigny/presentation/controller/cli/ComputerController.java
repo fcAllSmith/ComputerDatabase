@@ -1,5 +1,6 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.cli;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
@@ -16,25 +17,37 @@ public class ComputerController {
 	}
 
 	public void loadListComputer(){
-		List<ComputerDto> computerList  = new ComputerServices().getAllComputers();
-		if(computerList.isEmpty()){
-			this.view.showText("No computer found");
-		}else{
-			for(ComputerDto computer : computerList){
-				this.view.showText(computer.toString());
-			}	
+		try {
+			List<ComputerDto> computerList = new ComputerServices().getAllComputers();
+			if(computerList.isEmpty()){
+				this.view.showText("No computer found");
+			}else{
+				for(ComputerDto computer : computerList){
+					this.view.showText(computer.toString());
+				}	
+			}
+		} catch (SQLException e) {
+			this.view.showText("Database can't be reach");
+			e.printStackTrace();
 		}
+		
 	}
 
 	public void loadComputerById(String strInputId){
 		int id = Integer.parseInt(strInputId);
 
-		ComputerDto computer = new ComputerServices().getUniqueComputer(id);
-		if(computer != null){
-			this.view.showText(computer.toString());	
-		}else{
-			this.view.showText("No computer found");
+		try {
+			ComputerDto computer = new ComputerServices().getUniqueComputer(id);
+			if(computer != null){
+				this.view.showText(computer.toString());	
+			}else{
+				this.view.showText("No computer found");
+			}
+		} catch (SQLException e) {
+			this.view.showText("Database can't be reach");
+			e.printStackTrace();
 		}
+		
 	}
 
 	public void deleteComputer(String strInputId){

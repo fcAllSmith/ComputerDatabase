@@ -5,9 +5,15 @@ import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ComputerServices {
+	
+	public ComputerServices() throws SQLException{
+		super();
+	}
+	
 	private ComputerDao cDao = ComputerFactory.getComputerDao();
 
 	public ComputerDto getUniqueComputer(long id) {

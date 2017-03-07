@@ -1,12 +1,13 @@
 package com.excilys.computerdb.fconsigny.storage.dao;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.excilys.computerdb.fconsigny.business.model.Computer;
-import com.excilys.computerdb.fconsigny.storage.database.DatabaseManager;
+import com.excilys.computerdb.fconsigny.storage.database.DatabaseHelper;
 import com.excilys.computerdb.fconsigny.storage.mapper.MysqlComputerMapper;
 
 public class ComputerDaoImpl implements ComputerDao {
@@ -20,13 +21,17 @@ public class ComputerDaoImpl implements ComputerDao {
   public final static String COL_INTRODUCED = "introduced";
   public final static String COL_DISCONTINUED ="discontinued";
   public final static String COL_COMPANY_ID = "company_id";
+  
+  private Connection connection;
 
-  public ComputerDaoImpl() {}
+  public ComputerDaoImpl(Connection connection) {
+	  this.connection = connection;
+  }
 
   @Override
   public Computer findById(long id) {
-    DatabaseManager dm = new DatabaseManager();
-    ResultSet rs = dm.queryGet(QUERY_SELECT_BY_ID + id);
+    DatabaseHelper dm = new DatabaseHelper();
+    ResultSet rs = dm.queryGet(this.connection,QUERY_SELECT_BY_ID + id);
    
     try {
 		if(rs.isBeforeFirst()) {
@@ -46,8 +51,8 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public List<Computer> findAll() {
-    DatabaseManager dm = new DatabaseManager();
-    ResultSet rs = dm.queryGet(QUERY_SELECT_ALL);
+    DatabaseHelper dm = new DatabaseHelper();
+    ResultSet rs = dm.queryGet(this.connection,QUERY_SELECT_ALL);
     List<Computer> computerList  = new ArrayList<Computer>();
     try {
       while (rs.next()) {
@@ -62,9 +67,9 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public List<Computer> findAllWithLimiter(int limit,int offset) {
-    DatabaseManager dm = new DatabaseManager();
+    DatabaseHelper dm = new DatabaseHelper();
     String query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset;
-    ResultSet rs = dm.queryGet(query);
+    ResultSet rs = dm.queryGet(this.connection,query);
     List<Computer> computerList = new ArrayList<Computer>(); 
 		
     try {
@@ -85,9 +90,9 @@ public class ComputerDaoImpl implements ComputerDao {
   }
 	
   public boolean deleteById(int id) {
-    DatabaseManager dm = new DatabaseManager();
+    DatabaseHelper dm = new DatabaseHelper();
     String query = QUERY_DELETE.concat(Integer.toString(id) + ";") ; 
-    return dm.queryPost(query);
+    return dm.queryPost(this.connection,query);
   }
 	
   public boolean insertComputer(Computer computer){
