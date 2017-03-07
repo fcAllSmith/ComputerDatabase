@@ -3,7 +3,7 @@ package com.excilys.computerdb.fconsigny.presentation.dto;
 public class ComputerDto {
 	
 	private long id; 
-	private String name = "";
+	private String name = "defait";
 	private String inserted = ""; 
 	private String discontinued = ""; 
 	private long companyId;

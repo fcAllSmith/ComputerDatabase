@@ -47,7 +47,6 @@ public class ComputerController {
 			this.view.showText("Database can't be reach");
 			e.printStackTrace();
 		}
-		
 	}
 
 	public void deleteComputer(String strInputId){

@@ -12,7 +12,7 @@ import com.excilys.computerdb.fconsigny.storage.mapper.MysqlComputerMapper;
 
 public class ComputerDaoImpl implements ComputerDao {
 
-  private final static String QUERY_SELECT_ALL = "SELECT * FROM computer;";
+  private final static String QUERY_SELECT_ALL = "SELECT * FROM computer";
   private final static String QUERY_SELECT_BY_ID = "SELECT * FROM computer WHERE id =";
   private final static String QUERY_DELETE = "DELETE FROM computer WHERE id=";
 

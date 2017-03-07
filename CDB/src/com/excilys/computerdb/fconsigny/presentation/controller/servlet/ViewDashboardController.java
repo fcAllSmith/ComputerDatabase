@@ -44,18 +44,18 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 			throws ServletException, IOException {
 
 		//try {
-			//Connection connection = ServletFactory.getStoredConnection(request);
-			//ServletFactory.storeConnection(request, connection);
+		//Connection connection = ServletFactory.getStoredConnection(request);
+		//ServletFactory.storeConnection(request, connection);
 
-			this.populateListComputer(request);
+		this.populateListComputer(request);
 
-			RequestDispatcher dispatcher = this.getServletContext()
-					.getRequestDispatcher(ViewPathBuilder.viewPath(this.getClass()));
+		RequestDispatcher dispatcher = this.getServletContext()
+				.getRequestDispatcher(ViewPathBuilder.viewPath(this.getClass()));
 
-			dispatcher.forward(request, response);
+		dispatcher.forward(request, response);
 
 		//} catch (SQLException error) {
-			//response.sendError(500, "Exception sur l'accès à la BDD " + error);
+		//response.sendError(500, "Exception sur l'accès à la BDD " + error);
 		//	error.printStackTrace();
 		//}
 	}
@@ -63,6 +63,7 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 	}
 
 	public void populateListComputer(HttpServletRequest request){
