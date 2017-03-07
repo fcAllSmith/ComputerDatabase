@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.excilys.formation.fconsigny</groupId>
 	<artifactId>com.excilys.computerdb</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<name>ComputerDatabase</name>
 	<description>WebApplication handling computers
 </description>
@@ -88,24 +88,6 @@
 				<groupId>com.excilys.ebi.gatling</groupId>
 				<artifactId>gatling-maven-plugin</artifactId>
 				<version>${gatling.version}</version>
-				<executions>
-					<execution>
-						<phase>test</phase>
-						<goals>
-							<goal>execute</goal>
-						</goals>
-						<configuration>
-							<!-- Default values -->
-							<!--<configDir>src/test/resources</configDir> <dataFolder>src/test/resources/data</dataFolder> 
-								<resultsFolder>target/gatling/results</resultsFolder> <requestBodiesFolder>src/test/resources/request-bodies</requestBodiesFolder> 
-								<simulationsFolder>src/test/scala</simulationsFolder> <includes> <include>**/*.scala</include> 
-								</includes> -->
-							<excludes>
-								<exclude>advanced/*.scala</exclude>
-							</excludes>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

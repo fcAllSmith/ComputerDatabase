@@ -19,4 +19,10 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
+	<error-page>
+		<!-- Missing resource -->
+		<error-code>404</error-code>
+		<location>/404.html</location>
+	</error-page>
+
 </web-app>

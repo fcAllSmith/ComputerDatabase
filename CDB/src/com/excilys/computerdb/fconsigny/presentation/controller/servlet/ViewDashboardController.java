@@ -24,7 +24,6 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 
 	private static final long serialVersionUID = 1L;
 	private ComputerServices computerServices; 
-	private DataSource datasource;
 
 	public ViewDashboardController(){
 		super();
@@ -64,11 +63,11 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 	}
 
-	private void populateListComputer(HttpServletRequest request){
-		List<ComputerDto> computerDtoList = this.computerServices.getAllComputers() ;
+	public void populateListComputer(HttpServletRequest request){
+		List<ComputerDto> computerDtoList = this.computerServices.getAllComputers();
+		request.setAttribute("ctpFound", computerDtoList.size());
 		request.setAttribute("computerList", computerDtoList);
 	}
 }
