@@ -4,16 +4,22 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
 import com.excilys.computerdb.fconsigny.utils.log.DoLogger;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
 public class Database {
 
 	private static Database instance; 
+	private static DataSource datasource; 
+
 	private Connection connection; 
 	private static final String JDB_DRIVER = "com.mysql.jdbc.Driver"; 
 
 	private Database() {
-		
+
 	}
 
 	public static Database getInstance() {
@@ -27,12 +33,12 @@ public class Database {
 		if(this.connection != null){
 			return this.connection;	
 		}
-		
+
 		return setConnection();
 	}
-	
+
 	public Connection setConnection(){
-		try {
+		/*try {
 			Class.forName(JDB_DRIVER);
 			String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2";
 			try {
@@ -45,6 +51,48 @@ public class Database {
 		} catch (ClassNotFoundException error) {
 			error.printStackTrace();
 			return null;
+		}*/
+		Connection connection = null; 
+		try {
+			Class.forName(JDB_DRIVER);
+			String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2";
+			try {
+				this.connection = DriverManager.getConnection(customPDO,"root","pwd");
+				return this.connection;
+			} catch(SQLException error) {
+				DoLogger.doLog(Database.class,"Enable to reach the database");
+				return null;
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		/*try {
+			//connection = getDataSource().getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			DoLogger.doLog(Database.class,"Enable to reach the database or connection POOL MAX");
+		}*/
+		return connection ;
+	}
+
+	public static DataSource getDataSource(){
+		if(datasource == null){
+			try {
+				Class.forName(JDB_DRIVER);
+				HikariConfig conf = new HikariConfig();
+				conf.setJdbcUrl("jdbc:mysql://localhost:3306/computer-database-db2");
+				conf.setUsername("root");
+				conf.setPassword("pwd");
+				conf.setAutoCommit(false);
+				conf.setMaximumPoolSize(10);
+				datasource = new HikariDataSource(conf);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return datasource;
 	}
 }

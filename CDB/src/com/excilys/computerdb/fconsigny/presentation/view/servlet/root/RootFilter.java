@@ -1,7 +1,6 @@
 package com.excilys.computerdb.fconsigny.presentation.view.servlet.root;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.Collection;
 import java.util.Map;
 
@@ -15,9 +14,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import com.excilys.computerdb.fconsigny.business.factory.ServletFactory;
-import com.excilys.computerdb.fconsigny.storage.database.ConnectionUtil;
-
 
 /**
  *   
@@ -27,7 +23,7 @@ import com.excilys.computerdb.fconsigny.storage.database.ConnectionUtil;
  */
 @WebFilter(filterName = "cdbFilter", urlPatterns = {"/*"})
 public class RootFilter implements Filter {
-	
+
 	@Override
 	public void destroy() {}
 
@@ -36,25 +32,12 @@ public class RootFilter implements Filter {
 			throws IOException, ServletException {
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		Connection connection = null;
-		if (needJdbc(httpRequest)) {
-			try {
-				connection = ServletFactory.getSession();	
-				ServletFactory.storeConnection(httpRequest, connection);
-				chain.doFilter(httpRequest, response);
-				connection.commit();
 
-			} catch (Exception error) {
-				error.printStackTrace();
-				ConnectionUtil.rollbackQuietly(connection);
-				ConnectionUtil.closeQuietly(connection);
-			} finally {
-				ConnectionUtil.closeQuietly(connection);
-			}
+		if (needJdbc(httpRequest)) {
+			chain.doFilter(httpRequest, response);	
 		} else {       
 			chain.doFilter(request, response);
 		}
-		
 	}
 
 	@Override
@@ -69,12 +52,9 @@ public class RootFilter implements Filter {
 			urlPattern = servletPath + "/*";
 		}
 
-		//Key: servletName.
-		// Value: ServletRegistration
 		Map<String, ? extends ServletRegistration> servletRegistrations = request.getServletContext()
 				.getServletRegistrations();
 
-		// Collection of all servlet in your webapp.
 		Collection<? extends ServletRegistration> values = servletRegistrations.values();
 		for (ServletRegistration sr : values) {
 			Collection<String> mappings = sr.getMappings();

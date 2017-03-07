@@ -12,8 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
-import com.excilys.computerdb.fconsigny.business.factory.ServletFactory;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.view.servlet.path.ViewPathBuilder;
@@ -23,19 +23,42 @@ import com.excilys.computerdb.fconsigny.utils.log.DoLogger;
 public class ViewDashboardController extends HttpServlet implements Servlet {
 
 	private static final long serialVersionUID = 1L;
+	private ComputerServices computerServices; 
+	private DataSource datasource;
+
+	public ViewDashboardController(){
+		super();
+		try {
+			this.computerServices = new ComputerServices();
+		} catch (SQLException error) {
+			error.printStackTrace();
+			DoLogger.doLog(this.getClass(), "Database can't be reach");
+		}
+	}
+
+	public void init(){
+
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		Connection connection = ServletFactory.getStoredConnection(request);
-		
-		this.populateListComputer(request);
 
-		RequestDispatcher dispatcher = this.getServletContext()
-				.getRequestDispatcher(ViewPathBuilder.viewPath(this.getClass()));
-		dispatcher.forward(request, response);
+		//try {
+			//Connection connection = ServletFactory.getStoredConnection(request);
+			//ServletFactory.storeConnection(request, connection);
 
+			this.populateListComputer(request);
+
+			RequestDispatcher dispatcher = this.getServletContext()
+					.getRequestDispatcher(ViewPathBuilder.viewPath(this.getClass()));
+
+			dispatcher.forward(request, response);
+
+		//} catch (SQLException error) {
+			//response.sendError(500, "Exception sur l'accès à la BDD " + error);
+		//	error.printStackTrace();
+		//}
 	}
 
 	@Override
@@ -43,15 +66,9 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 			throws ServletException, IOException {
 
 	}
-	
+
 	private void populateListComputer(HttpServletRequest request){
-		List<ComputerDto> computerDtoList;
-		try {
-			computerDtoList = new ComputerServices().getAllComputers() ;
-			request.setAttribute("actorslist", computerDtoList);
-		} catch (SQLException e) {
-			DoLogger.doLog(this.getClass(), "Database can't be reach"); 
-			e.printStackTrace();
-		}
+		List<ComputerDto> computerDtoList = this.computerServices.getAllComputers() ;
+		request.setAttribute("computerList", computerDtoList);
 	}
 }
