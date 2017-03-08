@@ -27,22 +27,22 @@
 				<form action="addComputer" method="POST">
 					<fieldset>
 						<div class="form-group">
-							<label for="computerName">${name}</label> <input
+							<label for="computerName"></label> <input
 								type="text" class="form-control" id="computerName"
 								placeholder="Computer name">
 						</div>
 						<div class="form-group">
-							<label for="introduced">${introduced}</label> <input
+							<label for="introduced"></label> <input
 								type="date" class="form-control" id="introduced"
 								placeholder="Introduced date">
 						</div>
 						<div class="form-group">
-							<label for="discontinued">${discontinued}</label> <input
+							<label for="discontinued"></label> <input
 								type="date" class="form-control" id="discontinued"
 								placeholder="Discontinued date">
 						</div>
 						<div class="form-group">
-							<label for="companyId">${companyId}</label> <select
+							<label for="companyId"></label> <select
 								class="form-control" id="companyId">
 								<option value="0">--</option>
 							</select>

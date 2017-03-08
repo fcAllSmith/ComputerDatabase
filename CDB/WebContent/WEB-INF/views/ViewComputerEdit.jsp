@@ -30,13 +30,13 @@
 					<!-- TODO: Change this value with the computer id -->
 					<fieldset>
 						<div class="form-group">
-							<label for="computerName">${name}</label> <input
-								type="text" class="form-control" id="computerName"
+							<label for="computerName">${name}</label> <input type="text"
+								class="form-control" id="computerName"
 								placeholder="Computer name">
 						</div>
 						<div class="form-group">
-							<label for="introduced">${introduced}</label> <input
-								type="date" class="form-control" id="introduced"
+							<label for="introduced">${introduced}</label> <input type="date"
+								class="form-control" id="introduced"
 								placeholder="Introduced date">
 						</div>
 						<div class="form-group">
