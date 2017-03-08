@@ -18,11 +18,12 @@ public class ComputerDtoMapper {
 	public static ComputerDto transformToDto(Computer computer){
 		if(computer != null){
 			ComputerDto computerDto = new ComputerDto();
+			computerDto.setId(computer.getId());
 			computerDto.setCompanyId(computer.getId());
 			computerDto.setName(computer.getName());
 
 			if (computer.getIntroduced()!= null) {
-				computerDto.setInserted(computer.getIntroduced().toString());
+				computerDto.setIntroduced(computer.getIntroduced().toString());
 			}
 
 			if (computer.getIntroduced()!= null) {

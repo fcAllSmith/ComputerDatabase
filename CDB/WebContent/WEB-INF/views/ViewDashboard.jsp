@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet"
+<link href="../../resources/css/bootstrap.min.css" rel="stylesheet"
 	media="screen">
-<link href="resources/css/font-awesome.css" rel="stylesheet"
+<link href="../../resources/css/font-awesome.css" rel="stylesheet"
 	media="screen">
-<link href="resources/css/main.css" rel="stylesheet" media="screen">
+<link href="../../resources/css/main.css" rel="stylesheet" media="screen">
 <title>Dashboard</title>
 </head>
 <body>
@@ -22,7 +23,7 @@
 
 	<section id="main">
 	<div class="container">
-		<h1 id="homeTitle">${ctpFound} Computersfound</h1>
+		<h1 id="homeTitle">${ctpFound} Computers found</h1>
 		<div id="actions" class="form-horizontal">
 			<div class="pull-left">
 				<form id="searchForm" action="#" method="GET" class="form-inline">
@@ -75,7 +76,7 @@
 					<tr>
 						<td class="editMode"><input type="checkbox" name="cb"
 							class="cb" value="${computer.id}"></td>
-						<td><a href="editComputer.html" onclick="">${computer.name}</a></td>
+						<td><a href="computer/edit?computerId=${computer.id}" onclick="">${computer.name}</a></td>
 						<td>${computer.introduced}</td>
 						<td>${computer.discontinued}</td>
 						<td>${computer.companyId}</td>

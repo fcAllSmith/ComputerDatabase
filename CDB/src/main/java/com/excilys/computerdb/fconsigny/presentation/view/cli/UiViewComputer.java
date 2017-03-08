@@ -23,6 +23,7 @@ public class UiViewComputer extends AppView implements IApp {
 			this.appParentView = appParentView ;
 			computerController = new ComputerController(this);
 		}
+		
 		refreshUi();	
 	}
 

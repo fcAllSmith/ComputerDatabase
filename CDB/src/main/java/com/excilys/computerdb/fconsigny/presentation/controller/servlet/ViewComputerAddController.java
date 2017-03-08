@@ -45,7 +45,7 @@ public class ViewComputerAddController  extends HttpServlet implements Servlet {
 		  
 		  ComputerDto computerDto = new ComputerDto();
 		  computerDto.setName(name);
-		  computerDto.setInserted(introduced);
+		  computerDto.setIntroduced(introduced);
 		  computerDto.setDiscontinued(discontinued);
 		  computerDto.setCompanyId(Integer.parseInt(companyId));
 		  

@@ -68,7 +68,7 @@ public class ComputerController {
 		ComputerDto computerDto = new ComputerDto();
 		computerDto.setId(0);
 		computerDto.setName("PC-TEST");
-		computerDto.setInserted("2016-03-04");
+		computerDto.setIntroduced("2016-03-04");
 		computerDto.setDiscontinued("2016-12-20");
 		computerDto.setCompanyId(1);
 		try {
@@ -82,7 +82,7 @@ public class ComputerController {
 		ComputerDto computerDto = new ComputerDto();
 		computerDto.setId(0);
 		computerDto.setName("PC-TEST");
-		computerDto.setInserted("2016-03-04");
+		computerDto.setIntroduced("2016-03-04");
 		computerDto.setDiscontinued("2016-12-20");
 		computerDto.setCompanyId(1);
 

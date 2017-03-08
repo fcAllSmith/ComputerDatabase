@@ -13,6 +13,10 @@ public class Computer {
   public Computer(long id) {
     this.id = id; 
   }
+  
+  public void setId(int id){
+	  this.id = (long) id; 
+  }
 	
   public void setName(String name) {
     this.name = name;

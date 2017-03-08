@@ -1,10 +1,12 @@
 package com.excilys.computerdb.fconsigny.presentation.dto;
 
+import com.excilys.computerdb.fconsigny.storage.dao.ComputerDaoImpl;
+
 public class ComputerDto {
 	
 	private long id = 0; 
 	private String name = "default";
-	private String inserted = "-"; 
+	private String introduced = "-"; 
 	private String discontinued = "-"; 
 	private long companyId;
 	
@@ -17,6 +19,7 @@ public class ComputerDto {
 	}
 
 	public void setId(long id) {
+		System.out.println ("in dto" + id);
 		this.id = id;
 	}
 
@@ -28,12 +31,12 @@ public class ComputerDto {
 		this.name = name;
 	}
 
-	public String getInserted() {
-		return inserted;
+	public String getIntroduced() {
+		return introduced;
 	}
 
-	public void setInserted(String inserted) {
-		this.inserted = inserted;
+	public void setIntroduced(String introduced) {
+		this.introduced = introduced;
 	}
 
 	public String getDiscontinued() {
@@ -54,7 +57,7 @@ public class ComputerDto {
 
 	@Override
 	public String toString(){
-		return " ID : " + this.id + " NAME : " + this.name + " INTRODUCED " + this.inserted + " DISCONTINUED : " + this.discontinued + " COMPANY :" + this.companyId; 
+		return " ID : " + this.id + " NAME : " + this.name + " INTRODUCED " + this.introduced + " DISCONTINUED : " + this.discontinued + " COMPANY :" + this.companyId; 
 	}
 	
 }
