@@ -6,11 +6,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.excilys.computerdb.fconsigny.business.model.Computer;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewLauncher;
 import com.excilys.computerdb.fconsigny.storage.database.DatabaseHelper;
 import com.excilys.computerdb.fconsigny.storage.mapper.MysqlComputerMapper;
+import com.excilys.computerdb.fconsigny.utils.db.DbUtil;
 
 public class ComputerDaoImpl implements ComputerDao {
+
+	private static Logger logger = Logger.getLogger(ComputerDaoImpl.class);
 
 	private final static String QUERY_SELECT_ALL = "SELECT * FROM computer";
 	private final static String QUERY_SELECT_BY_ID = "SELECT * FROM computer WHERE id =";
@@ -39,11 +45,12 @@ public class ComputerDaoImpl implements ComputerDao {
 					rs.next();
 					return MysqlComputerMapper.resultSetIntoComputer(rs);
 				} catch (SQLException error) {
-					error.printStackTrace();
+					logger.error(error);
 				}	
 			}
+
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 
 		return null;
@@ -60,15 +67,16 @@ public class ComputerDaoImpl implements ComputerDao {
 				computerList.add(computer);
 			}
 		} catch (SQLException error) {
-			error.printStackTrace();
+			logger.error(error);
 		}
+		
 		return computerList;
 	}
 
 	@Override
-	public List<Computer> findAllWithLimiter(int limit,int offset) {
+	public List<Computer> findAllWithLimiter(String name ,int limit,int offset) {
 		DatabaseHelper dm = new DatabaseHelper();
-		String query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset;
+		String query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset + " WHERE name LIKE '%" + name + "%'";
 		ResultSet rs = dm.queryGet(this.connection,query);
 		List<Computer> computerList = new ArrayList<Computer>(); 
 
@@ -78,20 +86,21 @@ public class ComputerDaoImpl implements ComputerDao {
 				computerList.add(computer);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 
 		try {
 			rs.close();
 		} catch (SQLException error) {
-			error.printStackTrace();
+			logger.error(error);
 		}
 		return computerList;
 	}
 
-	public boolean deleteById(int id) {
+	@Override
+	public boolean deleteComputer(long id) {
 		DatabaseHelper dm = new DatabaseHelper();
-		String query = QUERY_DELETE.concat(Integer.toString(id) + ";") ; 
+		String query = QUERY_DELETE.concat(Integer.valueOf((int) id).toString()) ; 
 		return dm.queryPost(this.connection,query);
 	}
 
@@ -100,7 +109,7 @@ public class ComputerDaoImpl implements ComputerDao {
 	}
 
 	@Override
-	public boolean Add(Computer computer) {
+	public boolean addComputer(Computer computer) {
 		StringBuilder insertSQLBuilder = new StringBuilder();
 		DatabaseHelper dh = new DatabaseHelper();
 		insertSQLBuilder.append(" INSERT INTO computer ");
@@ -110,9 +119,28 @@ public class ComputerDaoImpl implements ComputerDao {
 		insertSQLBuilder.append( computer.getDiscontinued() + ",");
 		insertSQLBuilder.append( computer.getCompanyId());
 		insertSQLBuilder.append(");"); 
-		
+
 		String query = insertSQLBuilder.toString();
 		return dh.queryPost(this.connection, query);
+	}
+
+	@Override
+	public boolean updateComputer(Computer computer){
+		StringBuilder insertSQLBuilder = new StringBuilder();
+
+		DatabaseHelper dh = new DatabaseHelper();
+		insertSQLBuilder.append(" UPDATE computer ");
+		insertSQLBuilder.append(" SET ");
+		insertSQLBuilder.append("name = " + DbUtil.quote(computer.getName()));
+		insertSQLBuilder.append(" ");
+		insertSQLBuilder.append( computer.getName() + ",");
+		insertSQLBuilder.append( computer.getIntroduced() + ",");
+		insertSQLBuilder.append( computer.getDiscontinued() + ",");
+		insertSQLBuilder.append( computer.getCompanyId());
+		insertSQLBuilder.append(");"); 
+
+		String query = insertSQLBuilder.toString(); 
+		return dh.queryPost(this.connection, query); 
 	}
 
 }

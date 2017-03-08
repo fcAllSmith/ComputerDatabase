@@ -2,12 +2,16 @@ package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 import com.excilys.computerdb.fconsigny.presentation.controller.cli.CompanyController;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 public class UiViewCompany extends AppView implements IApp {
 
 	AppView appParentView ;
+	
+	private static Logger logger = Logger.getLogger(UiViewCompany.class);
 	private CompanyController companyController;
 
 	@Override
@@ -29,7 +33,7 @@ public class UiViewCompany extends AppView implements IApp {
 			strInput = readInputText();
 			onInputKey(strInput);
 		} catch (IOException error) {
-			error.printStackTrace();
+			logger.error(error);
 		}	
 	}
 
@@ -50,6 +54,7 @@ public class UiViewCompany extends AppView implements IApp {
 			}
 		} catch (NumberFormatException error) {
 			showText("This input cannot be used. Use numbers instead :" + error);
+			logger.error(error);
 		}
 	}
 

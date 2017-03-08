@@ -3,13 +3,16 @@ package com.excilys.computerdb.fconsigny.presentation.controller.cli;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
-
+import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 
 public class ComputerController {
+	private static Logger logger = Logger.getLogger(ComputerController.class);
 
 	private UiViewComputer view;
 	public ComputerController(IApp view) {	
@@ -18,7 +21,7 @@ public class ComputerController {
 
 	public void loadListComputer(){
 		try {
-			List<ComputerDto> computerList = new ComputerServices().getAllComputers();
+			List<ComputerDto> computerList = ComputerDtoMapper.transformListToDto(new ComputerServices().getAllComputers());
 			if(computerList.isEmpty()){
 				this.view.showText("No computer found");
 			}else{
@@ -28,16 +31,16 @@ public class ComputerController {
 			}
 		} catch (SQLException e) {
 			this.view.showText("Database can't be reach");
-			e.printStackTrace();
+			logger.error(e);
 		}
-		
+
 	}
 
 	public void loadComputerById(String strInputId){
 		int id = Integer.parseInt(strInputId);
 
 		try {
-			ComputerDto computer = new ComputerServices().getUniqueComputer(id);
+			ComputerDto computer = ComputerDtoMapper.transformToDto(new ComputerServices().getUniqueComputer(id));
 			if(computer != null){
 				this.view.showText(computer.toString());	
 			}else{
@@ -45,12 +48,12 @@ public class ComputerController {
 			}
 		} catch (SQLException e) {
 			this.view.showText("Database can't be reach");
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 
-	public void deleteComputer(String strInputId){
-
+	public void deleteComputer(String strInputId) throws NumberFormatException, SQLException{
+		new ComputerServices().deleteComputer(Integer.parseInt(strInputId));
 	}
 
 	/**
@@ -69,10 +72,24 @@ public class ComputerController {
 		computerDto.setDiscontinued("2016-12-20");
 		computerDto.setCompanyId(1);
 		try {
-			new ComputerServices().saveComputer(computerDto);
+			new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
+		}
+	}
+
+	public void updateComputer(String[] args){
+		ComputerDto computerDto = new ComputerDto();
+		computerDto.setId(0);
+		computerDto.setName("PC-TEST");
+		computerDto.setInserted("2016-03-04");
+		computerDto.setDiscontinued("2016-12-20");
+		computerDto.setCompanyId(1);
+
+		try {
+			new ComputerServices().editComptuter(ComputerDtoMapper.transformToComputer(computerDto));
+		} catch (SQLException e) {
+			logger.error(e);
 		}
 	}
 }

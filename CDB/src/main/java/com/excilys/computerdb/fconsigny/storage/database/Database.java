@@ -6,6 +6,9 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
+
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewLauncher;
 import com.excilys.computerdb.fconsigny.utils.log.DoLogger;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -15,6 +18,8 @@ public class Database {
 	private static Database instance; 
 	private static DataSource datasource; 
 	private ThreadLocal<Connection> localConnection = new ThreadLocal<Connection>();
+
+	private static Logger logger = Logger.getLogger(Database.class);
 
 	private Connection connection; 
 	private static final String JDB_DRIVER = "com.mysql.jdbc.Driver"; 
@@ -63,7 +68,7 @@ public class Database {
 				this.connection = localConnection.get();
 				return this.connection;
 			} catch(SQLException error) {
-				DoLogger.doLog(Database.class,"Enable to reach the database");
+				logger.error(error);
 				return null;
 			}
 		} catch (ClassNotFoundException e) {
@@ -91,7 +96,7 @@ public class Database {
 				conf.setMaximumPoolSize(10);
 				datasource = new HikariDataSource(conf);
 			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				logger.error(e);
 			}
 		}
 

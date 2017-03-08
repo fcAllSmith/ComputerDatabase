@@ -11,13 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
+import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
 
 @WebServlet(urlPatterns = { "/computer/add"})
 public class ViewComputerAddController  extends HttpServlet implements Servlet {
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1L;
+	private static Logger logger = Logger.getLogger(ViewComputerAddController.class);
+
 	  @Override
 	  protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	      throws ServletException, IOException {
@@ -44,9 +50,10 @@ public class ViewComputerAddController  extends HttpServlet implements Servlet {
 		  computerDto.setCompanyId(Integer.parseInt(companyId));
 		  
 		  try {
-			new ComputerServices().saveComputer(computerDto);
+			new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto));
+			response.sendRedirect("dashboard");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 	  }
 }

@@ -5,9 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewLauncher;
 import com.excilys.computerdb.fconsigny.utils.log.DoLogger;
 
 public class DatabaseHelper {
+
+	private static Logger logger = Logger.getLogger(DatabaseHelper.class);
 
 	public DatabaseHelper() {}
 
@@ -23,8 +28,7 @@ public class DatabaseHelper {
 			Statement stm = connection.createStatement();
 			return stm.executeQuery(query);
 		} catch (SQLException e) {
-			DoLogger.doLog(DatabaseHelper.class, "The query GET : " + query + " didn't work" );
-			e.printStackTrace();
+			logger.error(e);
 			return null;
 		}
 	}
@@ -41,8 +45,7 @@ public class DatabaseHelper {
 			Statement stm = connection.createStatement();
 			return (stm.executeUpdate(query) > 0);
 		} catch (SQLException error) {
-			DoLogger.doLog(DatabaseHelper.class, "The query POST : " + query + " didn't work" );
-			error.printStackTrace();
+			logger.error(error);
 		} 
 		return false; 
 	}

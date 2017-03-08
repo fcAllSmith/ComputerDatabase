@@ -10,7 +10,11 @@ public interface ComputerDao {
 
 	public List<Computer> findAll();
 
-	public List<Computer> findAllWithLimiter(int limit,int offset);
+	public List<Computer> findAllWithLimiter(String name,int limit,int offset);
 
-	public boolean Add(Computer computer);
+	public boolean addComputer(Computer computer);
+	
+	public boolean updateComputer(Computer computer);
+	
+	public boolean deleteComputer(long id);
 }

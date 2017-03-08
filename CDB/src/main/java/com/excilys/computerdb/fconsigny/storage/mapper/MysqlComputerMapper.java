@@ -6,12 +6,17 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import org.apache.log4j.Logger;
+
 import com.excilys.computerdb.fconsigny.business.model.Computer;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewLauncher;
 import com.excilys.computerdb.fconsigny.storage.dao.ComputerDaoImpl;
 import com.excilys.computerdb.fconsigny.storage.exceptions.ComputerException;
 import com.excilys.computerdb.fconsigny.storage.validator.MysqlComputerValidator;
 
 public abstract class MysqlComputerMapper extends MysqlComputerValidator{
+
+	private static Logger logger = Logger.getLogger(MysqlComputerMapper.class);
 
 
 	public static Computer resultSetIntoComputer(ResultSet resultSet){
@@ -24,9 +29,9 @@ public abstract class MysqlComputerMapper extends MysqlComputerValidator{
 			computer.setCompanyId(resultSet.getLong(ComputerDaoImpl.COL_COMPANY_ID));
 			return computer;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (ComputerException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		return null;

@@ -1,8 +1,7 @@
 package com.excilys.computerdb.fconsigny.business.services;
 
 import com.excilys.computerdb.fconsigny.business.factory.ComputerFactory;
-import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
-import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
+import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
 
 import java.sql.SQLException;
@@ -16,16 +15,16 @@ public class ComputerServices {
 
 	private ComputerDao cDao = ComputerFactory.getComputerDao();
 
-	public ComputerDto getUniqueComputer(long id) {
-		return ComputerDtoMapper.transformToDto(cDao.findById(id));
+	public Computer getUniqueComputer(long id) {
+		return cDao.findById(id);
 	}
 
-	public List<ComputerDto> getAllComputers(){
-		return ComputerDtoMapper.transformListToDto(cDao.findAll());
+	public List<Computer> getAllComputers(){
+		return cDao.findAll();
 	}
 
-	public List<ComputerDto> getAllComputersWithLimiter(int limit, int offset){
-		return ComputerDtoMapper.transformListToDto(cDao.findAllWithLimiter(limit, offset));
+	public List<Computer> getAllComputersWithLimiter(String name,int limit, int offset){
+		return cDao.findAllWithLimiter(name,limit, offset);
 	}
 
 	/**
@@ -33,8 +32,16 @@ public class ComputerServices {
 	 * @param computerDto
 	 * @return true if successful.
 	 */
-	public boolean saveComputer(ComputerDto computerDto){
-		return cDao.Add(ComputerDtoMapper.transformToComputer(computerDto)); 
+	public boolean saveComputer(Computer computer){
+		return cDao.addComputer(computer); 
+	}
+	
+	public boolean editComptuter(Computer computer){
+		return cDao.updateComputer(computer);
+	}
+	
+	public boolean deleteComputer(long id){
+		return cDao.deleteComputer(id);
 	}
 
 }

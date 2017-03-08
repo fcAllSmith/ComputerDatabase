@@ -4,7 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.apache.log4j.Logger;
+
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewLauncher;
+
 public abstract class AppView {
+
+	private static Logger logger = Logger.getLogger(AppView.class);
 
   public static void main(String[] args) {
     System.out.println("-- Welcom  to Computer Database --");
@@ -44,7 +50,7 @@ public abstract class AppView {
     try {
       inputText = br.readLine();
     } catch (IOException error) {
-      error.printStackTrace();
+      logger.error(error);
       inputText = null;
     }
 
