@@ -26,6 +26,7 @@ public class MysqlComputerValidator {
 	
 	public LocalDateTime setValideDate(Timestamp date){
 		if(date == null){
+			System.out.println("NULL");
 			return null;
 		}
 		

@@ -1,9 +1,0 @@
-package com.excilys.computerdb.fconsigny.database;
-
-public class DatabaseManager {
-
-	public DatabaseManager() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

@@ -26,8 +26,8 @@ public class ComputerDtoMapper {
 				computerDto.setIntroduced(computer.getIntroduced().toString());
 			}
 
-			if (computer.getIntroduced()!= null) {
-				computerDto.setDiscontinued(computer.getDiscontinued().toString());
+			if (computer.getDiscontinued()!= null) {
+			//	computerDto.setDiscontinued(computer.getDiscontinued().toString());
 			}
 
 			computerDto.setCompanyId(computer.getCompanyId());

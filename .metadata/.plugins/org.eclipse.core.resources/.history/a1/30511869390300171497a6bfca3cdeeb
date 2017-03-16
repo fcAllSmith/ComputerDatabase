@@ -1,0 +1,25 @@
+package com.excilys.computerdb.fconsigny.storage.connection;
+
+import java.sql.Connection;
+
+public class SessionStorage {
+	
+	private final Connection connection;
+	private SessionStorage instance; 
+	
+	private SessionStorage(Connection connection){
+		this.connection = connection;
+	}
+	
+	public SessionStorage getInstance(Connection connection){
+		if(instance == null){
+			this.instance  = new SessionStorage(connection);
+		}
+		return this.instance; 
+	}
+	
+	public Connection getConnection(){
+		return this.connection;
+	}
+
+}

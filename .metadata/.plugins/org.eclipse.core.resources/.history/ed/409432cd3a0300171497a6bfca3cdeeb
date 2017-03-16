@@ -1,0 +1,27 @@
+package com.excilys.computerdb.fconsigny.business.factory;
+
+import java.sql.Connection;
+
+import javax.servlet.http.HttpServletRequest;
+
+public class ServletFactory {
+	private ServletFactory currentInstance;
+	private Connection connection;
+
+	private ServletFactory(){
+
+	}
+
+	public ServletFactory getInstance(){
+		if(this.currentInstance == null){
+			this.currentInstance = new ServletFactory();
+		}
+
+		return this.currentInstance;
+	}
+	
+	public Connection getStoredConnection(){
+		this.connection;
+	}
+
+}

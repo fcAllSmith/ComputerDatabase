@@ -29,4 +29,10 @@ public class CompanyDto {
 	public String toString(){
 		return " ID : " + this.id + " Company Name : " + this.name;
 	}
+	
+	@Override
+	public boolean equals(Object obj){
+		//TODO : redefine this method 
+		return true; 
+	}
 }

@@ -1,0 +1,23 @@
+package com.excilys.computerdb.fconsigny.business.factory;
+
+public class ServletFactory {
+	private ServletFactory currentInstance;
+	private Connection connection;
+
+	private ServletFactory(){
+
+	}
+
+	public ServletFactory getInstance(){
+		if(this.currentInstance == null){
+			this.currentInstance = new ServletFactory();
+		}
+
+		return this.currentInstance;
+	}
+	
+	public Connection getStoredConnection(request){
+		
+	}
+
+}

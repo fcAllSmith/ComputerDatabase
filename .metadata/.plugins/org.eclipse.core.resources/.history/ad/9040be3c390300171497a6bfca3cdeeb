@@ -1,0 +1,6 @@
+package com.excilys.computerdb.fconsigny.business.factory;
+
+public class SessionFactory {
+
+	public static final getSession()
+}

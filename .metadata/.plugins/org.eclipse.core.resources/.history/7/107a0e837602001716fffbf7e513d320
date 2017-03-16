@@ -1,0 +1,7 @@
+package com.excilys.computerdb.fconsigny.business.factory;
+
+public class ServletFactory {
+	public static getSession(){
+		return new DatabaseHandler();
+	}
+}

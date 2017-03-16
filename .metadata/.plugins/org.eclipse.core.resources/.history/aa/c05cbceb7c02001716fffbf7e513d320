@@ -1,0 +1,10 @@
+package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
+
+import javax.servlet.Servlet;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet(urlPatterns = { "/computer/add"})
+public class ViewComputerAddController  extends HttpServlet implements Servlet {
+
+}

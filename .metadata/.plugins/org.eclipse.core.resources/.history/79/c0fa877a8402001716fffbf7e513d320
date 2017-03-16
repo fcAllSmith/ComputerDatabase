@@ -1,0 +1,33 @@
+package com.excilys.computerdb.fconsigny.business.factory;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.servlet.ServletRequest;
+
+import com.excilys.computerdb.fconsigny.storage.connection.DatabaseHandler;
+
+public class ServletFactory {
+
+	public static final String ATT_NAME = "CONNECTION_ATTR";
+
+	public static Connection connection = null; 
+
+	public static Connection getSession() throws SQLException{
+		if(connection == null || connection.isClosed()){
+			connection = DatabaseHandler.getSession();
+			connection.setAutoCommit(false);
+		}
+
+		return connection;
+	}
+	
+	public static void storeConnection(){
+		
+	}
+	
+	public static Connection getStoredConnection(ServletRequest request){
+		return null;
+	}
+
+}

@@ -1,9 +1,0 @@
-package com.excilys.computerdb.fconsigny.model;
-
-public class Computer {
-
-	public Computer() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

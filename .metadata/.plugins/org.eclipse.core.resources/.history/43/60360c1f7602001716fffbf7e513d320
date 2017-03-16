@@ -1,0 +1,18 @@
+package com.excilys.computerdb.fconsigny.storage.connection;
+
+import java.sql.Connection;
+
+import com.excilys.computerdb.fconsigny.storage.database.Database;
+
+public class DatabaseHandler {
+
+	private Connection connection; 
+	
+	public DatabaseHandler(){
+		this.connection = getSession();; 
+	}
+	
+	public Connection getSession(){
+		return Database.getInstance().getConnection();
+	}
+}

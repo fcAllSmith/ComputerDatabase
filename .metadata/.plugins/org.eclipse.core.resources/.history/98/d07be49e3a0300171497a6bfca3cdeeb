@@ -1,0 +1,16 @@
+package com.excilys.computerdb.fconsigny.business.services;
+
+import javax.servlet.http.HttpServlet;
+
+public abstract class SessionService {
+	
+	public void storeConnection(){
+		
+	}
+	
+	public void storeConnection(HttpServlet httpServlet){
+		
+	}
+	
+	
+}

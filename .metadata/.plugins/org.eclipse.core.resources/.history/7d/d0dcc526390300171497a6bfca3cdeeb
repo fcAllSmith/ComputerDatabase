@@ -1,0 +1,9 @@
+package com.excilys.computerdb.fconsigny.business.services;
+
+public abstract class SessionService {
+	
+	public getSession(){
+		
+	}
+
+}

@@ -1,7 +1,5 @@
 package com.excilys.computerdb.fconsigny.presentation.dto;
 
-import com.excilys.computerdb.fconsigny.storage.dao.ComputerDaoImpl;
-
 public class ComputerDto {
 	
 	private long id = 0; 
@@ -58,6 +56,12 @@ public class ComputerDto {
 	@Override
 	public String toString(){
 		return " ID : " + this.id + " NAME : " + this.name + " INTRODUCED " + this.introduced + " DISCONTINUED : " + this.discontinued + " COMPANY :" + this.companyId; 
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		//TODO redefine method
+		return true; 
 	}
 	
 }

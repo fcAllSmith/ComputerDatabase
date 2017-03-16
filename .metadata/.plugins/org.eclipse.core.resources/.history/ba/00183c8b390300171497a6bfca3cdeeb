@@ -1,0 +1,12 @@
+package com.excilys.computerdb.fconsigny.business.factory;
+
+import java.sql.Connection;
+
+import com.excilys.computerdb.fconsigny.storage.connection.SessionStorage;
+
+public class SessionFactory {
+
+	public static SessionStorage getSession(){
+		SessionStorage sessionStorage = SessionStorage.getInstance();
+	}
+}

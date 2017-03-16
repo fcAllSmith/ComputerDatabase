@@ -1,2 +1,0 @@
-INDEX VERSION 1.129+/home/excilys/Excilys/ComputerDatabase/ComputerDatabase/CDB/.metadata/.plugins/org.eclipse.jdt.core
-2802776400.index

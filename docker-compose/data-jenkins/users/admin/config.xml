@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<user>
+  <fullName>admin</fullName>
+  <properties>
+    <jenkins.security.ApiTokenProperty>
+      <apiToken>{AQAAABAAAAAwkxp6YWpJ8KZDDoL0ivnZ7X8IKVBuvFeC53uEj//fgHzb/CT0rHhPeRTspobWbhSevAEKaeGyKrHl07HvMQOm4w==}</apiToken>
+    </jenkins.security.ApiTokenProperty>
+    <hudson.model.MyViewsProperty>
+      <views>
+        <hudson.model.AllView>
+          <owner class="hudson.model.MyViewsProperty" reference="../../.."/>
+          <name>All</name>
+          <filterExecutors>false</filterExecutors>
+          <filterQueue>false</filterQueue>
+          <properties class="hudson.model.View$PropertyList"/>
+        </hudson.model.AllView>
+      </views>
+    </hudson.model.MyViewsProperty>
+    <hudson.model.PaneStatusProperties>
+      <collapsed/>
+    </hudson.model.PaneStatusProperties>
+    <hudson.search.UserSearchProperty>
+      <insensitiveSearch>false</insensitiveSearch>
+    </hudson.search.UserSearchProperty>
+    <hudson.security.HudsonPrivateSecurityRealm_-Details>
+      <passwordHash>#jbcrypt:$2a$10$/qwC0Pir3AQCnpMrQaeeh.lBCEHpzaP..oeMdfhHL5jnZYjwG57/2</passwordHash>
+    </hudson.security.HudsonPrivateSecurityRealm_-Details>
+  </properties>
+</user>

@@ -1,0 +1,29 @@
+package com.excilys.computerdb.fconsigny.presentation.view.components;
+
+public class Page {
+
+	private int offset; 
+	private int limit = 0; 
+	private int maxPage;
+	private int cursor;
+	
+	public Page(int offset, int limit,int maxResult){
+		this.offset = offset; 
+		this.limit = limit;
+		
+		resizePage(maxResult);
+	}
+	
+	public boolean swapPageLeft(){
+		return this.cursor < maxPage; 
+	}
+	
+	public boolean swapPageRight(){
+		return this.cursor > 0; 
+	}
+
+	public void resizePage(int maxResult){
+		this.maxPage = (maxResult) / this.offset ; 
+	}
+	
+}

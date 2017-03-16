@@ -1,2 +1,0 @@
-# ComputerDatabase
-Excilys java trainning

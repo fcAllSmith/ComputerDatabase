@@ -1,9 +1,0 @@
-package com.excilys.computerdb.fconsigny.model;
-
-public class Company {
-
-	public Company() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

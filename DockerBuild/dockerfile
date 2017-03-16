@@ -1,0 +1,20 @@
+ 
+## Pull the mysql:5.6 image
+FROM mysql:5.6
+
+RUN echo " Starting  creation tools for Computer Database"
+CMD cd /home/excilys/Téléchargements/training-java-master/config/db"
+
+## Configure mysql password
+ENV MYSQL_ROOT_PASSWORD="pwd"
+
+## Add Schema of the database
+	ADD /home/excily/Téléchargements/training-java-master/config/db/1-SCHEMA.sql /usr/src/
+	ADD 2-PRIVILEGES.sql /usr/src
+	Add 3-ENTRIES.sql /usr/src
+
+## Start all script 
+RUN /usr/src/1-SCHEMA.sql
+
+RUN ECHO "Mysql is now installed"
+

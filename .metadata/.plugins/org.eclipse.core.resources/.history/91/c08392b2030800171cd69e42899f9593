@@ -1,0 +1,10 @@
+package com.excilys.computerdb.fconsigny.presentation.view.components;
+
+public class Page {
+
+	private int offset; 
+	
+	public Page(int offset){
+		this.offset = offset; 
+	}
+}

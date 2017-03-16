@@ -1,0 +1,5 @@
+package com.excilys.computerdb.fconsigny.presentation.view.servlet.path;
+
+public abstract class ViewBuilder {
+
+}

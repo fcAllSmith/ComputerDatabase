@@ -1,0 +1,47 @@
+version: "2"
+
+services:
+  jenkins:
+    image: jenkins:2.0
+    container_name: computerdb-jenkins
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./FOR_JENKINS:/var/jenkins_home 
+  java:
+    image: "java"
+    container_name: computerdb-java
+  maven:
+    image: "maven"
+    container_name: computer-maven
+    ports: 
+      - 8080
+    
+#Apache mysql
+  mysql:
+    image: "mysql"
+    container_name: computerdb-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+    ports: 
+      - "3306"
+    volumes:
+    - ./docker/data:/docker-entrypoint-initdb.d
+
+  tomcat:
+    image: tomcat
+    container_name: computerdb-tomcat
+    command: /usr/local/tomcat/bin/catalina.sh run
+    ports:
+      - "8080:8080"
+    environment:
+      - "JAVA_OPTS=-Dsupplments.host=supplements" 
+    volumes:
+      - ./CDB/target/computerdb.war:/usr/local/tomcat/webapps/computerdb.war
+    
+#Define the network 
+  
+#Common volume
+

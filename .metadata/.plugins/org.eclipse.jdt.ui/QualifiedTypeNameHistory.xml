@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
@@ -9,4 +7,38 @@
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.database.MysqlDatabase"/>
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.database.ConnectionUtil"/>
 <fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.exceptions.CompanyException"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.controller.CompanyController"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto"/>
+<fullyQualifiedTypeName name="javax.servlet.Servlet"/>
+<fullyQualifiedTypeName name="com.mysql.jdbc.Connection"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.database.Database"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.database.ConnectionUtil"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.view.servlet.path.ViewPathBuilder"/>
+<fullyQualifiedTypeName name="javax.servlet.ServletRequest"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.factory.ServletFactory"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.factory.ComputerFactory"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.utils.log.DoLogger"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.connection.SessionStorage"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.connection.DatabaseHandler"/>
+<fullyQualifiedTypeName name="javax.sql.DataSource"/>
+<fullyQualifiedTypeName name="com.zaxxer.hikari.HikariConfig"/>
+<fullyQualifiedTypeName name="com.zaxxer.hikari.HikariDataSource"/>
+<fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+<fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+<fullyQualifiedTypeName name="java.util.StringTokenizer"/>
+<fullyQualifiedTypeName name="java.time.LocalDate"/>
+<fullyQualifiedTypeName name="java.time.temporal.TemporalAccessor"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.model.Computer"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.utils.db.DbUtil"/>
+<fullyQualifiedTypeName name="java.util.logging.Logger"/>
+<fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.services.ComputerServices"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper"/>
 </qualifiedTypeNameHistroy>
