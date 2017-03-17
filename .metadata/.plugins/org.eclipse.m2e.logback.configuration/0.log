@@ -1232,3 +1232,5 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact com.sun.faces
 2017-03-15 15:55:12,685 [Worker-87] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/slf4j/slf4j-simple/1.7.5/slf4j-simple-1.7.5-sources.jar
 2017-03-15 15:55:12,701 [Worker-87] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/slf4j/slf4j-simple/1.7.5/slf4j-simple-1.7.5-sources.jar
 2017-03-16 10:18:16,304 [Worker-3] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2017-03-16 16:17:01,123 [Worker-2] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2017-03-17 10:04:06,844 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

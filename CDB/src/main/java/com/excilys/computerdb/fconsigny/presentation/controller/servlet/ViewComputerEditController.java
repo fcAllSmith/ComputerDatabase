@@ -46,7 +46,7 @@ public class ViewComputerEditController extends HttpServlet implements Servlet {
 			throws ServletException, IOException {
 
 	}
-	
+
 	public void populateComputer(ComputerDto computerDto,HttpServletRequest request ){
 		request.setAttribute("id", computerDto.getId());
 		request.setAttribute("name", computerDto.getName());

@@ -16,6 +16,7 @@
   <timestamp>1489655809707</timestamp>
   <startTime>1489655809709</startTime>
   <result>SUCCESS</result>
+  <description>Second test de build après modification des DTO</description>
   <duration>5</duration>
   <charset>UTF-8</charset>
   <keepLog>false</keepLog>

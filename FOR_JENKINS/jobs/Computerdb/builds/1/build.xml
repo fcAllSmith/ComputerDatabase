@@ -16,6 +16,7 @@
   <timestamp>1489655778079</timestamp>
   <startTime>1489655778085</startTime>
   <result>SUCCESS</result>
+  <description>Premier build avec Jenkins. Build test. </description>
   <duration>168</duration>
   <charset>UTF-8</charset>
   <keepLog>false</keepLog>

@@ -23,7 +23,7 @@ public class ComputerServices {
 		return cDao.findAll();
 	}
 
-	public List<Computer> getAllComputersWithLimiter(String name,int limit, int offset){
+	public List<Computer> getAllComputersWithLimiter(int offset,int limit, String name){
 		return cDao.findAllWithLimiter(name,limit, offset);
 	}
 

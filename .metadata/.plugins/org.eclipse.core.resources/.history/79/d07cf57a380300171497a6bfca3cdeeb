@@ -1,7 +1,0 @@
-package com.excilys.computerdb.fconsigny.storage.connection;
-
-public class SessionStorage {
-	
-	private final Connection connection;
-
-}

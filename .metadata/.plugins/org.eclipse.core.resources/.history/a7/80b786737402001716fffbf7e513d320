@@ -1,6 +1,0 @@
-package com.excilys.computerdb.fconsigny.storage.connection;
-
-public enum DatabaseHandler {
-
-	
-}

@@ -1,6 +1,0 @@
-package com.excilys.computerdb.fconsigny.business.factory;
-
-public class ServletFactory {
-	private ServletFactory currentInstance;  
-
-}
