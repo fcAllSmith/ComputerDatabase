@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ComputerServices {
 
-	public ComputerServices() {
+	public ComputerServices() throws SQLException{
 		super();
 	}
 
@@ -35,11 +35,11 @@ public class ComputerServices {
 	public boolean saveComputer(Computer computer){
 		return cDao.addComputer(computer); 
 	}
-
+	
 	public boolean editComptuter(Computer computer){
 		return cDao.updateComputer(computer);
 	}
-
+	
 	public boolean deleteComputer(long id){
 		return cDao.deleteComputer(id);
 	}

@@ -10,7 +10,7 @@ import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
 
 public class CompanyServices {
 
-	public CompanyServices() {
+	public CompanyServices() throws SQLException{
 		super();
 	}
 

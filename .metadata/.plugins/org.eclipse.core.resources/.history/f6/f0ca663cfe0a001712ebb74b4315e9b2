@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
-import com.excilys.computerdb.fconsigny.presentation.view.components.IPage;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 
@@ -37,10 +36,6 @@ public class ComputerController {
 
 	}
 
-	public void loadListComputer(IPage page) {
-	
-	}
-	
 	public void loadComputerById(String strInputId){
 		int id = Integer.parseInt(strInputId);
 

@@ -12,11 +12,13 @@ public class UiViewPageComputer extends AppView implements IApp {
 	@Override
 	public void refreshUi() {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void destroyView() {
 		// TODO Auto-generated method stub
+		
 	}
 
 	
