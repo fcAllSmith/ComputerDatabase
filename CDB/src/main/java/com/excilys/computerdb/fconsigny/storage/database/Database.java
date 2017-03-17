@@ -61,7 +61,7 @@ public class Database {
 		Connection connection = null; 
 		try {
 			Class.forName(JDB_DRIVER);
-			String customPDO = "jdbc:mysql://172.17.0.2:3306/computer-database-db";
+			String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2";
 			try {
 				//this.connection = DriverManager.getConnection(customPDO,"root","pwd");
 				localConnection.set(DriverManager.getConnection(customPDO,"root","pwd"));
@@ -74,7 +74,7 @@ public class Database {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		/*try {
 			//connection = getDataSource().getConnection();
 		} catch (SQLException e) {

@@ -69,14 +69,19 @@ public class ComputerDaoImpl implements ComputerDao {
 		} catch (SQLException error) {
 			logger.error(error);
 		}
-		
+
 		return computerList;
 	}
 
 	@Override
 	public List<Computer> findAllWithLimiter(final String name ,final int limit,final int offset) {
 		DatabaseHelper dm = new DatabaseHelper();
-		String query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset + " WHERE name LIKE '%" + name + "%'";
+		String query = null;
+		if(name == null ){
+			query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset;	
+		}else{
+			query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset + " WHERE name LIKE '%" + name + "%'";	
+		}
 		ResultSet rs = dm.queryGet(this.connection,query);
 		List<Computer> computerList = new ArrayList<Computer>(); 
 
@@ -112,11 +117,11 @@ public class ComputerDaoImpl implements ComputerDao {
 	public boolean addComputer(Computer computer) {
 		StringBuilder insertSQLBuilder = new StringBuilder();
 		DatabaseHelper dh = new DatabaseHelper();
-		insertSQLBuilder.append(" INSERT INTO computer ");
-		insertSQLBuilder.append(" VALUES (0, ");
-		insertSQLBuilder.append( computer.getName() + ",");
-		insertSQLBuilder.append( computer.getIntroduced() + ",");
-		insertSQLBuilder.append( computer.getDiscontinued() + ",");
+		insertSQLBuilder.append(" INSERT INTO computer (name,company_id)");
+		insertSQLBuilder.append(" VALUES ( '");
+		insertSQLBuilder.append( computer.getName() + "',");
+		//insertSQLBuilder.append( computer.getIntroduced() + "','");
+		//insertSQLBuilder.append( computer.getDiscontinued() + "',");
 		insertSQLBuilder.append( computer.getCompanyId());
 		insertSQLBuilder.append(");"); 
 
@@ -131,14 +136,15 @@ public class ComputerDaoImpl implements ComputerDao {
 		DatabaseHelper dh = new DatabaseHelper();
 		insertSQLBuilder.append(" UPDATE computer ");
 		insertSQLBuilder.append(" SET ");
-		insertSQLBuilder.append("name = " + DbUtil.quote(computer.getName()));
-		insertSQLBuilder.append(" ");
-		insertSQLBuilder.append( computer.getName() + ",");
-		insertSQLBuilder.append( computer.getIntroduced() + ",");
-		insertSQLBuilder.append( computer.getDiscontinued() + ",");
-		insertSQLBuilder.append( computer.getCompanyId());
-		insertSQLBuilder.append(");"); 
+		insertSQLBuilder.append("name=" + DbUtil.quote(computer.getName()) + ",");
+		insertSQLBuilder.append(" company_id=  " + computer.getCompanyId());
+		//insertSQLBuilder.append( computer.getName() + ",");
+		//insertSQLBuilder.append( computer.getIntroduced() + ",");
+		//insertSQLBuilder.append( computer.getDiscontinued() + ",");
+		//insertSQLBuilder.append( computer.getCompanyId());
+		insertSQLBuilder.append(" WHERE id=" + computer.getId() ); 
 
+		System.out.println(insertSQLBuilder.toString());
 		String query = insertSQLBuilder.toString(); 
 		return dh.queryPost(this.connection, query); 
 	}

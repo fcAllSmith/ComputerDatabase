@@ -24,10 +24,11 @@ public class ViewComputerEditController extends HttpServlet implements Servlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if(request.getAttribute("computerId") != null && Integer.parseInt(request.getAttribute("computerId").toString()) > 0){	
+		System.out.println(request.getParameter("computerId"));
+		if(request.getParameter("computerId") != null && Integer.parseInt(request.getParameter("computerId").toString()) > 0){	
 			try {
 				populateComputer(
-						ComputerDtoMapper.transformToDto(new ComputerServices().getUniqueComputer(Integer.parseInt(request.getAttribute("computerId").toString()))),request);
+						ComputerDtoMapper.transformToDto(new ComputerServices().getUniqueComputer(Integer.parseInt(request.getParameter("computerId").toString()))),request);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} 
@@ -36,7 +37,6 @@ public class ViewComputerEditController extends HttpServlet implements Servlet {
 		RequestDispatcher dispatcher = this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views/ViewComputerEdit.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
 	@Override

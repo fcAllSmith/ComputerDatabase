@@ -57,11 +57,10 @@ public class ComputerController {
 	 */
 	public void createComputer(final String[] args){
 		ComputerDto computerDto = new ComputerDto();
-		computerDto.setId(0);
-		computerDto.setName("PC-TEST");
-		computerDto.setIntroduced("2016-03-04");
-		computerDto.setDiscontinued("2016-12-20");
-		computerDto.setCompanyId(1);
+		computerDto.setName(args[0]);
+		computerDto.setIntroduced(args[1]);
+		computerDto.setDiscontinued(args[2]);
+		computerDto.setCompanyId(Integer.parseInt(args[3]));
 
 		new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto));
 
@@ -69,11 +68,11 @@ public class ComputerController {
 
 	public void updateComputer(final String[] args){
 		ComputerDto computerDto = new ComputerDto();
-		computerDto.setId(0);
-		computerDto.setName("PC-TEST");
-		computerDto.setIntroduced("2016-03-04");
-		computerDto.setDiscontinued("2016-12-20");
-		computerDto.setCompanyId(1);
+		computerDto.setId(Integer.parseInt(args[0]));
+		computerDto.setName(args[1]);
+		computerDto.setIntroduced(args[2]);
+		computerDto.setDiscontinued(args[3]);
+		computerDto.setCompanyId(Integer.parseInt(args[4]));
 
 		new ComputerServices().editComptuter(ComputerDtoMapper.transformToComputer(computerDto));
 	}

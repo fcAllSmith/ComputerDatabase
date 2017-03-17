@@ -1,7 +1,6 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,9 +16,7 @@ import org.apache.log4j.Logger;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
-import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
 import com.excilys.computerdb.fconsigny.presentation.view.servlet.path.ViewPathBuilder;
-import com.excilys.computerdb.fconsigny.utils.log.DoLogger;
 
 @WebServlet("/dashboard")
 public class ViewDashboardController extends HttpServlet implements Servlet {
@@ -42,7 +39,7 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 
 		if(request.getAttribute("search") != null){
 			String name = request.getAttribute("search").toString();
-			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputersWithLimiter(name,0, 10)),request);
+			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputersWithLimiter(10,0, name)),request);
 		}else{
 			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputers()),request);	
 		}

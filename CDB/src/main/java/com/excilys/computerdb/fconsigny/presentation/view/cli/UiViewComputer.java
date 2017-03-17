@@ -71,8 +71,30 @@ public class UiViewComputer extends AppView implements IApp {
 			}
 			break;
 		case 4:
-			computerController.createComputer(null);
+			String[] args = new String[4];
+			showText("Name : ");
+			args[0] = readInputText(); 
+			showText("Introduced : ");
+			args[1] = readInputText();
+			showText("Discontinued : ");
+			args[2] = readInputText();
+			showText("Company Id : ");
+			args[3] = readInputText();
+			computerController.createComputer(args);
+			break;
 		case 5:
+			String[] args_update = new String[5];
+			showText("Id:"); 
+			args_update[0] = readInputText();  
+			showText("Name : ");
+			args_update[1] = readInputText(); 
+			showText("Introduced : ");
+			args_update[2] = readInputText();
+			showText("Discontinued : ");
+			args_update[3] = readInputText();
+			showText("Company Id : ");
+			args_update[4] = readInputText();
+			computerController.updateComputer(args_update);
 			break;
 		default:
 			this.destroyView();
