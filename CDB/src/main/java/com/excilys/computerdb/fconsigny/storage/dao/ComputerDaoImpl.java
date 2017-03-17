@@ -79,8 +79,11 @@ public class ComputerDaoImpl implements ComputerDao {
 		String query = null;
 		if(name == null ){
 			query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset;	
+			System.out.println(query);
 		}else{
-			query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset + " WHERE name LIKE '%" + name + "%'";	
+			//query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + offset + "," + limit + " WHERE name LIKE '%" + name + "%'";
+			query = "SELECT * FROM computer WHERE name LIKE '%" + name + "%'";
+			System.out.println(query);
 		}
 		ResultSet rs = dm.queryGet(this.connection,query);
 		List<Computer> computerList = new ArrayList<Computer>(); 

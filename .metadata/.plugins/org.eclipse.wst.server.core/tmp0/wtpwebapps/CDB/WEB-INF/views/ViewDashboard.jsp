@@ -26,7 +26,7 @@
 		<h1 id="homeTitle">${ctpFound} Computers found</h1>
 		<div id="actions" class="form-horizontal">
 			<div class="pull-left">
-				<form id="searchForm" action="#" method="GET" class="form-inline">
+				<form id="searchForm" action="dashboard" method="GET" class="form-inline">
 
 					<input type="search" id="searchbox" name="search"
 						class="form-control" placeholder="Search name" /> <input
@@ -35,7 +35,7 @@
 				</form>
 			</div>
 			<div class="pull-right">
-				<a class="btn btn-success" id="addComputer" href="#">Add
+				<a class="btn btn-success" id="addComputer" href="computer/add">Add
 					Computer</a> <a class="btn btn-default" id="editComputer" href="#"
 					onclick="$.fn.toggleEditMode();">Edit</a>
 			</div>

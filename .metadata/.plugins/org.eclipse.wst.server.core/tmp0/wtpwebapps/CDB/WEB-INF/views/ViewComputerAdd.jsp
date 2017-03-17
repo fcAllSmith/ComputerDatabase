@@ -24,27 +24,27 @@
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2 box">
 				<h1>Add Computer</h1>
-				<form action="addComputer" method="POST">
+				<form action="add" method="POST">
 					<fieldset>
 						<div class="form-group">
-							<label for="computerName"></label> <input
+							<label for="computerName"></label> <input name="computerName"
 								type="text" class="form-control" id="computerName"
 								placeholder="Computer name">
 						</div>
 						<div class="form-group">
-							<label for="introduced"></label> <input
-								type="date" class="form-control" id="introduced"
+							<label for="introduced"></label> <input type="date"
+								class="form-control" id="introduced" name="introduced"
 								placeholder="Introduced date">
 						</div>
 						<div class="form-group">
-							<label for="discontinued"></label> <input
+							<label for="discontinued"></label> <input name="discontinued"
 								type="date" class="form-control" id="discontinued"
 								placeholder="Discontinued date">
 						</div>
 						<div class="form-group">
-							<label for="companyId"></label> <select
+							<label for="companyId"></label> <select name="companyId"
 								class="form-control" id="companyId">
-								<option value="0">--</option>
+								<option value="1">1</option>
 							</select>
 						</div>
 					</fieldset>

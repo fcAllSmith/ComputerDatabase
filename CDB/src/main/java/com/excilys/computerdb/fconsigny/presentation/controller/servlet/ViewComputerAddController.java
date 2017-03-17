@@ -20,36 +20,43 @@ import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
 
 @WebServlet(urlPatterns = { "/computer/add"})
 public class ViewComputerAddController  extends HttpServlet implements Servlet {
-	
+
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(ViewComputerAddController.class);
 
-	  @Override
-	  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	      throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	    RequestDispatcher dispatcher = this.getServletContext()
-	        .getRequestDispatcher("/WEB-INF/views/ViewComputerAdd.jsp");
-	    dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = this.getServletContext()
+				.getRequestDispatcher("/WEB-INF/views/ViewComputerAdd.jsp");
+		dispatcher.forward(request, response);
+	}
 
-	  }
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	  @Override
-	  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	      throws ServletException, IOException {
-	  
-		  String name = request.getParameter("computerName");
-		  String introduced = request.getParameter("introduced");
-		  String discontinued = request.getParameter("discontinued"); 
-		  String companyId = request.getParameter("companyId");
-		  
-		  ComputerDto computerDto = new ComputerDto();
-		  computerDto.setName(name);
-		  computerDto.setIntroduced(introduced);
-		  computerDto.setDiscontinued(discontinued);
-		  computerDto.setCompanyId(Integer.parseInt(companyId));
-		 new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto));
-			response.sendRedirect("dashboard");
+		String name = request.getParameter("computerName");
+		String introduced = request.getParameter("introduced");
+		String discontinued = request.getParameter("discontinued"); 
+		String companyId = request.getParameter("companyId");
+		
+		System.out.println(name);
+		System.out.println(introduced);
+		System.out.println(discontinued);
+		System.out.println(companyId);
 
-	  }
+		ComputerDto computerDto = new ComputerDto();
+		computerDto.setName(name);
+		computerDto.setIntroduced(introduced);
+		computerDto.setDiscontinued(discontinued);
+	//	computerDto.setCompanyId(Integer.parseInt(companyId));
+		computerDto.setCompanyId(1);
+		if(new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto))){
+			response.sendRedirect("/CDB/dashboard");
+		}else{
+			doGet(request,response);
+		}
+	}
 }

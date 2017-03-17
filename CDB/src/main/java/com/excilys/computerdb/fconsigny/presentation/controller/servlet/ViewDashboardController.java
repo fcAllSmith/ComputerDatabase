@@ -37,9 +37,9 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if(request.getAttribute("search") != null){
-			String name = request.getAttribute("search").toString();
-			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputersWithLimiter(10,0, name)),request);
+		if(request.getParameter("search") != null){
+			this.populateListComputer(ComputerDtoMapper.transformListToDto(new ComputerServices().getAllComputersWithLimiter(0, 2, request.getParameter("search"))),request);
+
 		}else{
 			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputers()),request);	
 		}
