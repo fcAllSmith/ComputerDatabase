@@ -31,12 +31,9 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 
 	public ViewDashboardController(){
 		super();
-		try {
-			this.computerServices = new ComputerServices();
-		} catch (SQLException error) {
-			error.printStackTrace();
-			logger.error(error);
-		}
+
+		this.computerServices = new ComputerServices();
+
 	}
 
 	@Override

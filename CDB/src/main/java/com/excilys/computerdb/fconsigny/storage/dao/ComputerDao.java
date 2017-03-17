@@ -6,15 +6,15 @@ import com.excilys.computerdb.fconsigny.business.model.Computer;
 
 public interface ComputerDao {
 	
-	public Computer findById(long id);
+	public Computer findById(final long id);
 
 	public List<Computer> findAll();
 
-	public List<Computer> findAllWithLimiter(String name,int limit,int offset);
+	public List<Computer> findAllWithLimiter(final String name,final int limit,final int offset);
 
 	public boolean addComputer(Computer computer);
 	
 	public boolean updateComputer(Computer computer);
 	
-	public boolean deleteComputer(long id);
+	public boolean deleteComputer(final long id);
 }

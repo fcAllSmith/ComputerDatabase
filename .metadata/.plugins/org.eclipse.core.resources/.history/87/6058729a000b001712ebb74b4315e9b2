@@ -1,0 +1,50 @@
+package com.excilys.computerdb.fconsigny.presentation.component;
+
+public class Page {
+
+	//Initialize page to 0 by default
+	private int currentPage = 0 ;
+	//Initialize page to 0 by default
+	private int offset = 0;
+	// Limit can't be get outside the class.
+	private int limit;
+	private int maxPage;
+
+	/**
+	 * By default, the view has none offset
+	 * and the cursor is set to first page. 
+	 * @param limit : we initialize the page with a number of rows to look for.
+	 */
+	public Page(int limit){
+		this.limit = limit; 
+	}
+
+	/**
+	 * 
+	 * @param limit
+	 */
+	public void setLimit(int limit){
+		this.limit = limit; 
+	}
+
+	public void setMaxPage(int maxPage){
+		this.maxPage = maxPage;
+	}
+
+	public boolean nextPage() {
+		if(this.currentPage < maxPage){
+			this.currentPage++;
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean previousPage(){
+		if(this.currentPage > 0){
+			this.currentPage--;
+			return true;
+		}
+		return false; 
+	}
+}

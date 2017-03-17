@@ -44,7 +44,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	}
 
 	@Override
-	public Company findById(long id){
+	public Company findById(final long id){
 		ResultSet resQuery = new DatabaseHelper().queryGet(this.connection,SELECT_BY_ID + id);
 		try {
 			if (resQuery.isBeforeFirst() && !resQuery.isLast()) {

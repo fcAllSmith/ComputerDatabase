@@ -9,7 +9,7 @@ public class UiViewLauncher extends AppView implements IApp{
 	private static Logger logger = Logger.getLogger(UiViewLauncher.class);
 
 	@Override
-	public void createView(AppView appParentView) {
+	public void createView(final AppView appParentView) {
 		refreshUi();
 	}
 
@@ -26,7 +26,7 @@ public class UiViewLauncher extends AppView implements IApp{
 	@Override
 	public void destroyView() {}
 
-	public void onInputKey(String strInput) {
+	public void onInputKey(final String strInput) {
 		try {
 			int cmd = Integer.parseInt(strInput);
 			switch (cmd) {

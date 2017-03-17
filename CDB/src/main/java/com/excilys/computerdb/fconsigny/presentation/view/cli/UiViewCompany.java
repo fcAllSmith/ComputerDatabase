@@ -15,7 +15,7 @@ public class UiViewCompany extends AppView implements IApp {
 	private CompanyController companyController;
 
 	@Override
-	public void createView(AppView appParentView) {
+	public void createView(final AppView appParentView) {
 		if(this.appParentView == null && companyController == null){
 			this.appParentView = appParentView ;
 			this.companyController = new CompanyController(this);
@@ -37,7 +37,7 @@ public class UiViewCompany extends AppView implements IApp {
 		}	
 	}
 
-	public void onInputKey(String strInput) throws IOException {
+	public void onInputKey(final String strInput) throws IOException {
 		try {
 			int cmd = Integer.parseInt(strInput);
 			switch (cmd) {

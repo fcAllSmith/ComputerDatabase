@@ -9,40 +9,30 @@ import java.util.List;
 
 public class CompanyController {
 
-	private IApp view;
-	public CompanyController(IApp view) {
+	private final IApp view;
+	public CompanyController(final IApp view) {
 		this.view = view;
 	}
 
 	public void loadListCompany() {
 		List<CompanyDto> companyList;
 
-		try {
-			companyList = new CompanyServices().getAllCompanies();
-			if(companyList.isEmpty()){
-				this.view.showText("No company found");
-			}else{
-				for(CompanyDto company : companyList){
-					this.view.showText(company.toString());
-				}	
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		companyList = new CompanyServices().getAllCompanies();
+		if(companyList.isEmpty()){
+			this.view.showText("No company found");
+		}else{
+			for(CompanyDto company : companyList){
+				this.view.showText(company.toString());
+			}	
 		}
-
 	}
 
-	public void loadCompanyById(String strInput) {
+	public void loadCompanyById(final String strInput) {
 		try {
 			CompanyDto company = new CompanyServices().getUniqueCompany(Integer.parseInt(strInput));
 			this.view.showText(company.toString());;
-
 		} catch (NumberFormatException e) {
 			this.view.showText("Wrong input command");
-			e.printStackTrace();
-		} catch (SQLException e) {
-			this.view.showText("Database can't be reach or empty result");
-			e.printStackTrace();
 		}
 	}
 }

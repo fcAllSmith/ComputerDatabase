@@ -48,12 +48,8 @@ public class ViewComputerAddController  extends HttpServlet implements Servlet {
 		  computerDto.setIntroduced(introduced);
 		  computerDto.setDiscontinued(discontinued);
 		  computerDto.setCompanyId(Integer.parseInt(companyId));
-		  
-		  try {
-			new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto));
+		 new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto));
 			response.sendRedirect("dashboard");
-		} catch (SQLException e) {
-			logger.error(e);
-		}
+
 	  }
 }

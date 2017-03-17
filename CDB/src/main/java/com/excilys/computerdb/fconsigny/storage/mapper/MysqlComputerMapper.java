@@ -19,7 +19,7 @@ public abstract class MysqlComputerMapper extends MysqlComputerValidator{
 	private static Logger logger = Logger.getLogger(MysqlComputerMapper.class);
 
 
-	public static Computer resultSetIntoComputer(ResultSet resultSet){
+	public static Computer resultSetIntoComputer(final ResultSet resultSet){
 		MysqlComputerValidator validator = new MysqlComputerValidator();
 		try {
 			Computer computer = new Computer(validator.setValidId(resultSet.getInt(ComputerDaoImpl.COL_ID)));
@@ -38,7 +38,7 @@ public abstract class MysqlComputerMapper extends MysqlComputerValidator{
 		return null;
 	}
 
-	public static Computer stringIntoComputer(String[] args) {
+	public static Computer stringIntoComputer(final String[] args) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy HH:mm:ss a");
 		Computer computer = new Computer(Integer.parseInt(args[0]));
 		computer.setName(args[1]);

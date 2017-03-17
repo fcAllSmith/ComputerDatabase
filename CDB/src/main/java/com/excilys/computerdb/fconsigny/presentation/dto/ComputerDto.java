@@ -1,22 +1,22 @@
 package com.excilys.computerdb.fconsigny.presentation.dto;
 
 public class ComputerDto {
-	
+
 	private long id = 0; 
 	private String name = "default";
 	private String introduced = "-"; 
 	private String discontinued = "-"; 
 	private long companyId;
-	
+
 	public ComputerDto(){
-		
+
 	}
-	
+
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(final long id) {
 		System.out.println ("in dto" + id);
 		this.id = id;
 	}
@@ -25,7 +25,7 @@ public class ComputerDto {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -33,7 +33,7 @@ public class ComputerDto {
 		return introduced;
 	}
 
-	public void setIntroduced(String introduced) {
+	public void setIntroduced(final String introduced) {
 		this.introduced = introduced;
 	}
 
@@ -41,7 +41,7 @@ public class ComputerDto {
 		return discontinued;
 	}
 
-	public void setDiscontinued(String discontinued) {
+	public void setDiscontinued(final String discontinued) {
 		this.discontinued = discontinued;
 	}
 
@@ -49,7 +49,7 @@ public class ComputerDto {
 		return companyId;
 	}
 
-	public void setCompanyId(long companyId) {
+	public void setCompanyId(final long companyId) {
 		this.companyId = companyId;
 	}
 
@@ -57,11 +57,11 @@ public class ComputerDto {
 	public String toString(){
 		return " ID : " + this.id + " NAME : " + this.name + " INTRODUCED " + this.introduced + " DISCONTINUED : " + this.discontinued + " COMPANY :" + this.companyId; 
 	}
-	
+
 	@Override
 	public boolean equals(Object obj){
 		//TODO redefine method
 		return true; 
 	}
-	
+
 }

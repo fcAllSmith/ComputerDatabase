@@ -21,7 +21,7 @@ public class DatabaseHelper {
 	 * @param query 
 	 * @return return a ResultSet of the entity or entities selected.
 	 */
-	public ResultSet queryGet(Connection connection,String query) {
+	public ResultSet queryGet(Connection connection,final String query) {
 		Database db = Database.getInstance();
 		connection  = db.getConnection(); 
 		try {
@@ -38,7 +38,7 @@ public class DatabaseHelper {
 	 * @param query
 	 * @return true if entity has been updated or inserted
 	 */
-	public boolean queryPost(Connection connection ,String query) {
+	public boolean queryPost(Connection connection ,final String query) {
 		Database db = Database.getInstance();
 		connection = db.getConnection();
 		try {

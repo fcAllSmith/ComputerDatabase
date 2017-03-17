@@ -5,7 +5,7 @@ import com.excilys.computerdb.fconsigny.utils.view.AppView;
 public class UiViewPageComputer extends AppView implements IApp {
 	
 	@Override
-	public void createView(AppView appParentView) {
+	public void createView(final AppView appParentView) {
 		// TODO Auto-generated method stub
 	}
 

@@ -18,7 +18,7 @@ public class UiViewComputer extends AppView implements IApp {
 	private  ComputerController computerController;
 
 	@Override
-	public void createView(AppView appParentView) {
+	public void createView(final AppView appParentView) {
 		if (this.appParentView == null && computerController == null) {
 			this.appParentView = appParentView ;
 			computerController = new ComputerController(this);
@@ -67,8 +67,6 @@ public class UiViewComputer extends AppView implements IApp {
 			try {
 				computerController.deleteComputer(readInputText());
 			} catch (NumberFormatException e) {
-				logger.error(e);
-			} catch (SQLException e) {
 				logger.error(e);
 			}
 			break;

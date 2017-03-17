@@ -30,9 +30,7 @@ public class ViewComputerEditController extends HttpServlet implements Servlet {
 						ComputerDtoMapper.transformToDto(new ComputerServices().getUniqueComputer(Integer.parseInt(request.getAttribute("computerId").toString()))),request);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			} 
 		} 
 
 		RequestDispatcher dispatcher = this.getServletContext()

@@ -6,7 +6,7 @@ import com.excilys.computerdb.fconsigny.business.model.Company;
 
 public interface CompanyDao {
 
-  public Company findById(long id);
+  public Company findById(final long id);
 
   public List<Company> findAll();
   

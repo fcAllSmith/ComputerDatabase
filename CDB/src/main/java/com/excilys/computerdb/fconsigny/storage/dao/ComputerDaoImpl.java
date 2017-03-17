@@ -35,7 +35,7 @@ public class ComputerDaoImpl implements ComputerDao {
 	}
 
 	@Override
-	public Computer findById(long id) {
+	public Computer findById(final long id) {
 		DatabaseHelper dm = new DatabaseHelper();
 		ResultSet rs = dm.queryGet(this.connection,QUERY_SELECT_BY_ID + id);
 
@@ -74,7 +74,7 @@ public class ComputerDaoImpl implements ComputerDao {
 	}
 
 	@Override
-	public List<Computer> findAllWithLimiter(String name ,int limit,int offset) {
+	public List<Computer> findAllWithLimiter(final String name ,final int limit,final int offset) {
 		DatabaseHelper dm = new DatabaseHelper();
 		String query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset + " WHERE name LIKE '%" + name + "%'";
 		ResultSet rs = dm.queryGet(this.connection,query);

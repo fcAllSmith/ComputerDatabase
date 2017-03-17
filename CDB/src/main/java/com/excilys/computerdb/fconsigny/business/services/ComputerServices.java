@@ -13,9 +13,9 @@ public class ComputerServices {
 		super();
 	}
 
-	private ComputerDao cDao = ComputerFactory.getComputerDao();
+	private final ComputerDao cDao = ComputerFactory.getComputerDao();
 
-	public Computer getUniqueComputer(long id) {
+	public Computer getUniqueComputer(final long id) {
 		return cDao.findById(id);
 	}
 
@@ -23,7 +23,7 @@ public class ComputerServices {
 		return cDao.findAll();
 	}
 
-	public List<Computer> getAllComputersWithLimiter(int offset,int limit, String name){
+	public List<Computer> getAllComputersWithLimiter(final int offset,final int limit,final String name){
 		return cDao.findAllWithLimiter(name,limit, offset);
 	}
 
@@ -32,16 +32,17 @@ public class ComputerServices {
 	 * @param computerDto
 	 * @return true if successful.
 	 */
-	public boolean saveComputer(Computer computer){
+	public boolean saveComputer(final Computer computer){
 		return cDao.addComputer(computer); 
 	}
 
-	public boolean editComptuter(Computer computer){
+	public boolean editComptuter(final Computer computer){
 		return cDao.updateComputer(computer);
 	}
 
-	public boolean deleteComputer(long id){
+	public boolean deleteComputer(final long id){
 		return cDao.deleteComputer(id);
 	}
 
+	
 }
