@@ -4,14 +4,9 @@ import com.excilys.computerdb.fconsigny.business.factory.ComputerFactory;
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class ComputerServices {
-
-	public ComputerServices() {
-		super();
-	}
 
 	private final ComputerDao cDao = ComputerFactory.getComputerDao();
 

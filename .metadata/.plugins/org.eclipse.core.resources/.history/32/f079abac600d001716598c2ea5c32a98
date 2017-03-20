@@ -1,0 +1,31 @@
+package com.excilys.computerdb.fconsigny.presentation.validation;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+
+public class ValidateEntries {
+
+	public static LocalDate stringToLocalDate(String inputDate) throws DateTimeParseException {
+		DateTimeFormatter formatter;
+		LocalDate date;
+		formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		date = LocalDate.parse(inputDate, formatter);
+		return date;
+	}
+	
+	public static boolean isValideId(long inputId){
+		if(inputId > -1){
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public static boolean isDate(String inputDate){
+		if (inputDate != null) {
+			if ( ! inputDate.matches("-"))
+		}
+	}
+}

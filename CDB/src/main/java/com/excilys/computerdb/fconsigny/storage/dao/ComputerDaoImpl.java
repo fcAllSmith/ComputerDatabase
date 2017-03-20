@@ -3,6 +3,7 @@ package com.excilys.computerdb.fconsigny.storage.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ComputerDaoImpl implements ComputerDao {
 
 	private static Logger logger = Logger.getLogger(ComputerDaoImpl.class);
 
-	private final static String QUERY_SELECT_ALL = "SELECT * FROM computer";
+	private final static String QUERY_SELECT_ALL = "SELECT * FROM computer LEFT JOIN company ON company.id = computer.company_id";
 	private final static String QUERY_SELECT_BY_ID = "SELECT * FROM computer WHERE id =";
 	private final static String QUERY_DELETE = "DELETE FROM computer WHERE id=";
 
@@ -120,15 +121,27 @@ public class ComputerDaoImpl implements ComputerDao {
 	public boolean addComputer(Computer computer) {
 		StringBuilder insertSQLBuilder = new StringBuilder();
 		DatabaseHelper dh = new DatabaseHelper();
-		insertSQLBuilder.append(" INSERT INTO computer (name,company_id)");
+		insertSQLBuilder.append(" INSERT INTO computer (name,introduced,discontinued,company_id)");
 		insertSQLBuilder.append(" VALUES ( '");
 		insertSQLBuilder.append( computer.getName() + "',");
-		//insertSQLBuilder.append( computer.getIntroduced() + "','");
-		//insertSQLBuilder.append( computer.getDiscontinued() + "',");
-		insertSQLBuilder.append( computer.getCompanyId());
+		if(computer.getIntroduced() == null){
+			insertSQLBuilder.append("NULL" + ",");
+		}else{
+			insertSQLBuilder.append("'" + Timestamp.valueOf(computer.getIntroduced()) + "'" + ",");
+		}
+		
+		if(computer.getDiscontinued() == null){
+			insertSQLBuilder.append("NULL" + ",");
+		}else{
+			insertSQLBuilder.append("'" + Timestamp.valueOf(computer.getDiscontinued())+ "'" + ",");
+		}
+		
+		insertSQLBuilder.append( computer.getCompany().getId());
 		insertSQLBuilder.append(");"); 
 
+		
 		String query = insertSQLBuilder.toString();
+		System.out.println(query);
 		return dh.queryPost(this.connection, query);
 	}
 
@@ -140,16 +153,22 @@ public class ComputerDaoImpl implements ComputerDao {
 		insertSQLBuilder.append(" UPDATE computer ");
 		insertSQLBuilder.append(" SET ");
 		insertSQLBuilder.append("name=" + DbUtil.quote(computer.getName()) + ",");
-		insertSQLBuilder.append(" company_id=  " + computer.getCompanyId());
-		//insertSQLBuilder.append( computer.getName() + ",");
-		//insertSQLBuilder.append( computer.getIntroduced() + ",");
-		//insertSQLBuilder.append( computer.getDiscontinued() + ",");
-		//insertSQLBuilder.append( computer.getCompanyId());
+		if(computer.getIntroduced() == null){
+			insertSQLBuilder.append("introduced=" + "NULL" + ",");
+		}else{
+			insertSQLBuilder.append( "introduced="+ "'" + Timestamp.valueOf(computer.getIntroduced()) + "'" + ",");
+		}
+		
+		if(computer.getDiscontinued() == null){
+			insertSQLBuilder.append("discontinued=" + "NULL" + ",");
+		}else{
+			insertSQLBuilder.append( "discontinued=" + "'" + Timestamp.valueOf(computer.getDiscontinued())+ "'" + ",");
+		}
+		insertSQLBuilder.append(" company_id=  " + computer.getCompany().getId());
 		insertSQLBuilder.append(" WHERE id=" + computer.getId() ); 
 
 		System.out.println(insertSQLBuilder.toString());
 		String query = insertSQLBuilder.toString(); 
 		return dh.queryPost(this.connection, query); 
 	}
-
 }

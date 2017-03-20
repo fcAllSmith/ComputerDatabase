@@ -8,7 +8,7 @@ public class Computer {
 	private String name; 
 	private LocalDateTime introduced; 
 	private LocalDateTime discontinued; 
-	private long companyId; 
+	private Company company;
 
 	public Computer(final long id) {
 		this.id = id; 
@@ -26,8 +26,8 @@ public class Computer {
 		this.discontinued = ptime;
 	}
 
-	public void setCompanyId(final long companyId) {
-		this.companyId = companyId;
+	public void setCompany(final Company company) {
+		this.company = company;
 	}
 
 	public long getId() {
@@ -46,14 +46,24 @@ public class Computer {
 		return discontinued;
 	}
 
-	public long getCompanyId() {
-		return companyId;
+	public Company getCompany() {
+		return company;
 	}
 
 	@Override
 	public String toString(){
 		//return " ID : " + this.id + " Name : " + this.name + " introduced : " + this.getIntroduced().toString() + " discontinued" + this.discontinued.toString() + " company" + this.companyId;
-		return "ID : " + " Name : " + this.name + " Company id : " + this.companyId;
+		return "ID : " + " Name : " + this.name + " Company Name : " + this.company.getName();
+	}
+	@Override
+	public boolean equals(Object obj){
+		//TODO redefine method
+		return true; 
+	}
+	
+	@Override 
+	public int hashCode(){
+		return 0; 
 	}
 
 }

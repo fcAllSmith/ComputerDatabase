@@ -26,22 +26,16 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 
 	private ComputerServices computerServices; 
 
-	public ViewDashboardController(){
-		super();
-
-		this.computerServices = new ComputerServices();
-
-	}
-
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		this.computerServices = new ComputerServices();
 		if(request.getParameter("search") != null){
-			this.populateListComputer(ComputerDtoMapper.transformListToDto(new ComputerServices().getAllComputersWithLimiter(0, 2, request.getParameter("search"))),request);
+			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputersWithLimiter(0, 10, request.getParameter("search"))),request);
 
 		}else{
-			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputers()),request);	
+			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputersWithLimiter(0, 10, null)),request);	
 		}
 
 		RequestDispatcher dispatcher = this.getServletContext()

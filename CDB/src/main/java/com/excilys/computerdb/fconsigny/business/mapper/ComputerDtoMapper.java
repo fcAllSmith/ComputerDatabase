@@ -1,15 +1,14 @@
 package com.excilys.computerdb.fconsigny.business.mapper;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
 
+import com.excilys.computerdb.fconsigny.business.model.Company;
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
+import com.excilys.computerdb.fconsigny.presentation.validation.ValidateEntries;
+
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ComputerDtoMapper {
 
@@ -23,14 +22,17 @@ public class ComputerDtoMapper {
 			computerDto.setName(computer.getName());
 
 			if (computer.getIntroduced()!= null) {
-				computerDto.setIntroduced(computer.getIntroduced().toString());
+				computerDto.setIntroduced(computer.getIntroduced().toLocalDate().toString());
 			}
 
 			if (computer.getDiscontinued()!= null) {
-			//	computerDto.setDiscontinued(computer.getDiscontinued().toString());
+				computerDto.setDiscontinued(computer.getDiscontinued().toLocalDate().toString());
 			}
 
-			computerDto.setCompanyId(computer.getCompanyId());
+			if(computer.getCompany().getName() != null){
+				computerDto.setCompanyName(computer.getCompany().getName());
+			}
+
 			return computerDto;
 		}
 
@@ -38,7 +40,7 @@ public class ComputerDtoMapper {
 	}
 
 	public static List<ComputerDto> transformListToDto(List<Computer> computerList){
-		List<ComputerDto> computerDtoList = new ArrayList<ComputerDto>();;
+		List<ComputerDto> computerDtoList = new ArrayList<ComputerDto>();
 
 		for(Computer computer : computerList){
 			computerDtoList.add(transformToDto(computer));
@@ -52,16 +54,15 @@ public class ComputerDtoMapper {
 		Computer computer  = new Computer(computerDto.getId());
 		computer.setName(computerDto.getName());
 
-		//if(!computerDto.getInserted().matches("-") && computerDto.getInserted() != null){
-			//LocalDateTime dateTime = LocalDateTime.parse(computerDto.getInserted(),formatter);
-		//}
+		if(ValidateEntries.isDate(computerDto.getIntroduced())){
+			computer.setIntroduced(ValidateEntries.stringToLocalDate(computerDto.getIntroduced()));
+		}
 
-		//if(!computerDto.getDiscontinued().matches("-") && computerDto.getDiscontinued() != null){
+		if(ValidateEntries.isDate(computerDto.getDiscontinued())){
+			computer.setDiscontinued(ValidateEntries.stringToLocalDate(computerDto.getDiscontinued()));
+		}
 
-		//}
-
-		computer.setCompanyId(computerDto.getCompanyId());
+		computer.setCompany(new Company(computerDto.getCompanyId()));
 		return computer;
-
 	}
 }

@@ -1,0 +1,8 @@
+package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
+
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet(urlPatterns = { "/computer/edit"})
+public class ViewComputerDeleteController {
+
+}

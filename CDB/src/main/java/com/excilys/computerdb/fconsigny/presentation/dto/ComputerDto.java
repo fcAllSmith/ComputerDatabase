@@ -7,6 +7,7 @@ public class ComputerDto {
 	private String introduced = "-"; 
 	private String discontinued = "-"; 
 	private long companyId;
+	private String companyName= "-";
 
 	public ComputerDto(){
 
@@ -17,7 +18,6 @@ public class ComputerDto {
 	}
 
 	public void setId(final long id) {
-		System.out.println ("in dto" + id);
 		this.id = id;
 	}
 
@@ -53,15 +53,28 @@ public class ComputerDto {
 		this.companyId = companyId;
 	}
 
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
 	@Override
 	public String toString(){
-		return " ID : " + this.id + " NAME : " + this.name + " INTRODUCED " + this.introduced + " DISCONTINUED : " + this.discontinued + " COMPANY :" + this.companyId; 
+		return " ID : " + this.id + " NAME : " + this.name + " INTRODUCED " + this.introduced + " DISCONTINUED : " + this.discontinued + " COMPANY :" + this.companyName; 
 	}
 
 	@Override
 	public boolean equals(Object obj){
 		//TODO redefine method
 		return true; 
+	}
+
+	@Override 
+	public int hashCode(){
+		return 0; 
 	}
 
 }

@@ -2,6 +2,8 @@ package com.excilys.computerdb.fconsigny.presentation.dto;
 
 public class CompanyDto {
 
+	
+
 	private long id; 
 	private String name = "";
 
@@ -35,4 +37,11 @@ public class CompanyDto {
 		//TODO : redefine this method 
 		return true; 
 	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+	
 }

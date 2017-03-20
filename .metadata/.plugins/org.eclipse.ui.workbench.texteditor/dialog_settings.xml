@@ -6,12 +6,15 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="mysql" key="selection"/>
+		<item value="delete" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="delete"/>
+			<item value="ComputerServices"/>
+			<item value="System"/>
 			<item value="MYSQL"/>
 			<item value="jdbc"/>
 			<item value="jar"/>
@@ -23,7 +26,7 @@
 		<item value="346" key="DIALOG_WIDTH"/>
 		<item value="1|Cantarell|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 		<item value="474" key="DIALOG_HEIGHT"/>
-		<item value="890" key="DIALOG_X_ORIGIN"/>
-		<item value="451" key="DIALOG_Y_ORIGIN"/>
+		<item value="277" key="DIALOG_X_ORIGIN"/>
+		<item value="364" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

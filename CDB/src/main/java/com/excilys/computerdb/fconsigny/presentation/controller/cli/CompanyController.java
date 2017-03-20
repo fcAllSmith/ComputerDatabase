@@ -10,14 +10,15 @@ import java.util.List;
 public class CompanyController {
 
 	private final IApp view;
+	private CompanyServices companyServices;
+
 	public CompanyController(final IApp view) {
 		this.view = view;
+		this.companyServices = new CompanyServices();
 	}
 
 	public void loadListCompany() {
-		List<CompanyDto> companyList;
-
-		companyList = new CompanyServices().getAllCompanies();
+		List<CompanyDto> companyList = this.companyServices.getAllCompanies();
 		if(companyList.isEmpty()){
 			this.view.showText("No company found");
 		}else{
@@ -29,7 +30,7 @@ public class CompanyController {
 
 	public void loadCompanyById(final String strInput) {
 		try {
-			CompanyDto company = new CompanyServices().getUniqueCompany(Integer.parseInt(strInput));
+			CompanyDto company = this.companyServices.getUniqueCompany(Integer.parseInt(strInput));
 			this.view.showText(company.toString());;
 		} catch (NumberFormatException e) {
 			this.view.showText("Wrong input command");

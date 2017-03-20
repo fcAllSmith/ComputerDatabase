@@ -1,7 +1,10 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
+import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
+import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
+
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
@@ -13,10 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
-import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
-import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
-import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
+
 
 @WebServlet(urlPatterns = { "/computer/add"})
 public class ViewComputerAddController  extends HttpServlet implements Servlet {
@@ -51,8 +51,7 @@ public class ViewComputerAddController  extends HttpServlet implements Servlet {
 		computerDto.setName(name);
 		computerDto.setIntroduced(introduced);
 		computerDto.setDiscontinued(discontinued);
-	//	computerDto.setCompanyId(Integer.parseInt(companyId));
-		computerDto.setCompanyId(1);
+		computerDto.setCompanyId(Integer.parseInt(companyId));
 		if(new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto))){
 			response.sendRedirect("/CDB/dashboard");
 		}else{

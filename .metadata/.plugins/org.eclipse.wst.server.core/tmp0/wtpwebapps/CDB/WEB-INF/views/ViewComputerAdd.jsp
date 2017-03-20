@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet"
+<link href="/CDB/css/bootstrap.min.css" rel="stylesheet"
 	media="screen">
-<link href="resources/css/font-awesome.css" rel="stylesheet"
+<link href="/CDB/css/font-awesome.css" rel="stylesheet"
 	media="screen">
-<link href="resources/css/main.css" rel="stylesheet" media="screen">
+<link href="/CDB/css/main.css" rel="stylesheet" media="screen">
 <title>Add</title>
 </head>
 <body>
@@ -57,8 +57,8 @@
 		</div>
 	</div>
 	</section>
-	<script src="resources/js/jquery.min.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/dashboard.js"></script>
+	<script src="/CDB/js/jquery.min.js"></script>
+	<script src="/CDB/js/bootstrap.min.js"></script>
+	<script src="/CDB/js/dashboard.js"></script>
 </body>
 </html>

@@ -61,7 +61,7 @@ public class Database {
 		Connection connection = null; 
 		try {
 			Class.forName(JDB_DRIVER);
-			String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2";
+			String customPDO = "jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull";
 			try {
 				//this.connection = DriverManager.getConnection(customPDO,"root","pwd");
 				localConnection.set(DriverManager.getConnection(customPDO,"root","pwd"));
@@ -89,7 +89,7 @@ public class Database {
 			try {
 				Class.forName(JDB_DRIVER);
 				HikariConfig conf = new HikariConfig();
-				conf.setJdbcUrl("jdbc:mysql://localhost:3306/computer-database-db2");
+				conf.setJdbcUrl("jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull");
 				conf.setUsername("root");
 				conf.setPassword("pwd");
 				conf.setAutoCommit(false);

@@ -1,15 +1,13 @@
 package com.excilys.computerdb.fconsigny.business.services;
 
-import java.util.List;
-
 import com.excilys.computerdb.fconsigny.business.factory.CompanyFactory;
 import com.excilys.computerdb.fconsigny.business.mapper.CompanyDtoMapper;
 import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
 import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
 
-public class CompanyServices {
+import java.util.List;
 
-	public CompanyServices() {}
+public class CompanyServices {
 
 	private final CompanyDao cDao =  CompanyFactory.getCompanyDao();
 

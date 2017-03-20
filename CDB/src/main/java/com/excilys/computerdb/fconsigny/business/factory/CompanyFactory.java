@@ -6,10 +6,6 @@ import com.excilys.computerdb.fconsigny.storage.dao.CompanyDaoImpl;
 
 public class CompanyFactory {
 
-	public CompanyFactory() {
-		
-	}
-	
 	public static CompanyDao getCompanyDao() {
 		return new CompanyDaoImpl(DatabaseHandler.getSession());
 	}

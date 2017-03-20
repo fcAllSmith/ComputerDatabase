@@ -1,32 +1,33 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.cli;
 
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 
+import java.util.List;
+import org.apache.log4j.Logger;
 
 public class ComputerController {
 	private static Logger logger = Logger.getLogger(ComputerController.class);
 
 	private final UiViewComputer view;
+	private ComputerServices computerServices; 
+
 	public ComputerController(final IApp view) {	
-		this.view = (UiViewComputer)view;
+		this.view = (UiViewComputer) view;
+		this.computerServices = new ComputerServices();
 	}
 
 	public void loadListComputer(){
 
-		List<ComputerDto> computerList = ComputerDtoMapper.transformListToDto(new ComputerServices().getAllComputers());
-		if(computerList.isEmpty()){
+		List<ComputerDto> computerDtoList = ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputers());
+		if(computerDtoList == null || computerDtoList.isEmpty()){
 			this.view.showText("No computer found");
 		}else{
-			for(ComputerDto computer : computerList){
-				this.view.showText(computer.toString());
+			for(ComputerDto computerDto : computerDtoList){
+				this.view.showText(computerDto.toString());
 			}	
 		}
 	}
@@ -34,17 +35,16 @@ public class ComputerController {
 	public void loadComputerById(final String strInputId){
 		int id = Integer.parseInt(strInputId);
 
-		ComputerDto computer = ComputerDtoMapper.transformToDto(new ComputerServices().getUniqueComputer(id));
-		if(computer != null){
-			this.view.showText(computer.toString());	
+		ComputerDto computerDto = ComputerDtoMapper.transformToDto(this.computerServices.getUniqueComputer(id));
+		if(computerDto != null){
+			this.view.showText(computerDto.toString());	
 		}else{
 			this.view.showText("No computer found");
 		}
-
 	}
 
 	public void deleteComputer(final String strInputId) throws NumberFormatException{
-		new ComputerServices().deleteComputer(Integer.parseInt(strInputId));
+		this.computerServices.deleteComputer(Integer.parseInt(strInputId));
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class ComputerController {
 		computerDto.setDiscontinued(args[2]);
 		computerDto.setCompanyId(Integer.parseInt(args[3]));
 
-		new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto));
+		this.computerServices.saveComputer(ComputerDtoMapper.transformToComputer(computerDto));
 
 	}
 
@@ -74,6 +74,6 @@ public class ComputerController {
 		computerDto.setDiscontinued(args[3]);
 		computerDto.setCompanyId(Integer.parseInt(args[4]));
 
-		new ComputerServices().editComptuter(ComputerDtoMapper.transformToComputer(computerDto));
+		this.computerServices.editComptuter(ComputerDtoMapper.transformToComputer(computerDto));
 	}
 }

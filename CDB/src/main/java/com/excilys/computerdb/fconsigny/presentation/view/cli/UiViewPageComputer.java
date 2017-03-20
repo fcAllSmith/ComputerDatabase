@@ -18,6 +18,4 @@ public class UiViewPageComputer extends AppView implements IApp {
 	public void destroyView() {
 		// TODO Auto-generated method stub
 	}
-
-	
 }

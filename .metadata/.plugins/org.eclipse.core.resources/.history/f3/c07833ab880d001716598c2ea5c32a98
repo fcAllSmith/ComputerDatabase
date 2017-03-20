@@ -1,0 +1,16 @@
+package com.excilys.computerdb.fconsigny.business.services;
+
+import java.util.List;
+
+public class CompanyServices {
+
+	private final CompanyDao cDao =  CompanyFactory.getCompanyDao();
+
+	public CompanyDto getUniqueCompany(final long id) {
+		return CompanyDtoMapper.transformToDto(cDao.findById(id));   
+	}
+
+	public List<CompanyDto> getAllCompanies() {
+		return CompanyDtoMapper.transformListToDto(cDao.findAll());
+	}
+}

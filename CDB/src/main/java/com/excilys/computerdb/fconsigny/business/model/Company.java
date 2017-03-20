@@ -20,4 +20,20 @@ public class Company {
   public String getName(){
     return this.name; 
   }
+  
+  @Override 
+  public String toString(){
+	  return null; 
+  }
+  
+  @Override
+	public boolean equals(Object obj){
+		//TODO redefine method
+		return true; 
+	}
+	
+	@Override 
+	public int hashCode(){
+		return 0; 
+	}
 }
