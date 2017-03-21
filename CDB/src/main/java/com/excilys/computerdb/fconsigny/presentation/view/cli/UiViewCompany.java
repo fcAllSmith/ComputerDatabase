@@ -3,6 +3,7 @@ package com.excilys.computerdb.fconsigny.presentation.view.cli;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
 
 import com.excilys.computerdb.fconsigny.presentation.controller.cli.CompanyController;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;

@@ -7,31 +7,31 @@ import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 @Service("computerService")
-@Transactional
+//@Transactional
 public class ComputerServices implements IComputerServices {
-	private final ComputerDao  computerDao;
+	
+	private final ComputerDao  computerDao = ComputerFactory.getComputerDao();
 	
 	@Autowired
-	public IComputerServices (ComputerDao computerDao){
-		this.computerDao = computerDao; 
+	public ComputerServices(){
+		
 	}
 	
-	 @Transactional
+	// @Transactional
 	public Computer getUniqueComputer(final long id) {
-		return cDao.findById(id);
+		return computerDao.findById(id);
 	}
-	 @Transactional
+	// @Transactional
 	public List<Computer> getAllComputers(){
-		return cDao.findAll();
+		return computerDao.findAll();
 	}
-	 @Transactional
+	// @Transactional
 	public List<Computer> getAllComputersWithLimiter(final int offset,final int limit,final String name){
-		return cDao.findAllWithLimiter(name,limit, offset);
+		return computerDao.findAllWithLimiter(name,limit, offset);
 	}
 
 	/**
@@ -39,17 +39,17 @@ public class ComputerServices implements IComputerServices {
 	 * @param computerDto
 	 * @return true if successful.
 	 */
-	 @Transactional
+	// @Transactional
 	public boolean saveComputer(final Computer computer){
-		return cDao.addComputer(computer); 
+		return computerDao.addComputer(computer); 
 	}
-	 @Transactional
+	// @Transactional
 	public boolean editComptuter(final Computer computer){
-		return cDao.updateComputer(computer);
+		return computerDao.updateComputer(computer);
 	}
-	 @Transactional
+	// @Transactional
 	public boolean deleteComputer(final long id){
-		return cDao.deleteComputer(id);
+		return computerDao.deleteComputer(id);
 	}
 
 	

@@ -1,15 +1,16 @@
 package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
 
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 public class UiViewLauncher extends AppView implements IApp{
 
 	private static Logger logger = Logger.getLogger(UiViewLauncher.class);
-
+		
 	@Override
-	public void createView(final AppView appParentView) {
+	public void createView(final AppView appParentView) { 
 		refreshUi();
 	}
 

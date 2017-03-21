@@ -2,6 +2,7 @@ package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 
@@ -23,6 +25,9 @@ public class ViewComputerAddController  extends HttpServlet implements Servlet {
 
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(ViewComputerAddController.class);
+	
+	@Autowired
+	IComputerServices computerServices; 
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +57,7 @@ public class ViewComputerAddController  extends HttpServlet implements Servlet {
 		computerDto.setIntroduced(introduced);
 		computerDto.setDiscontinued(discontinued);
 		computerDto.setCompanyId(Integer.parseInt(companyId));
-		if(new ComputerServices().saveComputer(ComputerDtoMapper.transformToComputer(computerDto))){
+		if(computerServices.saveComputer(ComputerDtoMapper.transformToComputer(computerDto))){
 			response.sendRedirect("/CDB/dashboard");
 		}else{
 			doGet(request,response);

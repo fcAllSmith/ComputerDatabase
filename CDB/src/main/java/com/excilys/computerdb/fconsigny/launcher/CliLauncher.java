@@ -1,10 +1,10 @@
 package com.excilys.computerdb.fconsigny.launcher;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewLauncher;
+import com.excilys.computerdb.fconsigny.spring.ApplicationConfig;
 
 public class CliLauncher {
 
@@ -14,9 +14,7 @@ public class CliLauncher {
 	 * @param args : not used here.
 	 */
 	public static void main(String[] args) {
-		//BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource ("spring_context.xml"));
+		ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		new UiViewLauncher().createView(null);
-	
 	}
-
 }

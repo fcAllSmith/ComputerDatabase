@@ -3,6 +3,7 @@ package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 
 import java.io.IOException;
@@ -15,10 +16,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @WebServlet(urlPatterns = { "/computer/edit"})
 public class ViewComputerEditController extends HttpServlet implements Servlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Autowired
+	IComputerServices computerServices;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,7 +35,7 @@ public class ViewComputerEditController extends HttpServlet implements Servlet {
 
 			try {
 				populateComputer(
-						ComputerDtoMapper.transformToDto(new ComputerServices().getUniqueComputer(Integer.parseInt(request.getParameter("computerId").toString()))),request);
+						ComputerDtoMapper.transformToDto(computerServices.getUniqueComputer(Integer.parseInt(request.getParameter("computerId").toString()))),request);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} 
@@ -52,7 +58,7 @@ public class ViewComputerEditController extends HttpServlet implements Servlet {
 		computerDto.setDiscontinued(request.getParameter("discontinued"));
 		computerDto.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
 
-		if(new ComputerServices().editComptuter(ComputerDtoMapper.transformToComputer(computerDto))){
+		if(computerServices.editComptuter(ComputerDtoMapper.transformToComputer(computerDto))){
 			response.sendRedirect("/CDB/dashboard");
 		} else {
 			doGet(request,response);

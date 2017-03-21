@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
@@ -25,19 +27,21 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
 
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(ViewDashboardController.class);
-
-	private IComputerServices computerServices = null; 
+	
+	@Autowired
+	IComputerServices computerServices; 
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		computerServices = new ComputerServices();
 
-		this.computerServices = new ComputerServices();
 		if(request.getParameter("search") != null){
-			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputersWithLimiter(0, 10, request.getParameter("search"))),request);
+			this.populateListComputer(ComputerDtoMapper.transformListToDto(computerServices.getAllComputersWithLimiter(0, 10, request.getParameter("search"))),request);
 
 		}else{
-			this.populateListComputer(ComputerDtoMapper.transformListToDto(this.computerServices.getAllComputersWithLimiter(0, 10, null)),request);	
+			this.populateListComputer(ComputerDtoMapper.transformListToDto(computerServices.getAllComputersWithLimiter(0, 10, null)),request);	
 		}
 
 		RequestDispatcher dispatcher = this.getServletContext()

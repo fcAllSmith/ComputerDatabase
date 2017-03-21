@@ -19,16 +19,19 @@
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 		<maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
 		<gatling.version>1.4.6</gatling.version>
+		<spring.version>4.3.7.RELEASE</spring.version>
 	</properties>
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
+					<webXml>WebContent\WEB-INF\web.xml</webXml>
 					<warName>computerdb</warName>
 				</configuration>
 			</plugin>
@@ -60,7 +63,17 @@
 					<locales>en,fr</locales>
 				</configuration>
 			</plugin>
-
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<warDirectory>${project.build.directory}/webapp/</warDirectory>
+					<url>http://localhost:8080/manager/text</url>
+					<server>TomcatServer</server>
+					<path>/CDB</path>
+				</configuration>
+			</plugin>
 			<!-- Ajout du checkStyle au projet -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -77,6 +90,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -87,7 +101,7 @@
 				<artifactId>gatling-maven-plugin</artifactId>
 				<version>2.0.0</version>
 				<configuration>
-				    <webXml>/home/excilys/Excilys/ComputerDatabase/CDB//WebContent/WEB-INF/web.xml</webXml>        
+					<webXml>/home/excilys/Excilys/ComputerDatabase/CDB/WebContent/WEB-INF/web.xml</webXml>
 					<configFolder>src/test/resources</configFolder>
 					<dataFolder>src/test/resources/data</dataFolder>
 					<resultsFolder>target/gatling/results</resultsFolder>
@@ -100,7 +114,6 @@
 
 	<reporting>
 		<plugins>
-
 			<!-- Rapports de résultats de tests -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -125,15 +138,11 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
-
-			<!--&lt;!&ndash; Permet d'ajouter des liens vers le code source dans le 
-				rapport -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
 				<version>${maven-jxr-plugin.version}</version>
 			</plugin>
-			<!--&ndash;&gt; -->
 
 			<!-- Ajout de la javadoc -->
 			<plugin>
@@ -178,21 +187,18 @@
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>2.0.0-b10</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api -->
 		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
 			<version>1.2.1</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -200,5 +206,31 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- SPRING -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
 	</dependencies>
 </project>

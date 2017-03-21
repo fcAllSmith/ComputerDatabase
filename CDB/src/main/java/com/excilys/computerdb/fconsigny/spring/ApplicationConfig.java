@@ -8,8 +8,13 @@ import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.business.services.ICompanyServices;
 import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
 
+
+/**
+ * 
+ * @author excilys
+ * In this file are define the bean.
+ */
 @Configuration
-@AnnotationDrivenTx
 public class ApplicationConfig {
 	
 	@Bean 
