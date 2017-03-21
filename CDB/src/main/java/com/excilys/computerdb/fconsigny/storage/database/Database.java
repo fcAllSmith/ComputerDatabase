@@ -1,8 +1,12 @@
 package com.excilys.computerdb.fconsigny.storage.database;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
@@ -44,39 +48,22 @@ public class Database {
   }
 
   public Connection setConnection() {
-    /*
-     * try { Class.forName(JDB_DRIVER); String customPDO =
-     * "jdbc:mysql://localhost:3306/computer-database-db2"; try {
-     * this.connection = DriverManager.getConnection(customPDO,"root","pwd");
-     * return this.connection; } catch(SQLException error) {
-     * DoLogger.doLog(Database.class,"Enable to reach the database"); return
-     * null; } } catch (ClassNotFoundException error) { error.printStackTrace();
-     * return null; }
-     */
-    Connection connection = null;
+    Properties properties = new Properties();
+    FileInputStream file = null;
     try {
-      Class.forName(JDB_DRIVER);
-      String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2?zeroDateTimeBehavior=convertToNull";
-      try {
-        // this.connection =
-        // DriverManager.getConnection(customPDO,"root","pwd");
-        localConnection.set(DriverManager.getConnection(customPDO, "root", "kXZXLPTXMMRR13"));
-        this.connection = localConnection.get();
-        return this.connection;
-      } catch (SQLException error) {
-        logger.error(error);
-        return null;
-      }
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
+      ClassLoader classLoader = getClass().getClassLoader();
+      file = new FileInputStream(classLoader.getResource("db.properties").getPath());
+      properties.load(file);
+      Class.forName(properties.getProperty("DB_DRVER_CLASS"));
+      localConnection.set(DriverManager.getConnection(properties.getProperty("DB_URL"),
+          properties.getProperty("DB_USERNAME"), properties.getProperty("DB_PASSWORD")));
+      this.connection = localConnection.get();
+      return this.connection;
+    } catch (IOException | ClassNotFoundException | SQLException error) {
+      logger.error(error);
+      System.out.println(error);
+      return null;
     }
-
-    /*
-     * try { //connection = getDataSource().getConnection(); } catch
-     * (SQLException e) { e.printStackTrace(); DoLogger.doLog(Database.
-     * class,"Enable to reach the database or connection POOL MAX"); }
-     */
-    return connection;
   }
 
   public static DataSource getDataSource() {

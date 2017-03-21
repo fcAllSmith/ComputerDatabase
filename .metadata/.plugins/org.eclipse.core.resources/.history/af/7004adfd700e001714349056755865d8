@@ -1,0 +1,6 @@
+#JDB Database
+DB_DRVER_CLASS=com.mysql.jdbc.Driver
+DB_URL=jdbc:mysql://localhost:3306/computer-database-db2?zeroDateTimeBehavior=convertToNull 
+database=localhost
+dbuser=mkyong
+dppdo=jdbc:mysql://localhost:3306/computer-database-db2?zeroDateTimeBehavior=convertToNull

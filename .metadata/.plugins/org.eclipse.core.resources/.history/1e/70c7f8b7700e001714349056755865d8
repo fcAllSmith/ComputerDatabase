@@ -1,0 +1,6 @@
+#JDB Database
+
+dbpassword=password
+database=localhost
+dbuser=mkyong
+dppdo=jdbc:mysql://localhost:3306/computer-database-db2?zeroDateTimeBehavior=convertToNull
