@@ -5,6 +5,7 @@ import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
 
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -13,7 +14,7 @@ public class ComputerController {
 	private static Logger logger = Logger.getLogger(ComputerController.class);
 
 	private final UiViewComputer view;
-	private ComputerServices computerServices; 
+	private IComputerServices computerServices = null;; 
 
 	public ComputerController(final IApp view) {	
 		this.view = (UiViewComputer) view;

@@ -61,10 +61,10 @@ public class Database {
     Connection connection = null; 
     try {
       Class.forName(JDB_DRIVER);
-      String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2?zeroDateTimeBehavior=convertToNull";
+      String customPDO = "jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull";
       try {
       //this.connection = DriverManager.getConnection(customPDO,"root","pwd");
-        localConnection.set(DriverManager.getConnection(customPDO,"root","kXZXLPTXMMRR13"));
+        localConnection.set(DriverManager.getConnection(customPDO,"root","pwd"));
         this.connection = localConnection.get();
         return this.connection;
       } catch(SQLException error) {
@@ -89,7 +89,7 @@ public class Database {
       try {
         Class.forName(JDB_DRIVER);
         HikariConfig conf = new HikariConfig();
-        conf.setJdbcUrl("jdbc:mysql://localhost:3306/computer-database-db2?zeroDateTimeBehavior=convertToNull");
+        conf.setJdbcUrl("jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull");
         conf.setUsername("root");
         conf.setPassword("kXZXLPTXMMRR13");
         conf.setAutoCommit(false);

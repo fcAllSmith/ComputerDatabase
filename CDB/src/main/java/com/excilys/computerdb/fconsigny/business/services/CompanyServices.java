@@ -7,7 +7,7 @@ import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
 
 import java.util.List;
 
-public class CompanyServices {
+public class CompanyServices implements ICompanyServices{
 
 	private final CompanyDao cDao =  CompanyFactory.getCompanyDao();
 

@@ -1,0 +1,9 @@
+package com.excilys.computerdb.fconsigny.business.services;
+
+import com.excilys.computerdb.fconsigny.business.model.Computer;
+
+public interface IComputerServices {
+
+	public Computer getUniqueComputer(final long id); 
+	
+}

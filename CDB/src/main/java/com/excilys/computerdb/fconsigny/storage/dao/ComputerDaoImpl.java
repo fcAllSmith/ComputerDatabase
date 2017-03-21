@@ -15,6 +15,10 @@ import com.excilys.computerdb.fconsigny.storage.database.DatabaseHelper;
 import com.excilys.computerdb.fconsigny.storage.mapper.MysqlComputerMapper;
 import com.excilys.computerdb.fconsigny.utils.db.DbUtil;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 public class ComputerDaoImpl implements ComputerDao {
 
 	private static Logger logger = Logger.getLogger(ComputerDaoImpl.class);

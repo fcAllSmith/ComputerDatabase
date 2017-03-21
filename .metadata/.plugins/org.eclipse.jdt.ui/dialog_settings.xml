@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="/home/excilys/Téléchargements/apache-log4j-2.8.1-bin" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="/home/excilys/Excilys/ComputerDatabase/jar" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="renameSubpackages"/>
 		<item value="false" key="updateQualifiedNames"/>
@@ -51,6 +51,9 @@
 		<item value="true" key="showtypes"/>
 	</section>
 	<section name="RenameInformationPopup">
+	</section>
+	<section name="ClasspathContainerSelectionPage">
+		<item value="0" key="index"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>

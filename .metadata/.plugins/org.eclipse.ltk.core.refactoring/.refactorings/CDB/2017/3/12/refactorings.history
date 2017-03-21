@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.excilys.computerdb.fconsigny.spring.SpringConf&apos; to &apos;ApplicationConfig&apos;&#x0A;- Original project: &apos;CDB&apos;&#x0A;- Original element: &apos;com.excilys.computerdb.fconsigny.spring.SpringConf&apos;&#x0A;- Renamed element: &apos;com.excilys.computerdb.fconsigny.spring.ApplicationConfig&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;SpringConf&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;com.excilys.computerdb.fconsigny.spring{SpringConf.java[SpringConf" matchStrategy="1" name="ApplicationConfig" qualified="false" references="true" similarDeclarations="false" stamp="1490100339787" textual="false" version="1.0"/>
+</session>
