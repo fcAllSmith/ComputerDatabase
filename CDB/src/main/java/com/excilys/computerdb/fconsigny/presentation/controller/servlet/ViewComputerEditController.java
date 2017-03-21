@@ -1,6 +1,5 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
-
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
@@ -18,58 +17,58 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-@WebServlet(urlPatterns = { "/computer/edit"})
+@WebServlet(urlPatterns = { "/computer/edit" })
 public class ViewComputerEditController extends HttpServlet implements Servlet {
 
-	private static final long serialVersionUID = 1L;
-	
-	@Autowired
-	IComputerServices computerServices;
+  private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+  @Autowired
+  IComputerServices computerServices;
 
-		System.out.println(request.getParameter("computerId"));
-		if(request.getParameter("computerId") != null && Integer.parseInt(request.getParameter("computerId").toString()) > 0){	
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-			try {
-				populateComputer(
-						ComputerDtoMapper.transformToDto(computerServices.getUniqueComputer(Integer.parseInt(request.getParameter("computerId").toString()))),request);
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} 
-		} 
+    System.out.println(request.getParameter("computerId"));
+    if (request.getParameter("computerId") != null
+        && Integer.parseInt(request.getParameter("computerId").toString()) > 0) {
 
-		RequestDispatcher dispatcher = this.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/ViewComputerEdit.jsp");
-		dispatcher.forward(request, response);
-	}
+      try {
+        populateComputer(
+            ComputerDtoMapper.transformToDto(
+                computerServices.getUniqueComputer(Integer.parseInt(request.getParameter("computerId").toString()))),
+            request);
+      } catch (NumberFormatException e) {
+        e.printStackTrace();
+      }
+    }
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/ViewComputerEdit.jsp");
+    dispatcher.forward(request, response);
+  }
 
-		String name = request.getParameter("computerName");
-		ComputerDto computerDto = new ComputerDto();
-		computerDto.setId(Integer.parseInt(request.getParameter("computerId")));
-		computerDto.setName(request.getParameter("computerName"));
-		computerDto.setIntroduced(request.getParameter("introduced"));
-		computerDto.setDiscontinued(request.getParameter("discontinued"));
-		computerDto.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		if(computerServices.editComptuter(ComputerDtoMapper.transformToComputer(computerDto))){
-			response.sendRedirect("/CDB/dashboard");
-		} else {
-			doGet(request,response);
-		}
-	}
+    String name = request.getParameter("computerName");
+    ComputerDto computerDto = new ComputerDto();
+    computerDto.setId(Integer.parseInt(request.getParameter("computerId")));
+    computerDto.setName(request.getParameter("computerName"));
+    computerDto.setIntroduced(request.getParameter("introduced"));
+    computerDto.setDiscontinued(request.getParameter("discontinued"));
+    computerDto.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
 
-	public void populateComputer(ComputerDto computerDto,HttpServletRequest request ){
-		request.setAttribute("id", computerDto.getId());
-		request.setAttribute("name", computerDto.getName());
-		request.setAttribute("introduced", computerDto.getIntroduced());
-		request.setAttribute("discontinued", computerDto.getDiscontinued());
-		request.setAttribute("companyId", computerDto.getCompanyId());
-	}
+    if (computerServices.editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
+      response.sendRedirect("/CDB/dashboard");
+    } else {
+      doGet(request, response);
+    }
+  }
+
+  public void populateComputer(ComputerDto computerDto, HttpServletRequest request) {
+    request.setAttribute("id", computerDto.getId());
+    request.setAttribute("name", computerDto.getName());
+    request.setAttribute("introduced", computerDto.getIntroduced());
+    request.setAttribute("discontinued", computerDto.getDiscontinued());
+    request.setAttribute("companyId", computerDto.getCompanyId());
+  }
 }

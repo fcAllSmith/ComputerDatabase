@@ -11,16 +11,18 @@ public class DatabaseHelper {
 
   private static Logger logger = Logger.getLogger(DatabaseHelper.class);
 
-  public DatabaseHelper() {}
+  public DatabaseHelper() {
+  }
 
   /**
-  * 
-  * @param query : query send by the dao 
-  * @return return a ResultSet of the entity or entities selected.
-  */
-  public ResultSet queryGet(Connection connection,final String query) {
+   * 
+   * @param query
+   *          : query send by the dao
+   * @return return a ResultSet of the entity or entities selected.
+   */
+  public ResultSet queryGet(Connection connection, final String query) {
     Database db = Database.getInstance();
-    connection  = db.getConnection(); 
+    connection = db.getConnection();
     try {
       Statement stm = connection.createStatement();
       return stm.executeQuery(query);
@@ -31,11 +33,12 @@ public class DatabaseHelper {
   }
 
   /**
-  * 
-  * @param query : query send by the dao 
-  * @return true if entity has been updated or inserted.
-  */
-  public boolean queryPost(Connection connection ,final String query) {
+   * 
+   * @param query
+   *          : query send by the dao
+   * @return true if entity has been updated or inserted.
+   */
+  public boolean queryPost(Connection connection, final String query) {
     Database db = Database.getInstance();
     connection = db.getConnection();
     try {
@@ -43,7 +46,7 @@ public class DatabaseHelper {
       return (stm.executeUpdate(query) > 0);
     } catch (SQLException error) {
       logger.error(error);
-    } 
-    return false; 
+    }
+    return false;
   }
 }

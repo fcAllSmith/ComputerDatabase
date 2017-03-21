@@ -6,7 +6,7 @@ import com.excilys.computerdb.fconsigny.storage.dao.ComputerDaoImpl;
 
 public class ComputerFactory {
 
-	public static ComputerDao getComputerDao() {
-		return new ComputerDaoImpl(DatabaseHandler.getSession());
-	} 
+  public static ComputerDao getComputerDao() {
+    return new ComputerDaoImpl(DatabaseHandler.getSession());
+  }
 }

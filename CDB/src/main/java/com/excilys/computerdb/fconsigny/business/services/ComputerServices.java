@@ -11,46 +11,49 @@ import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;
 
 @Service("computerService")
-//@Transactional
+// @Transactional
 public class ComputerServices implements IComputerServices {
-	
-	private final ComputerDao  computerDao = ComputerFactory.getComputerDao();
-	
-	@Autowired
-	public ComputerServices(){
-		
-	}
-	
-	// @Transactional
-	public Computer getUniqueComputer(final long id) {
-		return computerDao.findById(id);
-	}
-	// @Transactional
-	public List<Computer> getAllComputers(){
-		return computerDao.findAll();
-	}
-	// @Transactional
-	public List<Computer> getAllComputersWithLimiter(final int offset,final int limit,final String name){
-		return computerDao.findAllWithLimiter(name,limit, offset);
-	}
 
-	/**
-	 * 
-	 * @param computerDto
-	 * @return true if successful.
-	 */
-	// @Transactional
-	public boolean saveComputer(final Computer computer){
-		return computerDao.addComputer(computer); 
-	}
-	// @Transactional
-	public boolean editComptuter(final Computer computer){
-		return computerDao.updateComputer(computer);
-	}
-	// @Transactional
-	public boolean deleteComputer(final long id){
-		return computerDao.deleteComputer(id);
-	}
+  private final ComputerDao computerDao = ComputerFactory.getComputerDao();
 
-	
+  @Autowired
+  public ComputerServices() {
+
+  }
+
+  // @Transactional
+  public Computer getUniqueComputer(final long id) {
+    return computerDao.findById(id);
+  }
+
+  // @Transactional
+  public List<Computer> getAllComputers() {
+    return computerDao.findAll();
+  }
+
+  // @Transactional
+  public List<Computer> getAllComputersWithLimiter(final int offset, final int limit, final String name) {
+    return computerDao.findAllWithLimiter(name, limit, offset);
+  }
+
+  /**
+   * 
+   * @param computerDto
+   * @return true if successful.
+   */
+  // @Transactional
+  public boolean saveComputer(final Computer computer) {
+    return computerDao.addComputer(computer);
+  }
+
+  // @Transactional
+  public boolean editComptuter(final Computer computer) {
+    return computerDao.updateComputer(computer);
+  }
+
+  // @Transactional
+  public boolean deleteComputer(final long id) {
+    return computerDao.deleteComputer(id);
+  }
+
 }

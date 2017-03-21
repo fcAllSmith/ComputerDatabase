@@ -14,26 +14,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
-
-@WebServlet(urlPatterns = { "/computer/delete"})
+@WebServlet(urlPatterns = { "/computer/delete" })
 public class ViewComputerDeleteController extends HttpServlet implements Servlet {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Autowired
-	IComputerServices computerServices; 
-	
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+  @Autowired
+  IComputerServices computerServices;
 
-		String strId = request.getParameter("computerId");
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		if(computerServices.deleteComputer(Integer.parseInt(strId))){
-			response.sendRedirect("/CDB/dashboard");
-		} else {
-			doGet(request,response);
-		}
-	}
+    String strId = request.getParameter("computerId");
+
+    if (computerServices.deleteComputer(Integer.parseInt(strId))) {
+      response.sendRedirect("/CDB/dashboard");
+    } else {
+      doGet(request, response);
+    }
+  }
 }

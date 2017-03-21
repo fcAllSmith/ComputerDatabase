@@ -1,1 +1,4 @@
 1490100339787	Rename type 'SpringConf'
+1490120041967	Rename method 'loadListComputer'
+1490120054031	Rename method 'loadComputerById'
+1490125063497	Rename method 'isCorrectEntries'

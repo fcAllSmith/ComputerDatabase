@@ -15,14 +15,14 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class Database {
 
-  private static Database instance; 
-  private static DataSource datasource; 
+  private static Database instance;
+  private static DataSource datasource;
   private ThreadLocal<Connection> localConnection = new ThreadLocal<Connection>();
 
   private static Logger logger = Logger.getLogger(Database.class);
 
-  private Connection connection; 
-  private static final String JDB_DRIVER = "com.mysql.jdbc.Driver"; 
+  private Connection connection;
+  private static final String JDB_DRIVER = "com.mysql.jdbc.Driver";
 
   private Database() {
 
@@ -44,30 +44,26 @@ public class Database {
   }
 
   public Connection setConnection() {
-    /*try {
-        Class.forName(JDB_DRIVER);
-        String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2";
-        try {
-          this.connection = DriverManager.getConnection(customPDO,"root","pwd");
-          return this.connection;
-        } catch(SQLException error) {
-          DoLogger.doLog(Database.class,"Enable to reach the database");
-          return null;
-        }
-    } catch (ClassNotFoundException error) {
-      error.printStackTrace();
-      return null;
-    }*/
-    Connection connection = null; 
+    /*
+     * try { Class.forName(JDB_DRIVER); String customPDO =
+     * "jdbc:mysql://localhost:3306/computer-database-db2"; try {
+     * this.connection = DriverManager.getConnection(customPDO,"root","pwd");
+     * return this.connection; } catch(SQLException error) {
+     * DoLogger.doLog(Database.class,"Enable to reach the database"); return
+     * null; } } catch (ClassNotFoundException error) { error.printStackTrace();
+     * return null; }
+     */
+    Connection connection = null;
     try {
       Class.forName(JDB_DRIVER);
-      String customPDO = "jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull";
+      String customPDO = "jdbc:mysql://localhost:3306/computer-database-db2?zeroDateTimeBehavior=convertToNull";
       try {
-      //this.connection = DriverManager.getConnection(customPDO,"root","pwd");
-        localConnection.set(DriverManager.getConnection(customPDO,"root","pwd"));
+        // this.connection =
+        // DriverManager.getConnection(customPDO,"root","pwd");
+        localConnection.set(DriverManager.getConnection(customPDO, "root", "kXZXLPTXMMRR13"));
         this.connection = localConnection.get();
         return this.connection;
-      } catch(SQLException error) {
+      } catch (SQLException error) {
         logger.error(error);
         return null;
       }
@@ -75,13 +71,12 @@ public class Database {
       e.printStackTrace();
     }
 
-  /*try {
-			//connection = getDataSource().getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			DoLogger.doLog(Database.class,"Enable to reach the database or connection POOL MAX");
-		}*/
-    return connection ;
+    /*
+     * try { //connection = getDataSource().getConnection(); } catch
+     * (SQLException e) { e.printStackTrace(); DoLogger.doLog(Database.
+     * class,"Enable to reach the database or connection POOL MAX"); }
+     */
+    return connection;
   }
 
   public static DataSource getDataSource() {
@@ -89,7 +84,7 @@ public class Database {
       try {
         Class.forName(JDB_DRIVER);
         HikariConfig conf = new HikariConfig();
-        conf.setJdbcUrl("jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull");
+        conf.setJdbcUrl("jdbc:mysql://localhost:3306/computer-database-db2?zeroDateTimeBehavior=convertToNull");
         conf.setUsername("root");
         conf.setPassword("kXZXLPTXMMRR13");
         conf.setAutoCommit(false);

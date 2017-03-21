@@ -1,0 +1,68 @@
+package com.excilys.computerdb.fconsigny.presentation.validation;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
+import com.excilys.computerdb.fconsigny.presentation.exception.ComputerArgumentFormatException;
+
+public class ValidateEntries {
+  
+  public static void isCorrectEntries(ComputerDto computerDto) throws ComputerArgumentFormatException {
+    if(computerDto.getCompanyName() == null || computerDto.getCompanyName().isEmpty() ) {
+      throw new ComputerArgumentFormatException("Computer name can't be null");
+    }
+    
+    if(computerDto.getCompanyId() < 0){
+      throw new ComputerArgumentFormatException("Company Id can't be null");
+    }
+    
+    if(computerDto.getIntroduced() != null){
+      if(stringToLocalDate(computerDto.getIntroduced()) == null){
+        throw new ComputerArgumentFormatException("Wrong date format please respect the pattern YYYY/MM/dd");
+        
+        if(computerDto.getDiscontinued() != null){
+          if(stringToLocateDate(computerDto.getDiscontinued()) != null)
+        }
+      }
+    }
+    
+  }
+
+  public static LocalDateTime stringToLocalDate(String inputDate) {
+    if (inputDate == null) {
+      return null;
+    }
+
+    try {
+      DateTimeFormatter formatter;
+      LocalDate date;
+      formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+      date = LocalDate.parse(inputDate, formatter);
+      return date.atStartOfDay();
+    } catch (DateTimeParseException e) {
+      return null;
+    }
+  }
+
+  public static boolean isValideId(long inputId) {
+    if (inputId > -1) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public static boolean isDate(String inputDate) {
+    if (inputDate != null) {
+      if (!inputDate.matches("-")) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+}

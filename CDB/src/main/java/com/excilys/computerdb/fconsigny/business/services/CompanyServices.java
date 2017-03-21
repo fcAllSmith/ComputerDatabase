@@ -7,15 +7,15 @@ import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
 
 import java.util.List;
 
-public class CompanyServices implements ICompanyServices{
+public class CompanyServices implements ICompanyServices {
 
-	private final CompanyDao cDao =  CompanyFactory.getCompanyDao();
+  private final CompanyDao cDao = CompanyFactory.getCompanyDao();
 
-	public CompanyDto getUniqueCompany(final long id) {
-		return CompanyDtoMapper.transformToDto(cDao.findById(id));   
-	}
+  public CompanyDto getUniqueCompany(final long id) {
+    return CompanyDtoMapper.transformToDto(cDao.findById(id));
+  }
 
-	public List<CompanyDto> getAllCompanies() {
-		return CompanyDtoMapper.transformListToDto(cDao.findAll());
-	}
+  public List<CompanyDto> getAllCompanies() {
+    return CompanyDtoMapper.transformListToDto(cDao.findAll());
+  }
 }

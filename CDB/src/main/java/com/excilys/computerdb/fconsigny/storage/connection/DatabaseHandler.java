@@ -6,20 +6,20 @@ import com.excilys.computerdb.fconsigny.storage.database.Database;
 
 public class DatabaseHandler {
 
-	private static DatabaseHandler dbHandler;
-	private static Connection connection; 
-	
-	private DatabaseHandler(){
-		connection = Database.getInstance().getConnection(); 
-	}
+  private static DatabaseHandler dbHandler;
+  private static Connection connection;
 
-	public static Connection getSession(){
-		
-		if(dbHandler == null){
-			dbHandler = new DatabaseHandler();
-		}
+  private DatabaseHandler() {
+    connection = Database.getInstance().getConnection();
+  }
 
-		return connection;
-	}
-	
+  public static Connection getSession() {
+
+    if (dbHandler == null) {
+      dbHandler = new DatabaseHandler();
+    }
+
+    return connection;
+  }
+
 }

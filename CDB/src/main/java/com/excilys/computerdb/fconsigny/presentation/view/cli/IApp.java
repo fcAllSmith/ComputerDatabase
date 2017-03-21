@@ -6,13 +6,13 @@ import org.springframework.context.ApplicationContext;
 public interface IApp {
 
   public void createView(AppView appParentView);
-  
+
   public void refreshUi();
-  
+
   public void destroyView();
-  
-  public default void showText(String message){
-	  System.out.println(message);
-  };
+
+  public default void showText(String message) {
+    System.out.println(message);
+  }
 
 }

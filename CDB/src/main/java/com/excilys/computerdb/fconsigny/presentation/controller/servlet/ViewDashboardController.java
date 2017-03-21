@@ -1,5 +1,11 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
+import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
+import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
+import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
+import com.excilys.computerdb.fconsigny.presentation.view.servlet.path.ViewPathBuilder;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -15,49 +21,42 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
-import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
-import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
-import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
-import com.excilys.computerdb.fconsigny.presentation.view.servlet.path.ViewPathBuilder;
-
-
 @WebServlet("/dashboard")
 public class ViewDashboardController extends HttpServlet implements Servlet {
 
-	private static final long serialVersionUID = 1L;
-	private static Logger logger = Logger.getLogger(ViewDashboardController.class);
-	
-	@Autowired
-	IComputerServices computerServices; 
+  private static final long serialVersionUID = 1L;
+  private static Logger logger = Logger.getLogger(ViewDashboardController.class);
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		computerServices = new ComputerServices();
+  @Autowired
+  IComputerServices computerServices;
 
-		if(request.getParameter("search") != null){
-			this.populateListComputer(ComputerDtoMapper.transformListToDto(computerServices.getAllComputersWithLimiter(0, 10, request.getParameter("search"))),request);
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		}else{
-			this.populateListComputer(ComputerDtoMapper.transformListToDto(computerServices.getAllComputersWithLimiter(0, 10, null)),request);	
-		}
+    computerServices = new ComputerServices();
 
-		RequestDispatcher dispatcher = this.getServletContext()
-				.getRequestDispatcher(ViewPathBuilder.viewPath(this.getClass()));
+    if (request.getParameter("search") != null) {
+      this.populateListComputer(ComputerDtoMapper.transformListToDto(
+          computerServices.getAllComputersWithLimiter(0, 10, request.getParameter("search"))), request);
 
-		dispatcher.forward(request, response);
-	}
+    } else {
+      this.populateListComputer(
+          ComputerDtoMapper.transformListToDto(computerServices.getAllComputersWithLimiter(0, 10, null)), request);
+    }
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request,response);
-	}
+    RequestDispatcher dispatcher = this.getServletContext()
+        .getRequestDispatcher(ViewPathBuilder.viewPath(this.getClass()));
 
-	public void populateListComputer(List<ComputerDto> computerDtoList, HttpServletRequest request) {
-		request.setAttribute("ctpFound", computerDtoList.size());
-		request.setAttribute("computerList", computerDtoList);
-	}
+    dispatcher.forward(request, response);
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    doGet(request, response);
+  }
+
+  public void populateListComputer(List<ComputerDto> computerDtoList, HttpServletRequest request) {
+    request.setAttribute("ctpFound", computerDtoList.size());
+    request.setAttribute("computerList", computerDtoList);
+  }
 }

@@ -5,16 +5,16 @@ import java.util.List;
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 
 public interface ComputerDao {
-	
-	public Computer findById(final long id);
 
-	public List<Computer> findAll();
+  public Computer findById(final long id);
 
-	public List<Computer> findAllWithLimiter(final String name,final int limit,final int offset);
+  public List<Computer> findAll();
 
-	public boolean addComputer(Computer computer);
-	
-	public boolean updateComputer(Computer computer);
-	
-	public boolean deleteComputer(final long id);
+  public List<Computer> findAllWithLimiter(final String name, final int limit, final int offset);
+
+  public boolean addComputer(Computer computer);
+
+  public boolean updateComputer(Computer computer);
+
+  public boolean deleteComputer(final long id);
 }

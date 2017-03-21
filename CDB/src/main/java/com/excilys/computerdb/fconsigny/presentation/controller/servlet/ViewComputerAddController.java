@@ -18,49 +18,44 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@WebServlet(urlPatterns = { "/computer/add" })
+public class ViewComputerAddController extends HttpServlet implements Servlet {
 
+  private static final long serialVersionUID = 1L;
+  private static Logger logger = Logger.getLogger(ViewComputerAddController.class);
 
-@WebServlet(urlPatterns = { "/computer/add"})
-public class ViewComputerAddController  extends HttpServlet implements Servlet {
+  @Autowired
+  IComputerServices computerServices;
 
-	private static final long serialVersionUID = 1L;
-	private static Logger logger = Logger.getLogger(ViewComputerAddController.class);
-	
-	@Autowired
-	IComputerServices computerServices; 
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/ViewComputerAdd.jsp");
+    dispatcher.forward(request, response);
+  }
 
-		RequestDispatcher dispatcher = this.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/ViewComputerAdd.jsp");
-		dispatcher.forward(request, response);
-	}
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    String name = request.getParameter("computerName");
+    String introduced = request.getParameter("introduced");
+    String discontinued = request.getParameter("discontinued");
+    String companyId = request.getParameter("companyId");
 
-		String name = request.getParameter("computerName");
-		String introduced = request.getParameter("introduced");
-		String discontinued = request.getParameter("discontinued"); 
-		String companyId = request.getParameter("companyId");
-		
-		System.out.println(name);
-		System.out.println(introduced);
-		System.out.println(discontinued);
-		System.out.println(companyId);
+    System.out.println(name);
+    System.out.println(introduced);
+    System.out.println(discontinued);
+    System.out.println(companyId);
 
-		ComputerDto computerDto = new ComputerDto();
-		computerDto.setName(name);
-		computerDto.setIntroduced(introduced);
-		computerDto.setDiscontinued(discontinued);
-		computerDto.setCompanyId(Integer.parseInt(companyId));
-		if(computerServices.saveComputer(ComputerDtoMapper.transformToComputer(computerDto))){
-			response.sendRedirect("/CDB/dashboard");
-		}else{
-			doGet(request,response);
-		}
-	}
+    ComputerDto computerDto = new ComputerDto();
+    computerDto.setName(name);
+    computerDto.setIntroduced(introduced);
+    computerDto.setDiscontinued(discontinued);
+    computerDto.setCompanyId(Integer.parseInt(companyId));
+    if (computerServices.saveComputer(ComputerDtoMapper.transformToComputer(computerDto))) {
+      response.sendRedirect("/CDB/dashboard");
+    } else {
+      doGet(request, response);
+    }
+  }
 }

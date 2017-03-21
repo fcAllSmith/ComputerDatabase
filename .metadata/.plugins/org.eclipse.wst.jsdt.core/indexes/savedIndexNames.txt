@@ -1,7 +1,6 @@
-INDEX VERSION 1.3+/home/excilys/Excilys/ComputerDatabase/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-1142343993.index
-2232402342.index
-2802776400.index
-2503958949.index
-2305244614.index
-1428349544.index
+INDEX VERSION 1.3+E:\Excilys\ComputerDatabase\ComputerDatabase\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2196802498.index
+3231654057.index
+3733255714.index
+1317054461.index
+73745219.index
