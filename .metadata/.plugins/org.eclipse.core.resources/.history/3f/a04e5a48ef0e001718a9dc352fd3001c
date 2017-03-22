@@ -69,7 +69,7 @@ public class ComputerController {
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
     } 
-
+    
     if (computerDto != null) {
       this.view.showText(computerDto.toString());
     } else {
@@ -124,7 +124,7 @@ public class ComputerController {
    *          discontinued [3] companyId .
    */
   public void updateComputer(final String[] args) {
-
+    
     try {
       ComputerDto computerDto = fillComputerDto(args);
       ValidateEntries.verifyEntries(computerDto);

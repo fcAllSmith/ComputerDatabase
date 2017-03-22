@@ -42,7 +42,7 @@ public class CompanyController {
     } catch (NumberFormatException e) {
       this.view.showText("Wrong input command");
     } catch (ServiceException exception) {
-      this.view.showText(exception.toString());
+      this.view.showText(message);
     }
   }
 }

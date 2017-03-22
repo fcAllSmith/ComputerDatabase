@@ -69,7 +69,7 @@ public class ComputerController {
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
     } 
-
+    
     if (computerDto != null) {
       this.view.showText(computerDto.toString());
     } else {

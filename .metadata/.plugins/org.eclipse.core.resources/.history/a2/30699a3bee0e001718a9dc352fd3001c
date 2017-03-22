@@ -41,8 +41,6 @@ public class CompanyController {
       this.view.showText(company.toString());
     } catch (NumberFormatException e) {
       this.view.showText("Wrong input command");
-    } catch (ServiceException exception) {
-      this.view.showText(exception.toString());
     }
   }
 }

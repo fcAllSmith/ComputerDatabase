@@ -43,12 +43,12 @@ public class ComputerController {
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
     } 
-
-    if (computerDtoList == null || computerDtoList.isEmpty()) {
-      this.view.showText("No computer found");
-    } else {
-      for (ComputerDto computerDto : computerDtoList) {
-        this.view.showText(computerDto.toString());
+      if (computerDtoList == null || computerDtoList.isEmpty()) {
+        this.view.showText("No computer found");
+      } else {
+        for (ComputerDto computerDto : computerDtoList) {
+          this.view.showText(computerDto.toString());
+        }
       }
     }
   }
@@ -68,27 +68,22 @@ public class ComputerController {
           .transformToDto(this.context.getBean(IComputerServices.class).getUniqueComputer(id));
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
-    } 
-
-    if (computerDto != null) {
-      this.view.showText(computerDto.toString());
-    } else {
-      this.view.showText("No computer found");
+    } finally {
+      if (computerDto != null) {
+        this.view.showText(computerDto.toString());
+      } else {
+        this.view.showText("No computer found");
+      }
     }
+
   }
 
   public void deleteComputer(final String strInputId) {
-    try {
-      if (this.context.getBean(IComputerServices.class).deleteComputer(Integer.parseInt(strInputId))) {
-        this.view.showText("The computer has been removed");
-      } else {
-        this.view.showText("Enable to delete the computer with ID :" + strInputId);
-      }
-    } catch (BeansException | ServiceException exception) {
-      this.view.showText(exception.toString());
-    } catch (NumberFormatException numberFormatException) {
-      this.view.showText(numberFormatException.toString());
-    } 
+    if (this.context.getBean(IComputerServices.class).deleteComputer(Integer.parseInt(strInputId))) {
+      this.view.showText("The computer has been removed");
+    } else {
+      this.view.showText("Enable to delete the computer with ID :" + strInputId);
+    }
   }
 
   /**
@@ -101,15 +96,11 @@ public class ComputerController {
     try {
       ComputerDto computerDto = fillComputerDto(args);
       ValidateEntries.verifyEntries(computerDto);
-      try {
-        if (this.context.getBean(IComputerServices.class)
-            .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
-          this.view.showText("The computer has been added");
-        } else {
-          this.view.showText("Enable to save the computer");
-        }
-      } catch (BeansException | ServiceException exception ) {
-        this.view.showText(exception.toString());
+      if (this.context.getBean(IComputerServices.class)
+          .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
+        this.view.showText("The computer has been added");
+      } else {
+        this.view.showText("Enable to save the computer");
       }
     } catch (ComputerArgumentFormatException castException) {
       this.view.showText(castException.toString());
@@ -128,15 +119,12 @@ public class ComputerController {
     try {
       ComputerDto computerDto = fillComputerDto(args);
       ValidateEntries.verifyEntries(computerDto);
-      try {
-        if (this.context.getBean(IComputerServices.class)
-            .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
-          this.view.showText("The computer has been updated");
-        } else {
-          this.view.showText("Enable to update the computer");
-        }
-      } catch (BeansException |ServiceException exception) {
-        this.view.showText(exception.toString());      }
+      if (this.context.getBean(IComputerServices.class)
+          .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
+        this.view.showText("The computer has been updated");
+      } else {
+        this.view.showText("Enable to update the computer");
+      }
     } catch (ComputerArgumentFormatException castException) {
       this.view.showText(castException.toString());
     }

@@ -22,11 +22,11 @@ public class CompanyController {
     List<CompanyDto> companyList = null;
     try {
       companyList = this.companyServices.getAllCompanies();
-    } catch (ServiceException exception) {
-        this.view.showText(exception.toString());
+    } catch (ServiceException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
-    
-    if (companyList == null || companyList.isEmpty()) {
+    if (companyList.isEmpty()) {
       this.view.showText("No company found");
     } else {
       for (CompanyDto company : companyList) {
@@ -39,10 +39,9 @@ public class CompanyController {
     try {
       CompanyDto company = this.companyServices.getUniqueCompany(Integer.parseInt(strInput));
       this.view.showText(company.toString());
+      ;
     } catch (NumberFormatException e) {
       this.view.showText("Wrong input command");
-    } catch (ServiceException exception) {
-      this.view.showText(exception.toString());
     }
   }
 }

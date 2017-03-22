@@ -69,7 +69,7 @@ public class ComputerController {
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
     } 
-
+    
     if (computerDto != null) {
       this.view.showText(computerDto.toString());
     } else {
@@ -86,8 +86,8 @@ public class ComputerController {
       }
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
-    } catch (NumberFormatException numberFormatException) {
-      this.view.showText(numberFormatException.toString());
+    } catch (NumberFormatException e) {
+      e.printStackTrace();
     } 
   }
 
@@ -128,15 +128,12 @@ public class ComputerController {
     try {
       ComputerDto computerDto = fillComputerDto(args);
       ValidateEntries.verifyEntries(computerDto);
-      try {
-        if (this.context.getBean(IComputerServices.class)
-            .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
-          this.view.showText("The computer has been updated");
-        } else {
-          this.view.showText("Enable to update the computer");
-        }
-      } catch (BeansException |ServiceException exception) {
-        this.view.showText(exception.toString());      }
+      if (this.context.getBean(IComputerServices.class)
+          .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
+        this.view.showText("The computer has been updated");
+      } else {
+        this.view.showText("Enable to update the computer");
+      }
     } catch (ComputerArgumentFormatException castException) {
       this.view.showText(castException.toString());
     }

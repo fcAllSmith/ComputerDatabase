@@ -4,12 +4,10 @@ import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.exception.ComputerArgumentFormatException;
 import com.excilys.computerdb.fconsigny.presentation.validation.ValidateEntries;
 
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
 import com.excilys.computerdb.fconsigny.spring.ApplicationConfig;
-import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
@@ -36,13 +34,8 @@ public class ComputerController {
    * Call the computer service, Map the computer list into a computerDtoList.
    */
   public void loadListComputerDto() {
-    List<ComputerDto> computerDtoList = null;
-    try {
-      computerDtoList = ComputerDtoMapper
-          .transformListToDto(this.context.getBean(IComputerServices.class).getAllComputers());
-    } catch (BeansException | ServiceException exception) {
-      this.view.showText(exception.toString());
-    } 
+    List<ComputerDto> computerDtoList = ComputerDtoMapper
+        .transformListToDto(this.context.getBean(IComputerServices.class).getAllComputers());
 
     if (computerDtoList == null || computerDtoList.isEmpty()) {
       this.view.showText("No computer found");
@@ -62,14 +55,8 @@ public class ComputerController {
    */
   public void loadDtoComputerById(final String strInputId) {
     int id = Integer.parseInt(strInputId);
-    ComputerDto computerDto = null;
-    try {
-      computerDto = ComputerDtoMapper
-          .transformToDto(this.context.getBean(IComputerServices.class).getUniqueComputer(id));
-    } catch (BeansException | ServiceException exception) {
-      this.view.showText(exception.toString());
-    } 
-
+    ComputerDto computerDto = ComputerDtoMapper
+        .transformToDto(this.context.getBean(IComputerServices.class).getUniqueComputer(id));
     if (computerDto != null) {
       this.view.showText(computerDto.toString());
     } else {
@@ -78,17 +65,11 @@ public class ComputerController {
   }
 
   public void deleteComputer(final String strInputId) {
-    try {
-      if (this.context.getBean(IComputerServices.class).deleteComputer(Integer.parseInt(strInputId))) {
-        this.view.showText("The computer has been removed");
-      } else {
-        this.view.showText("Enable to delete the computer with ID :" + strInputId);
-      }
-    } catch (BeansException | ServiceException exception) {
-      this.view.showText(exception.toString());
-    } catch (NumberFormatException numberFormatException) {
-      this.view.showText(numberFormatException.toString());
-    } 
+    if (this.context.getBean(IComputerServices.class).deleteComputer(Integer.parseInt(strInputId))) {
+      this.view.showText("The computer has been removed");
+    } else {
+      this.view.showText("Enable to delete the computer with ID :" + strInputId);
+    }
   }
 
   /**
@@ -101,15 +82,11 @@ public class ComputerController {
     try {
       ComputerDto computerDto = fillComputerDto(args);
       ValidateEntries.verifyEntries(computerDto);
-      try {
-        if (this.context.getBean(IComputerServices.class)
-            .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
-          this.view.showText("The computer has been added");
-        } else {
-          this.view.showText("Enable to save the computer");
-        }
-      } catch (BeansException | ServiceException exception ) {
-        this.view.showText(exception.toString());
+      if (this.context.getBean(IComputerServices.class)
+          .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
+        this.view.showText("The computer has been added");
+      } else {
+        this.view.showText("Enable to save the computer");
       }
     } catch (ComputerArgumentFormatException castException) {
       this.view.showText(castException.toString());
@@ -128,15 +105,12 @@ public class ComputerController {
     try {
       ComputerDto computerDto = fillComputerDto(args);
       ValidateEntries.verifyEntries(computerDto);
-      try {
-        if (this.context.getBean(IComputerServices.class)
-            .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
-          this.view.showText("The computer has been updated");
-        } else {
-          this.view.showText("Enable to update the computer");
-        }
-      } catch (BeansException |ServiceException exception) {
-        this.view.showText(exception.toString());      }
+      if (this.context.getBean(IComputerServices.class)
+          .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
+        this.view.showText("The computer has been updated");
+      } else {
+        this.view.showText("Enable to update the computer");
+      }
     } catch (ComputerArgumentFormatException castException) {
       this.view.showText(castException.toString());
     }

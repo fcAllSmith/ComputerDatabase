@@ -32,7 +32,7 @@ public class CompanyServices implements ICompanyServices {
     }
   }
 
-  public List<CompanyDto> getAllCompanies() throws ServiceException {
+  public List<CompanyDto> getAllCompanies() throws ServiceException{
     try {
       return CompanyDtoMapper.transformListToDto(cDao.findAll(datasource.getConnection()));
     } catch (DatabaseException databaseException) {
