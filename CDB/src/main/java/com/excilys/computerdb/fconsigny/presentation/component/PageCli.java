@@ -1,6 +1,10 @@
 package com.excilys.computerdb.fconsigny.presentation.component;
 
-public class PageCli implements IPage {
+import java.util.List;
+
+import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
+
+public class PageCli implements IPage<ComputerDto> {
 
   // Initialize page to 0 by default
   private int currentPage = 0;
@@ -77,5 +81,17 @@ public class PageCli implements IPage {
   public int getLimite() {
     // TODO Auto-generated method stub
     return this.limit;
+  }
+
+  @Override
+  public int getCurrentPage() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int setMaxCount(int nbrMax) {
+    this.maxPage = (int)(limit/nbrMax);
+    return 0;
   }
 }

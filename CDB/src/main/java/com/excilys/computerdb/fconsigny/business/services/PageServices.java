@@ -27,6 +27,7 @@ public class PageServices implements IPageServices {
   @Override
   public List<Computer> getComputer(IPage page) throws ServiceException {
     try {
+      page.setMaxCount(computerDao.getCount(datasource.getConnection()));
       return computerDao.findAllWithLimiter(datasource.getConnection(), null, page.getLimite(), page.getOffset());
     } catch (DatabaseException e) {
       throw new ServiceException("Service unreachable");

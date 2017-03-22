@@ -18,4 +18,6 @@ public interface ComputerDao {
   public boolean updateComputer(Connection connection, Computer computer);
 
   public boolean deleteComputer(Connection connection, final long id);
+  
+  public int getCount(Connection connection);
 }

@@ -9,7 +9,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
-import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
 import com.excilys.computerdb.fconsigny.business.services.IPageServices;
 import com.excilys.computerdb.fconsigny.presentation.component.PageCli;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
@@ -53,6 +52,7 @@ public class PageController {
     try {
       computerDtoList = ComputerDtoMapper
           .transformListToDto(this.context.getBean(IPageServices.class).getComputer(pageCli));
+      setBottomPageFooter();
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
     }
@@ -64,6 +64,18 @@ public class PageController {
         this.view.showText(computerDto.toString());
       }
     }
+    
+  }
+  
+  public void setBottomPageFooter(){
+    StringBuilder st = new StringBuilder(); 
+    st.append("  P        "); 
+    st.append(Integer.toString(pageCli.getCurrentPage()-1));
+    st.append("          ");
+    st.append(Integer.toString(pageCli.getCurrentPage()));
+    st.append("     N     ");
+    st.append(Integer.toString(pageCli.getCurrentPage()+1));
+    this.view.showText(st.toString());
   }
 
 }
