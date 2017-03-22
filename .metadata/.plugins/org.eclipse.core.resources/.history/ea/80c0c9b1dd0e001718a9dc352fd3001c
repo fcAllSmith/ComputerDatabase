@@ -1,10 +1,14 @@
 package com.excilys.computerdb.fconsigny.storage.database;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -21,6 +25,7 @@ public class Database {
   private static Logger logger = Logger.getLogger(Database.class);
 
   private Connection connection;
+  private HikariDataSource dataSource;
   private static final String JDB_DRIVER = "com.mysql.jdbc.Driver";
 
   private Database() {
