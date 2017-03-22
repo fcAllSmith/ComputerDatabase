@@ -23,15 +23,13 @@ public class CompanyDaoImpl implements CompanyDao {
 
   private static Logger logger = Logger.getLogger(CompanyDaoImpl.class);
 
-  private Connection connection;
-
-  public CompanyDaoImpl(Connection connection) {
-    this.connection = connection;
+  public CompanyDaoImpl() {
+    
   }
 
   @Override
-  public List<Company> findAll() {
-    ResultSet resQuery = new DatabaseHelper().queryGet(this.connection, SELECT_ALL_COMPANY);
+  public List<Company> findAll(Connection connection) {
+    ResultSet resQuery = new DatabaseHelper().queryGet(connection, SELECT_ALL_COMPANY);
     List<Company> companyList = new ArrayList<Company>();
     try {
       if (resQuery.isBeforeFirst() && !resQuery.isLast()) {
@@ -48,8 +46,8 @@ public class CompanyDaoImpl implements CompanyDao {
   }
 
   @Override
-  public Company findById(final long id) {
-    ResultSet resQuery = new DatabaseHelper().queryGet(this.connection, SELECT_BY_ID + id);
+  public Company findById(Connection connection, final long id) {
+    ResultSet resQuery = new DatabaseHelper().queryGet(connection, SELECT_BY_ID + id);
     try {
       if (resQuery.isBeforeFirst() && !resQuery.isLast()) {
         resQuery.next();

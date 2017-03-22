@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
-
 import org.apache.log4j.Logger;
 
 public class Database {
