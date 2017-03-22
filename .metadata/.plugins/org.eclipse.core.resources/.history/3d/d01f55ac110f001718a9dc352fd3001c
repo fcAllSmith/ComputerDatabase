@@ -15,9 +15,8 @@ public class PageController {
   
   private final UiViewPageComputer view; 
   
-  public PageController(IApp view) {
+  public PageController(IApp view){
     this.view = (UiViewPageComputer) view;
     this.context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
   }
-  
 }

@@ -19,5 +19,4 @@ public class PageController {
     this.view = (UiViewPageComputer) view;
     this.context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
   }
-  
 }
