@@ -11,8 +11,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+//import org.springframework.transaction.annotation.Transactional;
 
 @Service("computerService")
+// @Transactional
 public class ComputerServices implements IComputerServices {
 
   private final ComputerDao computerDao = ComputerFactory.getComputerDao();
@@ -21,8 +23,11 @@ public class ComputerServices implements IComputerServices {
   IMysqlDatasource datasource; 
 
   @Autowired
-  public ComputerServices() {}
+  public ComputerServices() {
 
+  }
+
+  // @Transactional
   public Computer getUniqueComputer(final long id) throws ServiceException {
     try {
       return computerDao.findById(datasource.getConnection(),id);
@@ -31,6 +36,7 @@ public class ComputerServices implements IComputerServices {
     }
   }
 
+  // @Transactional
   public List<Computer> getAllComputers() throws ServiceException{
     try {
       return computerDao.findAll(datasource.getConnection());
@@ -39,11 +45,13 @@ public class ComputerServices implements IComputerServices {
     }
   }
 
-  public List<Computer> getAllComputersWithLimiter (final int offset, final int limit, final String name) throws ServiceException {
+  // @Transactional
+  public List<Computer> getAllComputersWithLimiter(final int offset, final int limit, final String name) throws ServiceException{
     try {
       return computerDao.findAllWithLimiter(datasource.getConnection(),name, limit, offset);
-    } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
+    } catch (DatabaseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
   }
 
@@ -52,27 +60,33 @@ public class ComputerServices implements IComputerServices {
    * @param computerDto
    * @return true if successful.
    */
-  public boolean saveComputer(final Computer computer) throws ServiceException {
+  // @Transactional
+  public boolean saveComputer(final Computer computer) throws ServiceException{
     try {
       return computerDao.addComputer(datasource.getConnection(),computer);
     } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
   }
 
+  // @Transactional
   public boolean editComptuter(final Computer computer) throws ServiceException {
     try {
       return computerDao.updateComputer(datasource.getConnection(),computer);
     } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
   }
 
+  // @Transactional
   public boolean deleteComputer(final long id) throws ServiceException{
     try {
       return computerDao.deleteComputer(datasource.getConnection(),id);
     } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
   }
 

@@ -21,7 +21,9 @@ public class ComputerServices implements IComputerServices {
   IMysqlDatasource datasource; 
 
   @Autowired
-  public ComputerServices() {}
+  public ComputerServices() {
+
+  }
 
   public Computer getUniqueComputer(final long id) throws ServiceException {
     try {
@@ -52,7 +54,7 @@ public class ComputerServices implements IComputerServices {
    * @param computerDto
    * @return true if successful.
    */
-  public boolean saveComputer(final Computer computer) throws ServiceException {
+  public boolean saveComputer(final Computer computer) throws ServiceException{
     try {
       return computerDao.addComputer(datasource.getConnection(),computer);
     } catch (DatabaseException databaseException) {
