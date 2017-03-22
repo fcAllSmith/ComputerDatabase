@@ -49,4 +49,8 @@
 <fullyQualifiedTypeName name="org.springframework.beans.factory.BeanFactory"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.xml.XmlBeanFactory"/>
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.services.IComputerServices"/>
+<fullyQualifiedTypeName name="javax.servlet.jsp.tagext.SimpleTagSupport"/>
+<fullyQualifiedTypeName name="java.io.Writer"/>
+<fullyQualifiedTypeName name="javax.servlet.jsp.JspWriter"/>
+<fullyQualifiedTypeName name="javax.servlet.jsp.JspException"/>
 </qualifiedTypeNameHistroy>

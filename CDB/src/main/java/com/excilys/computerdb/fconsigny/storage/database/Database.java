@@ -1,5 +1,9 @@
 package com.excilys.computerdb.fconsigny.storage.database;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,11 +16,6 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
-import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewLauncher;
-import com.excilys.computerdb.fconsigny.utils.log.DoLogger;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
 public class Database {
 
   private static Database instance;
@@ -26,6 +25,7 @@ public class Database {
   private static Logger logger = Logger.getLogger(Database.class);
 
   private Connection connection;
+  private HikariDataSource dataSource;
   private static final String JDB_DRIVER = "com.mysql.jdbc.Driver";
 
   private Database() {
@@ -48,21 +48,43 @@ public class Database {
   }
 
   public Connection setConnection() {
+    try {
+      initDataSource();
+      this.connection = getDataSource().getConnection();
+      return this.connection;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.out.println(e);
+      return null;
+    }
+  }
+
+  private void initDataSource() {
     Properties properties = new Properties();
     FileInputStream file = null;
+
     try {
       ClassLoader classLoader = getClass().getClassLoader();
       file = new FileInputStream(classLoader.getResource("db.properties").getPath());
       properties.load(file);
-      Class.forName(properties.getProperty("DB_DRVER_CLASS"));
-      localConnection.set(DriverManager.getConnection(properties.getProperty("DB_URL"),
-          properties.getProperty("DB_USERNAME"), properties.getProperty("DB_PASSWORD")));
-      this.connection = localConnection.get();
-      return this.connection;
-    } catch (IOException | ClassNotFoundException | SQLException error) {
-      logger.error(error);
-      System.out.println(error);
-      return null;
+
+      HikariConfig hikariConfig = new HikariConfig();
+      hikariConfig.setJdbcUrl(properties.getProperty("DB_URL"));
+      hikariConfig.setUsername(properties.getProperty("DB_USERNAME"));
+      hikariConfig.setPassword(properties.getProperty("DB_PASSWORD"));
+
+      hikariConfig.setMaximumPoolSize(5);
+      hikariConfig.setConnectionTestQuery("SELECT 1");
+
+      hikariConfig.addDataSourceProperty("dataSource.cachePrepStmts", "true");
+      hikariConfig.addDataSourceProperty("dataSource.prepStmtCacheSize", "250");
+      hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+      hikariConfig.addDataSourceProperty("dataSource.useServerPrepStmts", "true");
+
+      dataSource = new HikariDataSource(hikariConfig);
+    } catch (IOException e) {
+      e.printStackTrace();
+      System.out.println(e.toString());
     }
   }
 

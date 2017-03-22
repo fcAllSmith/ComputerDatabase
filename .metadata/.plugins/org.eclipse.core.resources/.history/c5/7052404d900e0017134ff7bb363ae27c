@@ -1,0 +1,5 @@
+package com.excilys.computerdb.fconsigny.presentation.component;
+
+public class PageServlet extends TagSupport {
+
+}
