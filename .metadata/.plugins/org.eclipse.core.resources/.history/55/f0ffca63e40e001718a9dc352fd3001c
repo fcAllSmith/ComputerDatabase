@@ -1,0 +1,36 @@
+package com.excilys.computerdb.fconsigny.storage.connection.datasource;
+
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+public class MysqlDatasource implements IMysqlDatasource {
+
+  private DataSource getDataSource() throws ClassNotFoundException {
+    
+  }
+  
+  @Override
+  public Connection getConnection()  {
+    public static DataSource getDataSource() throws ClassNotFoundException {
+      Properties properties = new Properties();
+      FileInputStream file = null;
+      
+        Class.forName(properties.getProperty(""));
+        HikariConfig conf = new HikariConfig();
+        conf.setJdbcUrl(properties.getProperty("DB_URL"));
+        conf.setUsername(properties.getProperty("DB_USERNAME"));
+        conf.setPassword(properties.getProperty("DB_PASSWORD"));
+        conf.setAutoCommit(false);
+        conf.setMaximumPoolSize(10);
+        return new HikariDataSource(conf);
+    }
+    return null;
+  }
+
+}

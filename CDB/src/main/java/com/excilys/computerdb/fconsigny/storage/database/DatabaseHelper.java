@@ -21,7 +21,7 @@ public class DatabaseHelper {
    * @return return a ResultSet of the entity or entities selected.
    */
   public ResultSet queryGet(Connection connection, final String query) {
-    Database db = Database.getInstance();
+    MysqlDatabase db = MysqlDatabase.getInstance();
     connection = db.getConnection();
     try {
       Statement stm = connection.createStatement();
@@ -39,7 +39,7 @@ public class DatabaseHelper {
    * @return true if entity has been updated or inserted.
    */
   public boolean queryPost(Connection connection, final String query) {
-    Database db = Database.getInstance();
+    MysqlDatabase db = MysqlDatabase.getInstance();
     connection = db.getConnection();
     try {
       Statement stm = connection.createStatement();

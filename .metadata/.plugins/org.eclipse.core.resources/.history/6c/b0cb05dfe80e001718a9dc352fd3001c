@@ -1,0 +1,5 @@
+package com.excilys.computerdb.fconsigny.storage.exceptions;
+
+public class DatabaseException extends Exception {
+
+}

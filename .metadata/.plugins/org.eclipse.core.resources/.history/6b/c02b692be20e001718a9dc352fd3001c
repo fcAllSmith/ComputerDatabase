@@ -1,0 +1,6 @@
+package com.excilys.computerdb.fconsigny.storage.connection.datasource;
+
+public class IMysqlDatasource {
+
+  public Connection getConnection(); 
+}

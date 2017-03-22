@@ -1,0 +1,14 @@
+package com.excilys.computerdb.fconsigny.storage.connection.datasource;
+
+import java.sql.Connection;
+
+public class MysqlDatasource implements IMysqlDatasource {
+
+  
+  @Override
+  public Connection getConnection() {
+    
+    return null;
+  }
+
+}

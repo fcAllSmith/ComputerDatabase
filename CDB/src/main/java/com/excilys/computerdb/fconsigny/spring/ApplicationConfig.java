@@ -7,6 +7,8 @@ import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.business.services.ICompanyServices;
 import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
+import com.excilys.computerdb.fconsigny.storage.connection.datasource.IMysqlDatasource;
+import com.excilys.computerdb.fconsigny.storage.connection.datasource.MysqlDatasource;
 
 
 /**
@@ -27,4 +29,8 @@ public class ApplicationConfig {
 		return new CompanyServices();
 	}
 	
+	@Bean 
+	public IMysqlDatasource iMysqlConnection(){
+	  return new MysqlDatasource();
+	}
 }

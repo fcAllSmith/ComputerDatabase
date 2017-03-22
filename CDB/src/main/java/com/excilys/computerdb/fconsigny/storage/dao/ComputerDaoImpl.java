@@ -39,7 +39,7 @@ public class ComputerDaoImpl implements ComputerDao {
   }
 
   @Override
-  public Computer findById(Connection connection final long id) {
+  public Computer findById(Connection connection, final long id) {
     DatabaseHelper dm = new DatabaseHelper();
     ResultSet rs = dm.queryGet(connection, QUERY_SELECT_BY_ID + id);
 
