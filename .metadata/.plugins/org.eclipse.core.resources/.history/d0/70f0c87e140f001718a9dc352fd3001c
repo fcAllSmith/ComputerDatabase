@@ -195,7 +195,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
-			<scope>provided test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
