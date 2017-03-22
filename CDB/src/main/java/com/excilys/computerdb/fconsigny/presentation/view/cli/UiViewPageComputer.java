@@ -1,24 +1,48 @@
 package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
-import com.excilys.computerdb.fconsigny.presentation.controller.cli.ComputerController;
+import com.excilys.computerdb.fconsigny.presentation.controller.cli.PageController;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 public class UiViewPageComputer extends AppView implements IApp {
-  
-  private ComputerController computerController;
+
+  AppView appParentView;
+  private PageController pageController;
 
   @Override
   public void createView(final AppView appParentView) {
-    // TODO Auto-generated method stub
+    this.appParentView = appParentView;
+    this.pageController = new PageController(this);
+    
+    refreshUi();
   }
 
   @Override
   public void refreshUi() {
-    // TODO Auto-generated method stub
+    pageController.loadListComputer();
+    showText(UiViewComponents.TOP_BORDER);
+    showText("P             -              N");
+    String strInput = readInputText();
+    onInputKey(strInput);
+  }
+
+  public void onInputKey(String strInput) {
+    switch (strInput) {
+    case "p":
+      this.pageController.onPagePrevious();
+      break;
+    case "n":
+      this.pageController.onPageNext();
+      break;
+    case "0":
+      this.destroyView();
+      break;
+    }
+    
+    refreshUi();
   }
 
   @Override
   public void destroyView() {
-    // TODO Auto-generated method stub
+    ((IApp) this.appParentView).refreshUi();
   }
 }

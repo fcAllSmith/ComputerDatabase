@@ -1,0 +1,25 @@
+package com.excilys.computerdb.fconsigny.presentation.view.cli;
+
+import com.excilys.computerdb.fconsigny.presentation.controller.cli.PageController;
+import com.excilys.computerdb.fconsigny.utils.view.AppView;
+
+public class UiViewPageComputer extends AppView implements IApp {
+  
+  AppView appParentView;
+  private PageController pageController;
+
+  @Override
+  public void createView(final AppView appParentView) {
+    this.appParentView = appParentView; 
+  }
+
+  @Override
+  public void refreshUi() {
+    // TODO Auto-generated method stub
+  }
+
+  @Override
+  public void destroyView() {
+    // TODO Auto-generated method stub
+  }
+}

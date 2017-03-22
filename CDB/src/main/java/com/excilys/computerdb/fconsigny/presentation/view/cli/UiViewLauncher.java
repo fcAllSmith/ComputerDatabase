@@ -19,6 +19,7 @@ public class UiViewLauncher extends AppView implements IApp {
     showText("------- Menu -------");
     showText("1 - Computers");
     showText("2 - Companies");
+    showText("3 - Dashboard");
     showText("What do you want to do ? :");
 
     onInputKey(readInputText());
@@ -26,6 +27,7 @@ public class UiViewLauncher extends AppView implements IApp {
 
   @Override
   public void destroyView() {
+    
   }
 
   public void onInputKey(final String strInput) {
@@ -39,6 +41,10 @@ public class UiViewLauncher extends AppView implements IApp {
       case 2:
         UiViewCompany uiViewCompany = new UiViewCompany();
         uiViewCompany.createView(this);
+        break;
+      case 3:
+        UiViewPageComputer uiViewPageComputer = new UiViewPageComputer();
+        uiViewPageComputer.createView(this);
         break;
       default:
         showText("command not found");
