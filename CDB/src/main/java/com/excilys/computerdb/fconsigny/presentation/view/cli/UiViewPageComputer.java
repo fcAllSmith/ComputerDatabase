@@ -1,8 +1,11 @@
 package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
+import com.excilys.computerdb.fconsigny.presentation.controller.cli.ComputerController;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 public class UiViewPageComputer extends AppView implements IApp {
+  
+  private ComputerController computerController;
 
   @Override
   public void createView(final AppView appParentView) {

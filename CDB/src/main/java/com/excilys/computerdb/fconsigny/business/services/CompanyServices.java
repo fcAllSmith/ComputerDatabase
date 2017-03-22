@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service("companyService")
 public class CompanyServices implements ICompanyServices {
 
-  private final CompanyDao cDao = CompanyFactory.getCompanyDao();
+  private final CompanyDao companyDao = CompanyFactory.getCompanyDao();
 
   @Autowired
   IMysqlDatasource datasource;
@@ -26,7 +26,7 @@ public class CompanyServices implements ICompanyServices {
 
   public CompanyDto getUniqueCompany(final long id) throws ServiceException {
     try {
-      return CompanyDtoMapper.transformToDto(cDao.findById(datasource.getConnection(),id));
+      return CompanyDtoMapper.transformToDto(companyDao.findById(datasource.getConnection(),id));
     } catch (DatabaseException databaseException) {
       throw new ServiceException(databaseException.getMessage());
     }
@@ -34,7 +34,7 @@ public class CompanyServices implements ICompanyServices {
 
   public List<CompanyDto> getAllCompanies() throws ServiceException {
     try {
-      return CompanyDtoMapper.transformListToDto(cDao.findAll(datasource.getConnection()));
+      return CompanyDtoMapper.transformListToDto(companyDao.findAll(datasource.getConnection()));
     } catch (DatabaseException databaseException) {
       throw new ServiceException(databaseException.getMessage()); 
     }

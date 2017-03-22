@@ -1,0 +1,9 @@
+package com.excilys.computerdb.fconsigny.business.services;
+
+import org.springframework.stereotype.Service;
+
+@Service("pageService")
+public class PageServices implements IPageServices {
+
+  
+}

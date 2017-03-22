@@ -1,0 +1,14 @@
+package com.excilys.computerdb.fconsigny.presentation.controller.cli;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewPageComputer;
+
+public class PageController {
+
+  @Autowired
+  private ApplicationContext context;
+  
+  private final UiViewPageComputer view; 
+}

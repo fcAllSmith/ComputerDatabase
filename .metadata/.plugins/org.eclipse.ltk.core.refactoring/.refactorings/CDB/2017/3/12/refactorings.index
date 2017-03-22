@@ -7,3 +7,6 @@
 1490174352858	Rename type 'DatabaseHandler'
 1490174940489	Move compilation unit
 1490175498357	Rename type 'Database'
+1490187305780	Rename type 'Page'
+1490187734516	Rename field 'cDao'
+1490187892455	Rename method 'getComputerByName'

@@ -1,6 +1,6 @@
 package com.excilys.computerdb.fconsigny.presentation.component;
 
-public class PageCli {
+public class PageCli implements IPage {
 
   // Initialize page to 0 by default
   private int currentPage = 0;
@@ -46,6 +46,7 @@ public class PageCli {
   public boolean nextPage() {
     if (this.currentPage < maxPage) {
       this.currentPage++;
+      this.offset = offset + limit;
       return true;
     }
 
@@ -60,8 +61,21 @@ public class PageCli {
   public boolean previousPage() {
     if (this.currentPage > 0) {
       this.currentPage--;
+      this.offset = offset - limit; 
       return true;
     }
     return false;
+  }
+
+  @Override
+  public int getOffset() {
+    // TODO Auto-generated method stub
+    return this.offset;
+  }
+
+  @Override
+  public int getLimite() {
+    // TODO Auto-generated method stub
+    return this.limit;
   }
 }

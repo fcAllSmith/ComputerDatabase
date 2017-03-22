@@ -1,0 +1,9 @@
+package com.excilys.computerdb.fconsigny.presentation.component;
+
+public interface Page {
+
+  public int getOffset();
+  
+  public int getLimiter();
+  
+}

@@ -1,0 +1,13 @@
+package com.excilys.computerdb.fconsigny.business.services;
+
+import java.util.List;
+
+import com.excilys.computerdb.fconsigny.business.model.Computer;
+
+public interface IPageServices {
+  
+  public List<Computer> getComputerByName(IPage page);
+  
+  
+
+}

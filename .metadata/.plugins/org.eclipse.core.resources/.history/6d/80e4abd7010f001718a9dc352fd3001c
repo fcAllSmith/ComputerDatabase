@@ -1,0 +1,6 @@
+package com.excilys.computerdb.fconsigny.presentation.controller.cli;
+
+public class PageController {
+
+  private final UiViewPageComputer view; 
+}

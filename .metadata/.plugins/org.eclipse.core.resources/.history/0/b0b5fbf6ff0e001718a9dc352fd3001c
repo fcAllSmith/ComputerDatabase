@@ -1,0 +1,35 @@
+package com.excilys.computerdb.fconsigny.business.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.excilys.computerdb.fconsigny.business.factory.ComputerFactory;
+import com.excilys.computerdb.fconsigny.business.model.Computer;
+import com.excilys.computerdb.fconsigny.presentation.component.IPage;
+import com.excilys.computerdb.fconsigny.storage.connection.datasource.IMysqlDatasource;
+import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
+
+@Service("pageService")
+public class PageServices implements IPageServices {
+  
+  private final ComputerDao computerDao = ComputerFactory.getComputerDao();
+      
+  @Autowired
+  IMysqlDatasource datasource;
+
+  @Override
+  public List<Computer> getComputerByName(IPage page) {
+    
+    return null;
+  }
+
+  @Override
+  public List<Computer> getComputerFilterCompany(IPage page) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  
+}
