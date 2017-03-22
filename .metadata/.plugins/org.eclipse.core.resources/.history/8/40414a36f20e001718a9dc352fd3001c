@@ -2,7 +2,9 @@ package com.excilys.computerdb.fconsigny.storage.connection.datasource;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -25,7 +27,7 @@ public class MysqlDatasource implements IMysqlDatasource {
     File configFile = new File(classLoader.getResource("db.properties").getFile());
     
     try {
-      properties.load(new FileInputStream(configFile));
+      properties.load(new FileInputStream(initialFile));
       Class.forName(properties.getProperty("DB_DRVER_CLASS"));
       HikariConfig conf = new HikariConfig();
       conf.setJdbcUrl(properties.getProperty("DB_URL"));
