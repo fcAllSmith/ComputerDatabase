@@ -33,4 +33,5 @@ public class ApplicationConfig {
 	public IMysqlDatasource iMysqlConnection(){
 	  return new MysqlDatasource();
 	}
+	
 }

@@ -1,5 +1,6 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
+import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
 
@@ -27,10 +28,16 @@ public class ViewComputerDeleteController extends HttpServlet implements Servlet
 
     String strId = request.getParameter("computerId");
 
-    if (computerServices.deleteComputer(Integer.parseInt(strId))) {
-      response.sendRedirect("/CDB/dashboard");
-    } else {
-      doGet(request, response);
+    try {
+      if (computerServices.deleteComputer(Integer.parseInt(strId))) {
+        response.sendRedirect("/CDB/dashboard");
+      } else {
+        doGet(request, response);
+      }
+    } catch (NumberFormatException e) {
+    //TODO : Define an action
+    } catch (ServiceException e) {
+    //TODO : Define an action
     }
   }
 }

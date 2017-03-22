@@ -10,19 +10,5 @@ import com.excilys.computerdb.fconsigny.storage.connection.datasource.IMysqlData
 public class DatabaseManager {
 
   private static Connection connection;
-  
-  @Autowired
-  IMysqlDatasource iMysqlDatasource; 
- 
-  public Connection getSession()  {
-
-    try {
-      connection = iMysqlDatasource.getConnection();
-      return connection = iMysqlDatasource.getConnection();
-    } catch (ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
 
 }

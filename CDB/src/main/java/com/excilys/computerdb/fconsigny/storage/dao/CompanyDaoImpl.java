@@ -7,11 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdb.fconsigny.business.model.Company;
-import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewLauncher;
 import com.excilys.computerdb.fconsigny.storage.database.DatabaseHelper;
 
 public class CompanyDaoImpl implements CompanyDao {
@@ -22,10 +19,6 @@ public class CompanyDaoImpl implements CompanyDao {
   private static final String COL_NAME = "name";
 
   private static Logger logger = Logger.getLogger(CompanyDaoImpl.class);
-
-  public CompanyDaoImpl() {
-    
-  }
 
   @Override
   public List<Company> findAll(Connection connection) {

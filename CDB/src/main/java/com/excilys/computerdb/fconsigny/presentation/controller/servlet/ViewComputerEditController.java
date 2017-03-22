@@ -1,5 +1,6 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
+import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
@@ -37,8 +38,8 @@ public class ViewComputerEditController extends HttpServlet implements Servlet {
             ComputerDtoMapper.transformToDto(
                 computerServices.getUniqueComputer(Integer.parseInt(request.getParameter("computerId").toString()))),
             request);
-      } catch (NumberFormatException e) {
-        e.printStackTrace();
+      } catch (NumberFormatException | ServiceException e) {
+        //TODO : Define an action
       }
     }
 
@@ -57,10 +58,14 @@ public class ViewComputerEditController extends HttpServlet implements Servlet {
     computerDto.setDiscontinued(request.getParameter("discontinued"));
     computerDto.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
 
-    if (computerServices.editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
-      response.sendRedirect("/CDB/dashboard");
-    } else {
-      doGet(request, response);
+    try {
+      if (computerServices.editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
+        response.sendRedirect("/CDB/dashboard");
+      } else {
+        doGet(request, response);
+      }
+    } catch (ServiceException e) {
+      //TODO : Define an action
     }
   }
 

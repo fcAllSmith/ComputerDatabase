@@ -33,11 +33,6 @@ public class ComputerDaoImpl implements ComputerDao {
   public final static String COL_DISCONTINUED = "discontinued";
   public final static String COL_COMPANY_ID = "company_id";
 
-
-  public ComputerDaoImpl() {
-  
-  }
-
   @Override
   public Computer findById(Connection connection, final long id) {
     DatabaseHelper dm = new DatabaseHelper();

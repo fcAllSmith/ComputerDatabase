@@ -1,5 +1,6 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
+import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
@@ -36,12 +37,20 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
     computerServices = new ComputerServices();
 
     if (request.getParameter("search") != null) {
-      this.populateListComputer(ComputerDtoMapper.transformListToDto(
-          computerServices.getAllComputersWithLimiter(0, 10, request.getParameter("search"))), request);
+      try {
+        this.populateListComputer(ComputerDtoMapper.transformListToDto(
+            computerServices.getAllComputersWithLimiter(0, 10, request.getParameter("search"))), request);
+      } catch (ServiceException e) {
+      //TODO : Define an action
+      }
 
     } else {
-      this.populateListComputer(
-          ComputerDtoMapper.transformListToDto(computerServices.getAllComputersWithLimiter(0, 10, null)), request);
+      try {
+        this.populateListComputer(
+            ComputerDtoMapper.transformListToDto(computerServices.getAllComputersWithLimiter(0, 10, null)), request);
+      } catch (ServiceException e) {
+      //TODO : Define an action
+      }
     }
 
     RequestDispatcher dispatcher = this.getServletContext()

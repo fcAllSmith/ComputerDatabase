@@ -1,5 +1,6 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 
+import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
 import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
@@ -52,10 +53,14 @@ public class ViewComputerAddController extends HttpServlet implements Servlet {
     computerDto.setIntroduced(introduced);
     computerDto.setDiscontinued(discontinued);
     computerDto.setCompanyId(Integer.parseInt(companyId));
-    if (computerServices.saveComputer(ComputerDtoMapper.transformToComputer(computerDto))) {
-      response.sendRedirect("/CDB/dashboard");
-    } else {
-      doGet(request, response);
+    try {
+      if (computerServices.saveComputer(ComputerDtoMapper.transformToComputer(computerDto))) {
+        response.sendRedirect("/CDB/dashboard");
+      } else {
+        doGet(request, response);
+      }
+    } catch (ServiceException e) {
+      //TODO : Define an action
     }
   }
 }
