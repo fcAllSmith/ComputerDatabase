@@ -8,5 +8,5 @@ public interface IPage <T> {
   
   public int getCurrentPage();
   
-  public int setMaxCount(int nbrMax);
+  public void setMaxCount(int nbrMax);
 }

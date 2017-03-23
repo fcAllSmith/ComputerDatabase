@@ -13,6 +13,7 @@ import com.excilys.computerdb.fconsigny.business.services.IPageServices;
 import com.excilys.computerdb.fconsigny.presentation.component.PageCli;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComponents;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewPageComputer;
 import com.excilys.computerdb.fconsigny.spring.ApplicationConfig;
 
@@ -52,7 +53,7 @@ public class PageController {
     try {
       computerDtoList = ComputerDtoMapper
           .transformListToDto(this.context.getBean(IPageServices.class).getComputer(pageCli));
-      setBottomPageFooter();
+      
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
     }
@@ -63,17 +64,20 @@ public class PageController {
       for (ComputerDto computerDto : computerDtoList) {
         this.view.showText(computerDto.toString());
       }
+      this.view.showText(UiViewComponents.BOTTOM_BORDER);
+      setBottomPageFooter();
+      this.view.showText(UiViewComponents.BOTTOM_BORDER);
     }
     
   }
   
   public void setBottomPageFooter(){
     StringBuilder st = new StringBuilder(); 
-    st.append("  P        "); 
+    st.append("       P        "); 
     st.append(Integer.toString(pageCli.getCurrentPage()-1));
-    st.append("          ");
+    st.append("               ");
     st.append(Integer.toString(pageCli.getCurrentPage()));
-    st.append("     N     ");
+    st.append("     N          ");
     st.append(Integer.toString(pageCli.getCurrentPage()+1));
     this.view.showText(st.toString());
   }

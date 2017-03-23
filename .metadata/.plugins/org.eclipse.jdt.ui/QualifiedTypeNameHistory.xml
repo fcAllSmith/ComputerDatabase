@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
-<fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="javax.servlet.ServletException"/>
-<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
-<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.database.MysqlDatabase"/>
-<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.database.ConnectionUtil"/>
-<fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
-<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.exceptions.CompanyException"/>
-<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.controller.CompanyController"/>
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto"/>
 <fullyQualifiedTypeName name="javax.servlet.Servlet"/>
 <fullyQualifiedTypeName name="com.mysql.jdbc.Connection"/>
@@ -20,8 +11,6 @@
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.factory.ComputerFactory"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.utils.log.DoLogger"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.connection.SessionStorage"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
@@ -31,11 +20,9 @@
 <fullyQualifiedTypeName name="com.zaxxer.hikari.HikariDataSource"/>
 <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
 <fullyQualifiedTypeName name="java.time.temporal.TemporalAccessor"/>
-<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.model.Computer"/>
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.utils.db.DbUtil"/>
 <fullyQualifiedTypeName name="java.util.logging.Logger"/>
 <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
-<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto"/>
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.services.ComputerServices"/>
 <fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper"/>
 <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
@@ -53,4 +40,24 @@
 <fullyQualifiedTypeName name="java.io.Writer"/>
 <fullyQualifiedTypeName name="javax.servlet.jsp.JspWriter"/>
 <fullyQualifiedTypeName name="javax.servlet.jsp.JspException"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.connection.datasource.MysqlDatasource"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.database.MysqlDatabase"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.storage.connection.datasource.IMysqlDatasource"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.exception.ServiceException"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.model.Computer"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.component.IPage"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewPageComputer"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.view.cli.IApp"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.component.PageCli"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.controller.cli.PageController"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.services.PageServices"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.business.services.IPageServices"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto"/>
+<fullyQualifiedTypeName name="com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComponents"/>
 </qualifiedTypeNameHistroy>

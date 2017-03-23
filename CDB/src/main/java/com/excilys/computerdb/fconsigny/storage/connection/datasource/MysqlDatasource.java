@@ -23,7 +23,7 @@ public class MysqlDatasource implements IMysqlDatasource {
     Properties properties = new Properties();
     ClassLoader classLoader = getClass().getClassLoader();
     File configFile = new File(classLoader.getResource("db.properties").getFile());
-    
+
     try {
       properties.load(new FileInputStream(configFile));
       Class.forName(properties.getProperty("DB_DRVER_CLASS"));
@@ -34,9 +34,9 @@ public class MysqlDatasource implements IMysqlDatasource {
       conf.setAutoCommit(false);
       conf.setMaximumPoolSize(10);
       return new HikariDataSource(conf);
-      
+
     } catch (IOException e) {
-        return null;
+      return null;
     }
   }
 
@@ -52,5 +52,12 @@ public class MysqlDatasource implements IMysqlDatasource {
       throw new  DatabaseException ("Database Unreachable : " + e.getMessage());
     } 
   }
+
+  @Override
+  public void closeConnection(Connection connection) throws SQLException {
+    connection.close();
+  }
+
+
 
 }

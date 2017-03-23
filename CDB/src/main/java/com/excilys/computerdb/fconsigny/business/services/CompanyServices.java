@@ -8,6 +8,7 @@ import com.excilys.computerdb.fconsigny.storage.connection.datasource.IMysqlData
 import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
 import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +26,35 @@ public class CompanyServices implements ICompanyServices {
   public CompanyServices(){}
 
   public CompanyDto getUniqueCompany(final long id) throws ServiceException {
+    CompanyDto companyDto = null; 
     try {
-      return CompanyDtoMapper.transformToDto(companyDao.findById(datasource.getConnection(),id));
+      companyDto =  CompanyDtoMapper.transformToDto(companyDao.findById(datasource.getConnection(),id));
     } catch (DatabaseException databaseException) {
       throw new ServiceException(databaseException.getMessage());
+    } finally {
+      try {
+        datasource.closeConnection(datasource.getConnection());
+      } catch (SQLException | DatabaseException e) {
+        throw new ServiceException (e.toString());
+      }
     }
+    return companyDto;
   }
 
   public List<CompanyDto> getAllCompanies() throws ServiceException {
+    List<CompanyDto> companyDtoList = null; 
     try {
-      return CompanyDtoMapper.transformListToDto(companyDao.findAll(datasource.getConnection()));
+      companyDtoList =  CompanyDtoMapper.transformListToDto(companyDao.findAll(datasource.getConnection()));
     } catch (DatabaseException databaseException) {
       throw new ServiceException(databaseException.getMessage()); 
+    } finally {
+      try {
+        datasource.closeConnection(datasource.getConnection());
+      } catch (SQLException | DatabaseException e) {
+        throw new ServiceException (e.toString());
+      }
     }
+    
+    return companyDtoList;
   }
 }

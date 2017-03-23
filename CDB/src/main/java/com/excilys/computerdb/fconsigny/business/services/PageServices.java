@@ -1,5 +1,6 @@
 package com.excilys.computerdb.fconsigny.business.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,31 +16,50 @@ import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
 
 @Service("pageService")
 public class PageServices implements IPageServices {
-  
+
   private final ComputerDao computerDao = ComputerFactory.getComputerDao();
-      
+
   @Autowired
   IMysqlDatasource datasource;
-  
+
   @Autowired
   public PageServices(){}
 
   @Override
   public List<Computer> getComputer(IPage page) throws ServiceException {
+    List<Computer> computerList = null; 
     try {
       page.setMaxCount(computerDao.getCount(datasource.getConnection()));
-      return computerDao.findAllWithLimiter(datasource.getConnection(), null, page.getLimite(), page.getOffset());
+      computerList =  computerDao.findAllWithLimiter(datasource.getConnection(), null, page.getLimite(), page.getOffset());
     } catch (DatabaseException e) {
       throw new ServiceException("Service unreachable");
+    } finally {
+      try {
+        datasource.closeConnection(datasource.getConnection());
+      } catch (SQLException | DatabaseException e) {
+        throw new ServiceException (e.toString());
+      }
     }
+    
+    return computerList;
   }
 
   @Override
   public List<Computer> getComputerFilterCompany(IPage page) throws ServiceException {
+    List<Computer> computerList = null;
     try {
-      return computerDao.findAllWithLimiter(datasource.getConnection(), null, page.getLimite(),page.getOffset());
-    } catch (DatabaseException e) {
+      computerList =  computerDao.findAllWithLimiter(datasource.getConnection(), null, page.getLimite(),page.getOffset());
+      datasource.getConnection().commit();
+    } catch (SQLException | DatabaseException e) {
       throw new ServiceException("Service unreachable");
+    }  finally {
+      try {
+        datasource.closeConnection(datasource.getConnection());
+      } catch (SQLException | DatabaseException e) {
+        throw new ServiceException (e.toString());
+      }
     }
+    
+    return computerList; 
   }
 }

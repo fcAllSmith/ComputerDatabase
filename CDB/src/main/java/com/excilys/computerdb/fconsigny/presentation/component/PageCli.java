@@ -90,8 +90,9 @@ public class PageCli implements IPage<ComputerDto> {
   }
 
   @Override
-  public int setMaxCount(int nbrMax) {
-    this.maxPage = (int)(limit/nbrMax);
-    return 0;
+  public void setMaxCount(int nbrMax) {
+    System.out.println(nbrMax);
+    this.maxPage = (int)(nbrMax/limit);
+    System.out.println(" " + this.maxPage);
   }
 }

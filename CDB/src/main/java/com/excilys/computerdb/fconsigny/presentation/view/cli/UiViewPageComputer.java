@@ -12,15 +12,13 @@ public class UiViewPageComputer extends AppView implements IApp {
   public void createView(final AppView appParentView) {
     this.appParentView = appParentView;
     this.pageController = new PageController(this);
-    
+    pageController.loadListComputer();
     refreshUi();
   }
 
   @Override
   public void refreshUi() {
-    pageController.loadListComputer();
-    showText(UiViewComponents.TOP_BORDER);
-    showText("P             -              N");
+    
     String strInput = readInputText();
     onInputKey(strInput);
   }
