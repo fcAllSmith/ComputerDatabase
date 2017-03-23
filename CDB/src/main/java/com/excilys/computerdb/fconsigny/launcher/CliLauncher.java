@@ -1,6 +1,7 @@
 package com.excilys.computerdb.fconsigny.launcher;
 
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewLauncher;
+import com.excilys.computerdb.fconsigny.spring.Application;
 import com.excilys.computerdb.fconsigny.spring.ApplicationConfig;
 
 import org.springframework.context.ApplicationContext;
@@ -16,7 +17,7 @@ public class CliLauncher {
    *          : not used here.
    */
   public static void main(String[] args) {
-    ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-    new UiViewLauncher().createView(null);
+    Application application  = new Application();
+    new UiViewLauncher().createView(application.getAppContext(),null);
   }
 }

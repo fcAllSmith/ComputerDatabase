@@ -17,6 +17,7 @@ public class MysqlDatabase {
     if (instance == null) {
       instance = new MysqlDatabase(connection);
     }
+    
     return instance;
   }
   

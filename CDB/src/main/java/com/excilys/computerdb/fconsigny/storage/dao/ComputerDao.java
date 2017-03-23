@@ -3,8 +3,11 @@ package com.excilys.computerdb.fconsigny.storage.dao;
 import java.sql.Connection;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 
+@Repository
 public interface ComputerDao {
 
   public Computer findById(Connection connection, final long id);

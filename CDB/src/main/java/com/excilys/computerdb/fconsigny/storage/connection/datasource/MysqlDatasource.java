@@ -46,8 +46,9 @@ public class MysqlDatasource implements IMysqlDatasource {
     DataSource hikariDatasource;
     try {
       hikariDatasource = getDataSource();
-      MysqlDatabase mysqlDatabase = MysqlDatabase.getInstance(hikariDatasource.getConnection());
-      return mysqlDatabase.getConnection();
+      return hikariDatasource.getConnection();
+      //MysqlDatabase mysqlDatabase = MysqlDatabase.getInstance(hikariDatasource.getConnection());
+      //return mysqlDatabase.getConnection();
     } catch (ClassNotFoundException | SQLException e) {
       throw new  DatabaseException ("Database Unreachable : " + e.getMessage());
     } 
@@ -57,7 +58,4 @@ public class MysqlDatasource implements IMysqlDatasource {
   public void closeConnection(Connection connection) throws SQLException {
     connection.close();
   }
-
-
-
 }

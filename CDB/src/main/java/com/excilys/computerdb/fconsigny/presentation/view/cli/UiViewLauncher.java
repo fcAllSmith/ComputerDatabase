@@ -8,9 +8,11 @@ import com.excilys.computerdb.fconsigny.utils.view.AppView;
 public class UiViewLauncher extends AppView implements IApp {
 
   private static Logger logger = Logger.getLogger(UiViewLauncher.class);
+  private ApplicationContext context; 
 
   @Override
-  public void createView(final AppView appParentView) {
+  public void createView(ApplicationContext context, final IApp appParentView) {
+    this.context = context; 
     refreshUi();
   }
 
@@ -27,7 +29,7 @@ public class UiViewLauncher extends AppView implements IApp {
 
   @Override
   public void destroyView() {
-    
+
   }
 
   public void onInputKey(final String strInput) {
@@ -35,16 +37,13 @@ public class UiViewLauncher extends AppView implements IApp {
       int cmd = Integer.parseInt(strInput);
       switch (cmd) {
       case 1:
-        UiViewComputer uiViewComputer = new UiViewComputer();
-        uiViewComputer.createView(this);
+        startView(new UiViewComputer());
         break;
       case 2:
-        UiViewCompany uiViewCompany = new UiViewCompany();
-        uiViewCompany.createView(this);
+        startView(new UiViewCompany());
         break;
       case 3:
-        UiViewPageComputer uiViewPageComputer = new UiViewPageComputer();
-        uiViewPageComputer.createView(this);
+        startView(new UiViewPageComputer());
         break;
       default:
         showText("command not found");
@@ -55,5 +54,9 @@ public class UiViewLauncher extends AppView implements IApp {
       logger.error(error);
     }
     refreshUi();
+  }
+
+  public void startView(AppView view){
+    ((IApp) view ).createView(context, this);
   }
 }

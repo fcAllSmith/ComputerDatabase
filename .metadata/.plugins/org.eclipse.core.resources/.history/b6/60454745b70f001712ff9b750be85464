@@ -1,0 +1,12 @@
+package com.excilys.computerdb.fconsigny.spring;
+
+import org.springframework.context.ApplicationContext;
+
+public class Application {
+  
+   private final ApplicationContext appContext; 
+   
+   public Application(){
+       this.appContext = 
+   }
+}

@@ -8,12 +8,17 @@ import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
 public class CompanyController {
 
   private final IApp view;
+  
+  @Autowired
   private CompanyServices companyServices;
 
-  public CompanyController(final IApp view) {
+  public CompanyController(ApplicationContext context, final IApp view) {
     this.view = view;
     this.companyServices = new CompanyServices();
   }

@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 @Service("companyService")
 public class CompanyServices implements ICompanyServices {
 
-  private final CompanyDao companyDao = CompanyFactory.getCompanyDao();
-
+  private final CompanyDao companyDao = CompanyFactory.getCompanyDao() ;
+      
   @Autowired
   IMysqlDatasource datasource;
 

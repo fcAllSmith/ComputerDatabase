@@ -10,6 +10,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.IPageServices;
+import com.excilys.computerdb.fconsigny.business.services.PageServices;
 import com.excilys.computerdb.fconsigny.presentation.component.PageCli;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
@@ -20,15 +21,14 @@ import com.excilys.computerdb.fconsigny.spring.ApplicationConfig;
 public class PageController {
 
   private PageCli pageCli;
-
-  @Autowired
-  private ApplicationContext context;
-
   private final UiViewPageComputer view;
+  
+  @Autowired
+  IPageServices pageServices; 
 
-  public PageController(IApp view) {
+  public PageController(ApplicationContext context, IApp view) {
     this.view = (UiViewPageComputer) view;
-    this.context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+    pageServices = (IPageServices) context.getBean("pageService");
     pageCli = new PageCli(10);
   }
 
@@ -52,7 +52,7 @@ public class PageController {
     List<ComputerDto> computerDtoList = null;
     try {
       computerDtoList = ComputerDtoMapper
-          .transformListToDto(this.context.getBean(IPageServices.class).getComputer(pageCli));
+          .transformListToDto(pageServices.getComputer(pageCli));
       
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());

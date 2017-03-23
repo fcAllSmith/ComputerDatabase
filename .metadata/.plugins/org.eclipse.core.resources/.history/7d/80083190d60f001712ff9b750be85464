@@ -1,0 +1,59 @@
+package com.excilys.computerdb.fconsigny.business.services;
+
+import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
+import com.excilys.computerdb.fconsigny.business.factory.CompanyFactory;
+import com.excilys.computerdb.fconsigny.business.mapper.CompanyDtoMapper;
+import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
+import com.excilys.computerdb.fconsigny.storage.connection.datasource.IMysqlDatasource;
+import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
+import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service("companyService")
+public class CompanyServices implements ICompanyServices {
+
+  private final companyDao = n
+  @Autowired
+  IMysqlDatasource datasource;
+
+  @Autowired
+  public CompanyServices(){}
+
+  public CompanyDto getUniqueCompany(final long id) throws ServiceException {
+    CompanyDto companyDto = null; 
+    try {
+      companyDto =  CompanyDtoMapper.transformToDto(new CompanyFactory().getCompanyDao().findById(datasource.getConnection(),id));
+    } catch (DatabaseException databaseException) {
+      throw new ServiceException(databaseException.getMessage());
+    } finally {
+      try {
+        datasource.closeConnection(datasource.getConnection());
+      } catch (SQLException | DatabaseException e) {
+        throw new ServiceException (e.toString());
+      }
+    }
+    return companyDto;
+  }
+
+  public List<CompanyDto> getAllCompanies() throws ServiceException {
+    List<CompanyDto> companyDtoList = null; 
+    try {
+      companyDtoList =  CompanyDtoMapper.transformListToDto(new CompanyFactory().getCompanyDao().findAll(datasource.getConnection()));
+    } catch (DatabaseException databaseException) {
+      throw new ServiceException(databaseException.getMessage()); 
+    } finally {
+      try {
+        datasource.closeConnection(datasource.getConnection());
+      } catch (SQLException | DatabaseException e) {
+        throw new ServiceException (e.toString());
+      }
+    }
+    
+    return companyDtoList;
+  }
+}

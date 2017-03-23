@@ -36,8 +36,8 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public int getCount(Connection connection) {
-    DatabaseHelper dm = new DatabaseHelper();
-    ResultSet rs = dm.queryGet(connection, QUERY_GET_COUNT);
+
+    ResultSet rs = DatabaseHelper.queryGet(connection, QUERY_GET_COUNT);
 
     try {
       if(rs.next()){
@@ -52,8 +52,7 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public Computer findById(Connection connection, final long id) {
-    DatabaseHelper dm = new DatabaseHelper();
-    ResultSet rs = dm.queryGet(connection, QUERY_SELECT_BY_ID + id);
+    ResultSet rs = DatabaseHelper.queryGet(connection, QUERY_SELECT_BY_ID + id);
 
     try {
       if (rs.isBeforeFirst()) {
@@ -64,7 +63,6 @@ public class ComputerDaoImpl implements ComputerDao {
           logger.error(error);
         }
       }
-
     } catch (SQLException e) {
       logger.error(e);
     }
@@ -74,8 +72,11 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public List<Computer> findAll(Connection connection) {
-    DatabaseHelper dm = new DatabaseHelper();
-    ResultSet rs = dm.queryGet(connection, QUERY_SELECT_ALL);
+    if(connection == null){
+      System.out.print("connection is null");
+    }
+    
+    ResultSet rs = DatabaseHelper.queryGet(connection, QUERY_SELECT_ALL);
     List<Computer> computerList = new ArrayList<Computer>();
     try {
       while (rs.next()) {
@@ -91,7 +92,6 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public List<Computer> findAllWithLimiter(Connection connection, final String name, final int limit, final int offset) {
-    DatabaseHelper dm = new DatabaseHelper();
     String query = null;
     if (name == null) {
       query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset;
@@ -101,7 +101,7 @@ public class ComputerDaoImpl implements ComputerDao {
       // + limit + " WHERE name LIKE '%" + name + "%'";
       query = "SELECT * FROM computer WHERE name LIKE '%" + name + "%'";
     }
-    ResultSet rs = dm.queryGet(connection, query);
+    ResultSet rs = DatabaseHelper.queryGet(connection, query);
     List<Computer> computerList = new ArrayList<Computer>();
 
     try {
@@ -123,15 +123,13 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public boolean deleteComputer(Connection connection ,long id) {
-    DatabaseHelper dm = new DatabaseHelper();
     String query = QUERY_DELETE.concat(Integer.valueOf((int) id).toString());
-    return dm.queryPost(connection, query);
+    return DatabaseHelper.queryPost(connection, query);
   }
 
   @Override
   public boolean addComputer(Connection connection, Computer computer) {
     StringBuilder insertSQLBuilder = new StringBuilder();
-    DatabaseHelper dh = new DatabaseHelper();
     insertSQLBuilder.append(" INSERT INTO computer (name,introduced,discontinued,company_id)");
     insertSQLBuilder.append(" VALUES ( '");
     insertSQLBuilder.append(computer.getName() + "',");
@@ -151,14 +149,13 @@ public class ComputerDaoImpl implements ComputerDao {
     insertSQLBuilder.append(");");
 
     String query = insertSQLBuilder.toString();
-    return dh.queryPost(connection, query);
+    return DatabaseHelper.queryPost(connection, query);
   }
 
   @Override
   public boolean updateComputer(Connection connection,Computer computer) {
     StringBuilder insertSQLBuilder = new StringBuilder();
 
-    DatabaseHelper dh = new DatabaseHelper();
     insertSQLBuilder.append(" UPDATE computer ");
     insertSQLBuilder.append(" SET ");
     insertSQLBuilder.append("name=" + DbUtil.quote(computer.getName()) + ",");
@@ -178,6 +175,6 @@ public class ComputerDaoImpl implements ComputerDao {
 
     System.out.println(insertSQLBuilder.toString());
     String query = insertSQLBuilder.toString();
-    return dh.queryPost(connection, query);
+    return DatabaseHelper.queryPost(connection, query);
   }
 }

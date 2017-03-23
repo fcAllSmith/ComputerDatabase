@@ -1,6 +1,7 @@
 package com.excilys.computerdb.fconsigny.spring;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
@@ -17,6 +18,7 @@ import com.excilys.computerdb.fconsigny.storage.connection.datasource.MysqlDatas
  * @author excilys In this file are define the bean.
  */
 @Configuration
+@ComponentScan(" com.excilys.computerdb.fconsigny.business.services")
 public class ApplicationConfig {
 
   @Bean
@@ -28,15 +30,14 @@ public class ApplicationConfig {
   public ICompanyServices iCompanyServices() {
     return new CompanyServices();
   }
-
-  @Bean
-  public IMysqlDatasource iMysqlConnection() {
-    return new MysqlDatasource();
-  }
-
+  
   @Bean
   public IPageServices iPageServices() {
     return new PageServices();
   }
 
+  @Bean
+  public IMysqlDatasource iMysqlConnection() {
+    return new MysqlDatasource();
+  } 
 }

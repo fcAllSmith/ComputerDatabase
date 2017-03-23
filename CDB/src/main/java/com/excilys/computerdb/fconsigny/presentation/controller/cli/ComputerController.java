@@ -18,18 +18,24 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
 
+@Controller
+@ComponentScan(basePackages = { "com.excilys.computerdb.fconsigny.business.services" })
 public class ComputerController {
   private static Logger logger = Logger.getLogger(ComputerController.class);
 
   private final UiViewComputer view;
 
   @Autowired
-  private ApplicationContext context;
+  IComputerServices computerServices; 
 
-  public ComputerController(final IApp view) {
+  public ComputerController(ApplicationContext context, final IApp view) {
     this.view = (UiViewComputer) view;
-    this.context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+    if (context != null) {
+      computerServices = (ComputerServices) context.getBean("computerService");
+    }
   }
 
   /**
@@ -38,8 +44,7 @@ public class ComputerController {
   public void loadListComputerDto() {
     List<ComputerDto> computerDtoList = null;
     try {
-      computerDtoList = ComputerDtoMapper
-          .transformListToDto(this.context.getBean(IComputerServices.class).getAllComputers());
+      computerDtoList = ComputerDtoMapper.transformListToDto(computerServices.getAllComputers());
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
     } 
@@ -65,7 +70,7 @@ public class ComputerController {
     ComputerDto computerDto = null;
     try {
       computerDto = ComputerDtoMapper
-          .transformToDto(this.context.getBean(IComputerServices.class).getUniqueComputer(id));
+          .transformToDto(computerServices.getUniqueComputer(id));
     } catch (BeansException | ServiceException exception) {
       this.view.showText(exception.toString());
     } 
@@ -79,7 +84,7 @@ public class ComputerController {
 
   public void deleteComputer(final String strInputId) {
     try {
-      if (this.context.getBean(IComputerServices.class).deleteComputer(Integer.parseInt(strInputId))) {
+      if (computerServices.deleteComputer(Integer.parseInt(strInputId))) {
         this.view.showText("The computer has been removed");
       } else {
         this.view.showText("Enable to delete the computer with ID :" + strInputId);
@@ -102,8 +107,7 @@ public class ComputerController {
       ComputerDto computerDto = fillComputerDto(args);
       ValidateEntries.verifyEntries(computerDto);
       try {
-        if (this.context.getBean(IComputerServices.class)
-            .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
+        if (computerServices.editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
           this.view.showText("The computer has been added");
         } else {
           this.view.showText("Enable to save the computer");
@@ -129,8 +133,7 @@ public class ComputerController {
       ComputerDto computerDto = fillComputerDto(args);
       ValidateEntries.verifyEntries(computerDto);
       try {
-        if (this.context.getBean(IComputerServices.class)
-            .editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
+        if (computerServices.editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {
           this.view.showText("The computer has been updated");
         } else {
           this.view.showText("Enable to update the computer");

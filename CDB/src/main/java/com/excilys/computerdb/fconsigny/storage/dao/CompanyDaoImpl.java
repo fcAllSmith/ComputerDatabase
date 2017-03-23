@@ -22,7 +22,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
   @Override
   public List<Company> findAll(Connection connection) {
-    ResultSet resQuery = new DatabaseHelper().queryGet(connection, SELECT_ALL_COMPANY);
+    ResultSet resQuery = DatabaseHelper.queryGet(connection, SELECT_ALL_COMPANY);
     List<Company> companyList = new ArrayList<Company>();
     try {
       if (resQuery.isBeforeFirst() && !resQuery.isLast()) {
@@ -40,7 +40,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
   @Override
   public Company findById(Connection connection, final long id) {
-    ResultSet resQuery = new DatabaseHelper().queryGet(connection, SELECT_BY_ID + id);
+    ResultSet resQuery = DatabaseHelper.queryGet(connection, SELECT_BY_ID + id);
     try {
       if (resQuery.isBeforeFirst() && !resQuery.isLast()) {
         resQuery.next();

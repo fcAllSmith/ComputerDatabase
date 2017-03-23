@@ -1,0 +1,17 @@
+package com.excilys.computerdb.fconsigny.business.factory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
+import com.excilys.computerdb.fconsigny.storage.dao.CompanyDaoImpl;
+
+public class CompanyFactory {
+
+  @Autowired
+  CompanyDaoImpl companyDaoImpl;
+  
+  public static CompanyDao getCompanyDao() {
+    
+    return companyDaoImpl;
+  }
+}
