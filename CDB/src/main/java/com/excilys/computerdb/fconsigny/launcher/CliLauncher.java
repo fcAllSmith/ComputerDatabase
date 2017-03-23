@@ -17,7 +17,9 @@ public class CliLauncher {
    *          : not used here.
    */
   public static void main(String[] args) {
-    Application application  = new Application();
-    new UiViewLauncher().createView(application.getAppContext(),null);
+    AnnotationConfigApplicationContext  context = new AnnotationConfigApplicationContext();
+    context.scan("com.excilys.computerdb.fconsigny"); 
+   // context.refresh();
+    new UiViewLauncher().createView(null);
   }
 }

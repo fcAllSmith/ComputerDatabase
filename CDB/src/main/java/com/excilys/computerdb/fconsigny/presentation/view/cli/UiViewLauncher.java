@@ -8,11 +8,9 @@ import com.excilys.computerdb.fconsigny.utils.view.AppView;
 public class UiViewLauncher extends AppView implements IApp {
 
   private static Logger logger = Logger.getLogger(UiViewLauncher.class);
-  private ApplicationContext context; 
 
   @Override
-  public void createView(ApplicationContext context, final IApp appParentView) {
-    this.context = context; 
+  public void createView(final IApp appParentView) {
     refreshUi();
   }
 
@@ -57,6 +55,6 @@ public class UiViewLauncher extends AppView implements IApp {
   }
 
   public void startView(AppView view){
-    ((IApp) view ).createView(context, this);
+    ((IApp) view ).createView(this);
   }
 }

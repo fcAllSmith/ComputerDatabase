@@ -1,0 +1,31 @@
+package com.excilys.computerdb.fconsigny.spring;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
+
+
+/**
+ * 
+ * @author excilys In this file are define the bean.
+ * 
+ * 
+4
+5
+6
+7
+8
+9
+10
+@Configuration
+@ComponentScan(basePackages = { "com.rockhoppertech.mvc.service",
+    "com.rockhoppertech.mvc.repositories.internal" })
+ */
+@Configuration
+@ComponentScan(basePackages ={"com.excilys"})
+public class ApplicationConfig {
+  
+}

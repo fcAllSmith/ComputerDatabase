@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+@Repository("computerDao")
 public class ComputerDaoImpl implements ComputerDao {
 
   private static Logger logger = Logger.getLogger(ComputerDaoImpl.class);

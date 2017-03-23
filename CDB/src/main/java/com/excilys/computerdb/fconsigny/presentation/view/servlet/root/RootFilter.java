@@ -36,9 +36,6 @@ public class RootFilter implements Filter {
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
-    AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-    ctx.register(ApplicationConfig.class);
-    ctx.refresh();
 
     HttpServletRequest httpRequest = (HttpServletRequest) request;
 

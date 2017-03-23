@@ -1,0 +1,15 @@
+package com.excilys.computerdb.fconsigny.spring;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+
+/**
+ * 
+ * @author excilys In this file are define the bean.
+ */
+@Configuration
+@ComponentScan(" com.excilys.computerdb.fconsigny.business.services")
+public class ApplicationConfig {
+
+}

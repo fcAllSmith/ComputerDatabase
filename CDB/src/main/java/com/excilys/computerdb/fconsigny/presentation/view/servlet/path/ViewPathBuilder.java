@@ -5,6 +5,6 @@ public abstract class ViewPathBuilder {
   public static String viewPath(final Class inputClass) {
     String className = inputClass.getSimpleName();
     String[] splitClassName = className.split("Controller");
-    return "WebContent/WEB-INF/views/" + splitClassName[0] + ".jsp";
+    return "/WEB-INF/views/" + splitClassName[0] + ".jsp";
   }
 }

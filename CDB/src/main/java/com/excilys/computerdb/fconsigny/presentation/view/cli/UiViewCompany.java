@@ -16,10 +16,10 @@ public class UiViewCompany extends AppView implements IApp {
   private CompanyController companyController;
 
   @Override
-  public void createView(ApplicationContext context, final IApp appParentView) {
+  public void createView(final IApp appParentView) {
     if (this.appParentView == null && companyController == null) {
       this.appParentView = (AppView) appParentView;
-      this.companyController = new CompanyController(context,this);
+      this.companyController = new CompanyController(this);
     }
     refreshUi();
   }

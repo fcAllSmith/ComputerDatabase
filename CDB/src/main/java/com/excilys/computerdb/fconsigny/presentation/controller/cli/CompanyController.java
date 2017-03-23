@@ -2,6 +2,7 @@ package com.excilys.computerdb.fconsigny.presentation.controller.cli;
 
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
+import com.excilys.computerdb.fconsigny.business.services.ICompanyServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 
@@ -16,11 +17,10 @@ public class CompanyController {
   private final IApp view;
   
   @Autowired
-  private CompanyServices companyServices;
+  private ICompanyServices companyServices;
 
-  public CompanyController(ApplicationContext context, final IApp view) {
+  public CompanyController(final IApp view) {
     this.view = view;
-    this.companyServices = new CompanyServices();
   }
 
   public void loadListCompany() {

@@ -19,23 +19,20 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-@Controller
-@ComponentScan(basePackages = { "com.excilys.computerdb.fconsigny.business.services" })
+@Component
 public class ComputerController {
   private static Logger logger = Logger.getLogger(ComputerController.class);
 
   private final UiViewComputer view;
-
+  
   @Autowired
   IComputerServices computerServices; 
 
-  public ComputerController(ApplicationContext context, final IApp view) {
+  public ComputerController(final IApp view) {
     this.view = (UiViewComputer) view;
-    if (context != null) {
-      computerServices = (ComputerServices) context.getBean("computerService");
-    }
   }
 
   /**

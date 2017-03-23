@@ -15,10 +15,10 @@ public class UiViewComputer extends AppView implements IApp {
   private ComputerController computerController;
 
   @Override
-  public void createView(ApplicationContext context,final IApp appParentView) {
+  public void createView(final IApp appParentView) {
     if (this.appParentView == null && computerController == null) {
       this.appParentView = (AppView )appParentView;
-      computerController = new ComputerController(context,this);
+      computerController = new ComputerController(this);
     }
 
     refreshUi();

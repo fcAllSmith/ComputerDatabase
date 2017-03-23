@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdb.fconsigny.business.model.Company;
 import com.excilys.computerdb.fconsigny.storage.database.DatabaseHelper;
 
+@Repository("companyDao")
 public class CompanyDaoImpl implements CompanyDao {
 
   private static final String SELECT_ALL_COMPANY = "SELECT * FROM company;";

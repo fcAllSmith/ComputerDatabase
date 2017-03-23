@@ -11,9 +11,9 @@ public class UiViewPageComputer extends AppView implements IApp {
   private PageController pageController;
 
   @Override
-  public void createView(ApplicationContext context, final IApp appParentView) {
+  public void createView(final IApp appParentView) {
     this.appParentView = (AppView) appParentView;
-    this.pageController = new PageController(context,this);
+    this.pageController = new PageController(this);
     pageController.loadListComputer();
     refreshUi();
   }

@@ -14,16 +14,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("companyService")
+@Service("companyServices")
 public class CompanyServices implements ICompanyServices {
 
   private final CompanyDao companyDao = CompanyFactory.getCompanyDao() ;
       
   @Autowired
   IMysqlDatasource datasource;
-
-  @Autowired
-  public CompanyServices(){}
 
   public CompanyDto getUniqueCompany(final long id) throws ServiceException {
     CompanyDto companyDto = null; 

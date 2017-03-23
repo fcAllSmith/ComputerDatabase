@@ -13,16 +13,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("computerService")
+@Service ("computerServices")
 public class ComputerServices implements IComputerServices {
 
   private final ComputerDao computerDao = ComputerFactory.getComputerDao();
   
   @Autowired
   IMysqlDatasource datasource; 
-
-  @Autowired
-  public ComputerServices() {}
 
   public Computer getUniqueComputer(final long id) throws ServiceException {
     Computer computer = null; 

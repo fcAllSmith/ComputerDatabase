@@ -26,9 +26,8 @@ public class PageController {
   @Autowired
   IPageServices pageServices; 
 
-  public PageController(ApplicationContext context, IApp view) {
+  public PageController(IApp view) {
     this.view = (UiViewPageComputer) view;
-    pageServices = (IPageServices) context.getBean("pageService");
     pageCli = new PageCli(10);
   }
 
