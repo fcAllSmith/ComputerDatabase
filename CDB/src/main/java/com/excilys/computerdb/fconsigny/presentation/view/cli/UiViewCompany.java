@@ -13,7 +13,7 @@ import com.excilys.computerdb.fconsigny.utils.view.AppView;
 @Component
 public class UiViewCompany extends AppView implements IApp {
 
-  AppView appParentView;
+  private AppView appParentView;
 
   private static Logger logger = Logger.getLogger(UiViewCompany.class);
 
@@ -23,7 +23,7 @@ public class UiViewCompany extends AppView implements IApp {
   @Override
   public void createView(final IApp appParentView) {
     this.appParentView = (AppView) appParentView;
-    this.companyController.setView(this);
+    companyController.setView(this);
     refreshUi();
   }
 

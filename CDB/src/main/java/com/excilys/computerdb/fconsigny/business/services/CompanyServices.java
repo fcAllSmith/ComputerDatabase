@@ -14,7 +14,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("companyServices")
+@Service
 public class CompanyServices implements ICompanyServices {
 
   private final CompanyDao companyDao = CompanyFactory.getCompanyDao() ;
@@ -23,7 +23,7 @@ public class CompanyServices implements ICompanyServices {
   IMysqlDatasource datasource;
   
   public CompanyServices(){
-    System.out.println("Normal User Created->"+this);
+
   }
 
   public CompanyDto getUniqueCompany(final long id) throws ServiceException {
