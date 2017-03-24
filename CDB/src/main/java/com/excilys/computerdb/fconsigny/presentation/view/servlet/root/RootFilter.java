@@ -26,7 +26,7 @@ import com.excilys.computerdb.fconsigny.spring.CliConfig;
  * @author excilys.
  *
  */
-@WebFilter(filterName = "cdbFilter", urlPatterns = { "/*" })
+//@WebFilter(filterName = "cdbFilter", urlPatterns = { "/*" })
 public class RootFilter implements Filter {
 
   @Override

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-@WebServlet(urlPatterns = { "/computer/delete" })
+//@WebServlet(urlPatterns = { "/computer/delete" })
 public class ViewComputerDeleteController extends HttpServlet implements Servlet {
 
   private static final long serialVersionUID = 1L;

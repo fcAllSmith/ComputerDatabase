@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-@WebServlet(urlPatterns = { "/computer/edit" })
+//@WebServlet(urlPatterns = { "/computer/edit" })
 public class ViewComputerEditController extends HttpServlet implements Servlet {
 
   private static final long serialVersionUID = 1L;
@@ -28,7 +28,7 @@ public class ViewComputerEditController extends HttpServlet implements Servlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+      
     System.out.println(request.getParameter("computerId"));
     if (request.getParameter("computerId") != null
         && Integer.parseInt(request.getParameter("computerId").toString()) > 0) {

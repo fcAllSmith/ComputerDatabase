@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@WebServlet(urlPatterns = { "/computer/add" })
+//@WebServlet(urlPatterns = { "/computer/add" })
 public class ViewComputerAddController extends HttpServlet implements Servlet {
 
   private static final long serialVersionUID = 1L;
