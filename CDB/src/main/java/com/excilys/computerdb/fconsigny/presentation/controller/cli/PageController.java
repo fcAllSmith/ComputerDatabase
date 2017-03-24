@@ -6,6 +6,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
@@ -15,21 +16,27 @@ import com.excilys.computerdb.fconsigny.presentation.component.PageCli;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComponents;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewPageComputer;
-import com.excilys.computerdb.fconsigny.spring.ApplicationConfig;
+import com.excilys.computerdb.fconsigny.spring.CliConfig;
 
+@Component
 public class PageController {
 
   private PageCli pageCli;
-  private final UiViewPageComputer view;
+  private  UiViewPageComputer view;
   
   @Autowired
   IPageServices pageServices; 
 
-  public PageController(IApp view) {
-    this.view = (UiViewPageComputer) view;
+  public PageController() {
     pageCli = new PageCli(10);
   }
+  
+  public void setView(final IApp view){
+    this.view = (UiViewPageComputer) view;
+  }
+  
 
   public void onPageNext() {
     if (pageCli.nextPage()) {

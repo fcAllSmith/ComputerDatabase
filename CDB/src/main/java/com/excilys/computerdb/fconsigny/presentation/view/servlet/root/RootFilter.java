@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.excilys.computerdb.fconsigny.spring.ApplicationConfig;
+import com.excilys.computerdb.fconsigny.spring.CliConfig;
 
 /**
  * 

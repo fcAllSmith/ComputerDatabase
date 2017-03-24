@@ -3,24 +3,27 @@ package com.excilys.computerdb.fconsigny.presentation.view.cli;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.excilys.computerdb.fconsigny.presentation.controller.cli.CompanyController;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
+@Component
 public class UiViewCompany extends AppView implements IApp {
 
   AppView appParentView;
 
   private static Logger logger = Logger.getLogger(UiViewCompany.class);
+
+  @Autowired
   private CompanyController companyController;
 
   @Override
   public void createView(final IApp appParentView) {
-    if (this.appParentView == null && companyController == null) {
-      this.appParentView = (AppView) appParentView;
-      this.companyController = new CompanyController(this);
-    }
+    this.appParentView = (AppView) appParentView;
+    this.companyController.setView(this);
     refreshUi();
   }
 

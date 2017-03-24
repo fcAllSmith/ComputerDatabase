@@ -8,7 +8,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
-import com.excilys.computerdb.fconsigny.spring.ApplicationConfig;
+import com.excilys.computerdb.fconsigny.spring.CliConfig;
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
@@ -19,6 +19,8 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
@@ -26,12 +28,18 @@ import org.springframework.stereotype.Controller;
 public class ComputerController {
   private static Logger logger = Logger.getLogger(ComputerController.class);
 
-  private final UiViewComputer view;
+  private  UiViewComputer view;
   
   @Autowired
-  IComputerServices computerServices; 
+  ComputerServices computerServices; 
 
-  public ComputerController(final IApp view) {
+  public ComputerController() {
+   // computerServices = new ComputerServices();
+    System.out.println("Normal User Created->"+this);
+
+  }
+  
+  public void setView(final IApp view){
     this.view = (UiViewComputer) view;
   }
 

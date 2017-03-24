@@ -21,6 +21,10 @@ public class CompanyServices implements ICompanyServices {
       
   @Autowired
   IMysqlDatasource datasource;
+  
+  public CompanyServices(){
+    System.out.println("Normal User Created->"+this);
+  }
 
   public CompanyDto getUniqueCompany(final long id) throws ServiceException {
     CompanyDto companyDto = null; 

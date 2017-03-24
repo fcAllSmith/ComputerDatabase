@@ -2,15 +2,27 @@ package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
+import com.excilys.computerdb.fconsigny.spring.CliConfig;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
+
 
 public class UiViewLauncher extends AppView implements IApp {
 
   private static Logger logger = Logger.getLogger(UiViewLauncher.class);
+ 
+  private UiViewComputer uiViewComputer;
+  private UiViewCompany uiViewCompany; 
+  private UiViewPageComputer uiViewPageComputer; 
 
   @Override
   public void createView(final IApp appParentView) {
+    AnnotationConfigApplicationContext a =  new AnnotationConfigApplicationContext(CliConfig.class);
+    uiViewComputer = a.getBean(UiViewComputer.class);
+    uiViewCompany = a.getBean(UiViewCompany.class);
+    uiViewPageComputer = a.getBean(UiViewPageComputer.class);
     refreshUi();
   }
 
@@ -35,13 +47,13 @@ public class UiViewLauncher extends AppView implements IApp {
       int cmd = Integer.parseInt(strInput);
       switch (cmd) {
       case 1:
-        startView(new UiViewComputer());
+        startView(uiViewComputer);
         break;
       case 2:
-        startView(new UiViewCompany());
+        startView(uiViewCompany);
         break;
       case 3:
-        startView(new UiViewPageComputer());
+        startView(uiViewPageComputer);
         break;
       default:
         showText("command not found");

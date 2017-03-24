@@ -1,5 +1,6 @@
 package com.excilys.computerdb.fconsigny.spring;
 
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
  
@@ -15,7 +16,7 @@ import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
  * 
  */
 @Configuration
-@ComponentScan(basePackages ={"com.excilys.computerdb.fconsigny.business.services"})
-public class ApplicationConfig {
+@ComponentScan({"com.excilys.computerdb.fconsigny"})
+public class CliConfig {
   
 }

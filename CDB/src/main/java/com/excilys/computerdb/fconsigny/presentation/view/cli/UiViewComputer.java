@@ -5,22 +5,25 @@ import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
 import java.io.IOException;
 import org.apache.log4j.Logger;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UiViewComputer extends AppView implements IApp {
 
   private static Logger logger = Logger.getLogger(UiViewComputer.class);
 
   private AppView appParentView;
+
+  @Autowired
   private ComputerController computerController;
 
   @Override
   public void createView(final IApp appParentView) {
-    if (this.appParentView == null && computerController == null) {
-      this.appParentView = (AppView )appParentView;
-      computerController = new ComputerController(this);
-    }
 
+    this.appParentView = (AppView )appParentView;
+    computerController.setView(this);
     refreshUi();
   }
 

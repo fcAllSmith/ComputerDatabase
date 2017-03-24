@@ -1,19 +1,24 @@
 package com.excilys.computerdb.fconsigny.presentation.view.cli;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.excilys.computerdb.fconsigny.presentation.controller.cli.PageController;
 import com.excilys.computerdb.fconsigny.utils.view.AppView;
 
+@Component
 public class UiViewPageComputer extends AppView implements IApp {
 
   AppView appParentView;
+  
+  @Autowired
   private PageController pageController;
 
   @Override
   public void createView(final IApp appParentView) {
     this.appParentView = (AppView) appParentView;
-    this.pageController = new PageController(this);
+    pageController.setView(this);
     pageController.loadListComputer();
     refreshUi();
   }

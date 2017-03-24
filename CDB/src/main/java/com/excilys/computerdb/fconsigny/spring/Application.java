@@ -8,7 +8,7 @@ public class Application {
    private final ApplicationContext appContext; 
    
    public Application() {
-       this.appContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+       this.appContext = new AnnotationConfigApplicationContext(CliConfig.class);
    }
    
    public ApplicationContext getAppContext(){
