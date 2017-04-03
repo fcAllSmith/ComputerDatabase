@@ -10,3 +10,7 @@
 1490187305780	Rename type 'Page'
 1490187734516	Rename field 'cDao'
 1490187892455	Rename method 'getComputerByName'
+1490346277615	Rename resource 'spring_context.xml'
+1490363468428	Rename type 'ApplicationConfig'
+1490368852476	Rename method 'getUsersView'
+1490374648496	Rename method 'getUsersView'

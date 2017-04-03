@@ -1,5 +1,0 @@
-package com.excilys.computerdb.fconsigny.presentation.component;
-
-public interface Page {
-
-}

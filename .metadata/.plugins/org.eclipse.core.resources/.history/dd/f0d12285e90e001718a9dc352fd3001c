@@ -1,9 +1,0 @@
-package com.excilys.computerdb.fconsigny.storage.connection.datasource;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-
-public interface IMysqlDatasource {
-
-  public Connection getConnection() throws DatabaseException; 
-}

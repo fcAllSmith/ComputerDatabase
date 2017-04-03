@@ -1,8 +1,0 @@
-package com.excilys.computerdb.fconsigny.business.services;
-
-import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
-
-public interface ICompanyServices {
-
-  public CompanyDto getUniqueCompany(final long id);
-}
