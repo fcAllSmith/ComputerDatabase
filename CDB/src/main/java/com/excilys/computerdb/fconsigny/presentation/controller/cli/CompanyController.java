@@ -4,7 +4,7 @@ import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
-import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
+import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewCompany;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class CompanyController {
   public CompanyController() {}
   
   public void setView(final IApp view){
-    this.view = (UiViewComputer) view;
+    this.view = (UiViewCompany) view;
   }
 
   public void loadListCompany() {

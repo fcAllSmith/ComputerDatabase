@@ -12,19 +12,23 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ComputerServices implements IComputerServices {
 
   private final ComputerDao computerDao = ComputerFactory.getComputerDao();
-  
+
   @Autowired
   IMysqlDatasource datasource; 
-  
+
   public ComputerServices(){
-    
+
   }
 
+  @Transactional(readOnly=true)
   public Computer getUniqueComputer(final long id) throws ServiceException {
     Computer computer = null; 
     try {
@@ -38,10 +42,11 @@ public class ComputerServices implements IComputerServices {
         throw new ServiceException (e.toString());
       }
     }
-    
+
     return computer; 
   }
 
+  @Transactional(readOnly = true)
   public List<Computer> getAllComputers() throws ServiceException{
     System.out.print("WE ARE IN SERVICES");
     List<Computer> computerList = null; 
@@ -56,10 +61,11 @@ public class ComputerServices implements IComputerServices {
         throw new ServiceException (e.toString());
       }
     }
-    
+
     return computerList;
   }
 
+  @Transactional(readOnly = true)
   public List<Computer> getAllComputersWithLimiter (final int offset, final int limit, final String name) throws ServiceException {
     List<Computer> computerList = null;  
     try {
@@ -73,7 +79,7 @@ public class ComputerServices implements IComputerServices {
         throw new ServiceException (e.toString());
       }
     }
-    
+
     return computerList; 
   }
 
@@ -82,6 +88,7 @@ public class ComputerServices implements IComputerServices {
    * @param computerDto
    * @return true if successful.
    */
+  @Transactional(readOnly = true)
   public boolean saveComputer(final Computer computer) throws ServiceException {
     try {
       return computerDao.addComputer(datasource.getConnection(),computer);
@@ -90,6 +97,7 @@ public class ComputerServices implements IComputerServices {
     }
   }
 
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean editComptuter(final Computer computer) throws ServiceException {
     try {
       return computerDao.updateComputer(datasource.getConnection(),computer);
@@ -104,6 +112,7 @@ public class ComputerServices implements IComputerServices {
     }
   }
 
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean deleteComputer(final long id) throws ServiceException{
     try {
       return computerDao.deleteComputer(datasource.getConnection(),id);
