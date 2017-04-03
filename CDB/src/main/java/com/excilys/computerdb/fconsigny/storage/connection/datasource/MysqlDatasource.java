@@ -19,7 +19,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @Service("mysqldb")
 public class MysqlDatasource implements IMysqlDatasource {
 
-  private DataSource getDataSource() throws ClassNotFoundException {
+  public DataSource getDataSource() throws ClassNotFoundException {
     Properties properties = new Properties();
     ClassLoader classLoader = getClass().getClassLoader();
     File configFile = new File(classLoader.getResource("db.properties").getFile());

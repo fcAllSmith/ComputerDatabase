@@ -19,15 +19,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class ComputerController {
-  
+
   private static Logger logger = Logger.getLogger(ComputerController.class);
   private  UiViewComputer view;
-  
+
   @Autowired
   ComputerServices computerServices; 
 
   public ComputerController() {}
-  
+
   public void setView(final IApp view){
     this.view = (UiViewComputer) view;
   }

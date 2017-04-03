@@ -10,7 +10,10 @@ import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,9 +35,12 @@ public class ComputerServices implements IComputerServices {
   public Computer getUniqueComputer(final long id) throws ServiceException {
     Computer computer = null; 
     try {
-      computer = computerDao.findById(datasource.getConnection(),id);
-    } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
+      try {
+        computer = computerDao.findById(new JdbcTemplate( datasource.getDataSource()),id);
+      } catch (ClassNotFoundException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
     } finally {
       try {
         datasource.closeConnection(datasource.getConnection());
@@ -47,13 +53,16 @@ public class ComputerServices implements IComputerServices {
   }
 
   @Transactional(readOnly = true)
-  public List<Computer> getAllComputers() throws ServiceException{
+  public List<Computer> getAllComputers() throws ServiceException {
     System.out.print("WE ARE IN SERVICES");
     List<Computer> computerList = null; 
     try {
-      computerList = computerDao.findAll(datasource.getConnection());
-    } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
+      try {
+        computerList = computerDao.findAll(new JdbcTemplate(datasource.getDataSource()));
+      } catch (ClassNotFoundException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
     } finally {
       try {
         datasource.closeConnection(datasource.getConnection());

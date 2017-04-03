@@ -16,6 +16,8 @@ import com.excilys.computerdb.fconsigny.storage.mapper.MysqlComputerMapper;
 import com.excilys.computerdb.fconsigny.utils.db.DbUtil;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,7 @@ public class ComputerDaoImpl implements ComputerDao {
   private static Logger logger = Logger.getLogger(ComputerDaoImpl.class);
 
   private final static String QUERY_SELECT_ALL = "SELECT * FROM computer LEFT JOIN company ON company.id = computer.company_id";
-  private final static String QUERY_SELECT_BY_ID = "SELECT * FROM computer WHERE id =";
+  private final static String QUERY_SELECT_BY_ID = "SELECT * FROM computer WHERE id = ? LEFT JOIN company ON company.id = computer.company_id";
   private final static String QUERY_DELETE = "DELETE FROM computer WHERE id=";
   private final static String QUERY_GET_COUNT = "SELECT COUNT(*) AS maxCount FROM computer";
 
@@ -51,7 +53,7 @@ public class ComputerDaoImpl implements ComputerDao {
     }
   }
 
-  @Override
+  /* @Override
   public Computer findById(Connection connection, final long id) {
     ResultSet rs = DatabaseHelper.queryGet(connection, QUERY_SELECT_BY_ID + id);
 
@@ -69,14 +71,20 @@ public class ComputerDaoImpl implements ComputerDao {
     }
 
     return null;
-  }
+  }*/
 
   @Override
+  public Computer findById( JdbcTemplate jdbcTemplate, final long id){
+    return (Computer) jdbcTemplate.queryForObject("SELECT * FROM computer WHERE id = " + id + " LEFT JOIN company ON company.id = computer.company_id",
+        new BeanPropertyRowMapper(Computer.class));
+  }
+
+  /*@Override
   public List<Computer> findAll(Connection connection) {
     if(connection == null){
       System.out.print("connection is null");
     }
-    
+
     ResultSet rs = DatabaseHelper.queryGet(connection, QUERY_SELECT_ALL);
     List<Computer> computerList = new ArrayList<Computer>();
     try {
@@ -89,6 +97,16 @@ public class ComputerDaoImpl implements ComputerDao {
     }
 
     return computerList;
+  }*/
+
+  @Override
+  public List<Computer> findAll(JdbcTemplate jdbcTemplate) {
+    if(jdbcTemplate == null){
+      System.out.print("connection is null");
+    }
+
+    return jdbcTemplate.query(QUERY_SELECT_ALL,new BeanPropertyRowMapper(Computer.class));
+
   }
 
   @Override

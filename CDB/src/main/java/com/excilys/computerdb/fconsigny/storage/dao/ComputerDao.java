@@ -3,6 +3,7 @@ package com.excilys.computerdb.fconsigny.storage.dao;
 import java.sql.Connection;
 import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdb.fconsigny.business.model.Computer;
@@ -10,9 +11,9 @@ import com.excilys.computerdb.fconsigny.business.model.Computer;
 @Repository
 public interface ComputerDao {
 
-  public Computer findById(Connection connection, final long id);
+  public Computer findById(JdbcTemplate jdbcTemplate, final long id);
 
-  public List<Computer> findAll(Connection connection);
+  public List<Computer> findAll(JdbcTemplate jdbcTemplate);
 
   public List<Computer> findAllWithLimiter(Connection connection, final String name, final int limit, final int offset);
 
