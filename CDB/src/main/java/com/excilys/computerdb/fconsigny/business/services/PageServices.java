@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.factory.ComputerFactory;
@@ -15,6 +16,7 @@ import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
 import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
 
 @Service("pageService")
+@Transactional
 public class PageServices implements IPageServices {
 
   private final ComputerDao computerDao = ComputerFactory.getComputerDao();
