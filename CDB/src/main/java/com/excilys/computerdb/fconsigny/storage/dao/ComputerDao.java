@@ -1,6 +1,5 @@
 package com.excilys.computerdb.fconsigny.storage.dao;
 
-import java.sql.Connection;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,13 +14,13 @@ public interface ComputerDao {
 
   public List<Computer> findAll(JdbcTemplate jdbcTemplate);
 
-  public List<Computer> findAllWithLimiter(Connection connection, final String name, final int limit, final int offset);
+  public List<Computer> findAllWithLimiter(JdbcTemplate jdbcTemplate, final String name, final int limit, final int offset);
 
-  public boolean addComputer(Connection connection, Computer computer);
+  public boolean addComputer(JdbcTemplate jdbcTemplate, Computer computer);
 
-  public boolean updateComputer(Connection connection, Computer computer);
+  public boolean updateComputer(JdbcTemplate jdbcTemplate, Computer computer);
 
-  public boolean deleteComputer(Connection connection, final long id);
+  public boolean deleteComputer(JdbcTemplate jdbcTemplate, final long id);
   
-  public int getCount(Connection connection);
+  public int getCount(JdbcTemplate jdbcTemplate);
 }

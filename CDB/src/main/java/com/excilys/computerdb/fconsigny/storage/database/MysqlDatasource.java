@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.storage.connection.datasource;
+package com.excilys.computerdb.fconsigny.storage.database;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 
 import org.springframework.stereotype.Service;
 
-import com.excilys.computerdb.fconsigny.storage.database.MysqlDatabase;
 import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

@@ -28,8 +28,10 @@ public class ComputerDtoMapper {
         computerDto.setDiscontinued(computer.getDiscontinued().toLocalDate().toString());
       }
 
-      if (computer.getCompany().getName() != null) {
-        computerDto.setCompanyName(computer.getCompany().getName());
+      if(computer.getCompany() != null){
+        if (computer.getCompany().getName() != null) {
+          computerDto.setCompanyName(computer.getCompany().getName());
+        } 
       }
 
       return computerDto;

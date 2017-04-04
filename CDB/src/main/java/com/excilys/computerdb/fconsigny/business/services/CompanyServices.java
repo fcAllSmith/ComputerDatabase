@@ -4,14 +4,15 @@ import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.factory.CompanyFactory;
 import com.excilys.computerdb.fconsigny.business.mapper.CompanyDtoMapper;
 import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
-import com.excilys.computerdb.fconsigny.storage.connection.datasource.IMysqlDatasource;
 import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
+import com.excilys.computerdb.fconsigny.storage.database.IMysqlDatasource;
 import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,8 @@ public class CompanyServices implements ICompanyServices {
       
   @Autowired
   IMysqlDatasource datasource;
+  
+  JdbcTemplate jdbcTemplate; 
   
   public CompanyServices(){
 

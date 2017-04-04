@@ -3,14 +3,12 @@ package com.excilys.computerdb.fconsigny.business.services;
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.factory.ComputerFactory;
 import com.excilys.computerdb.fconsigny.business.model.Computer;
-import com.excilys.computerdb.fconsigny.storage.connection.datasource.IMysqlDatasource;
 import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
+import com.excilys.computerdb.fconsigny.storage.database.IMysqlDatasource;
 import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
 
 import java.sql.SQLException;
 import java.util.List;
-
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,66 +25,47 @@ public class ComputerServices implements IComputerServices {
   @Autowired
   IMysqlDatasource datasource; 
 
+  JdbcTemplate jdbcTemplate; 
+
   public ComputerServices(){
 
   }
 
   @Transactional(readOnly=true)
-  public Computer getUniqueComputer(final long id) throws ServiceException {
-    Computer computer = null; 
-    try {
-      try {
-        computer = computerDao.findById(new JdbcTemplate( datasource.getDataSource()),id);
-      } catch (ClassNotFoundException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
-    } finally {
-      try {
-        datasource.closeConnection(datasource.getConnection());
-      } catch (SQLException | DatabaseException e) {
-        throw new ServiceException (e.toString());
-      }
-    }
+  public Computer getUniqueComputer(final long id) {
+    Computer computer = computerDao.findById(jdbcTemplate,id);
 
-    return computer; 
+    try {
+      datasource.closeConnection(getSelfConnection().getDataSource().getConnection());
+      return computer; 
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   @Transactional(readOnly = true)
   public List<Computer> getAllComputers() throws ServiceException {
-    System.out.print("WE ARE IN SERVICES");
-    List<Computer> computerList = null; 
-    try {
-      try {
-        computerList = computerDao.findAll(new JdbcTemplate(datasource.getDataSource()));
-      } catch (ClassNotFoundException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
-    } finally {
-      try {
-        datasource.closeConnection(datasource.getConnection());
-      } catch (SQLException | DatabaseException e) {
-        throw new ServiceException (e.toString());
-      }
-    }
+    List<Computer> computerList = computerDao.findAll(getSelfConnection()); 
 
-    return computerList;
+    try {
+      datasource.closeConnection(getSelfConnection().getDataSource().getConnection());
+      return computerList;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   @Transactional(readOnly = true)
   public List<Computer> getAllComputersWithLimiter (final int offset, final int limit, final String name) throws ServiceException {
     List<Computer> computerList = null;  
+    computerList = computerDao.findAllWithLimiter(getSelfConnection(),name, limit, offset);
+
     try {
-      computerList = computerDao.findAllWithLimiter(datasource.getConnection(),name, limit, offset);
-    } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
-    } finally {
-      try {
-        datasource.closeConnection(datasource.getConnection());
-      } catch (SQLException | DatabaseException e) {
-        throw new ServiceException (e.toString());
-      }
+      datasource.closeConnection(getSelfConnection().getDataSource().getConnection());
+    } catch (SQLException e) {
+      throw new ServiceException (e.toString());
     }
 
     return computerList; 
@@ -99,23 +78,17 @@ public class ComputerServices implements IComputerServices {
    */
   @Transactional(readOnly = true)
   public boolean saveComputer(final Computer computer) throws ServiceException {
-    try {
-      return computerDao.addComputer(datasource.getConnection(),computer);
-    } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
-    }
+    return computerDao.addComputer(getSelfConnection(),computer);
   }
 
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean editComptuter(final Computer computer) throws ServiceException {
     try {
-      return computerDao.updateComputer(datasource.getConnection(),computer);
-    } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
+      return computerDao.updateComputer(getSelfConnection(),computer);
     } finally {
       try {
-        datasource.closeConnection(datasource.getConnection());
-      } catch (SQLException | DatabaseException e) {
+        datasource.closeConnection(getSelfConnection().getDataSource().getConnection());
+      } catch (SQLException e) {
         throw new ServiceException (e.toString());
       }
     }
@@ -124,9 +97,7 @@ public class ComputerServices implements IComputerServices {
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean deleteComputer(final long id) throws ServiceException{
     try {
-      return computerDao.deleteComputer(datasource.getConnection(),id);
-    } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
+      return computerDao.deleteComputer(getSelfConnection(),id);
     } finally {
       try {
         datasource.closeConnection(datasource.getConnection());
@@ -134,6 +105,23 @@ public class ComputerServices implements IComputerServices {
         throw new ServiceException (e.toString());
       }
     }
+  }
+
+  private JdbcTemplate getSelfConnection(){
+
+    try {
+      if(this.jdbcTemplate == null || jdbcTemplate.getDataSource().getConnection().isClosed()){
+        try {
+          this.jdbcTemplate = new JdbcTemplate(datasource.getDataSource());
+        } catch (ClassNotFoundException e) {
+          return null;
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return jdbcTemplate;
   }
 
 }

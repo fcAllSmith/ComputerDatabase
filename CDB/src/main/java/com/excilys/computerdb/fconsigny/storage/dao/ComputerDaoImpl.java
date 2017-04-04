@@ -38,40 +38,9 @@ public class ComputerDaoImpl implements ComputerDao {
   public final static String COL_COMPANY_ID = "company_id";
 
   @Override
-  public int getCount(Connection connection) {
-
-    ResultSet rs = DatabaseHelper.queryGet(connection, QUERY_GET_COUNT);
-
-    try {
-      if(rs.next()){
-        return rs.getInt("maxCount");
-      } else {
-        return -1;
-      }  
-    } catch (SQLException e) {
-      return 0;
-    }
+  public int getCount(JdbcTemplate jdbcTemplate) {
+    return jdbcTemplate.queryForObject(QUERY_GET_COUNT,Integer.class);
   }
-
-  /* @Override
-  public Computer findById(Connection connection, final long id) {
-    ResultSet rs = DatabaseHelper.queryGet(connection, QUERY_SELECT_BY_ID + id);
-
-    try {
-      if (rs.isBeforeFirst()) {
-        try {
-          rs.next();
-          return MysqlComputerMapper.resultSetIntoComputer(rs);
-        } catch (SQLException error) {
-          logger.error(error);
-        }
-      }
-    } catch (SQLException e) {
-      logger.error(e);
-    }
-
-    return null;
-  }*/
 
   @Override
   public Computer findById( JdbcTemplate jdbcTemplate, final long id){
@@ -79,38 +48,13 @@ public class ComputerDaoImpl implements ComputerDao {
         new BeanPropertyRowMapper(Computer.class));
   }
 
-  /*@Override
-  public List<Computer> findAll(Connection connection) {
-    if(connection == null){
-      System.out.print("connection is null");
-    }
-
-    ResultSet rs = DatabaseHelper.queryGet(connection, QUERY_SELECT_ALL);
-    List<Computer> computerList = new ArrayList<Computer>();
-    try {
-      while (rs.next()) {
-        Computer computer = MysqlComputerMapper.resultSetIntoComputer(rs);
-        computerList.add(computer);
-      }
-    } catch (SQLException error) {
-      logger.error(error);
-    }
-
-    return computerList;
-  }*/
-
   @Override
   public List<Computer> findAll(JdbcTemplate jdbcTemplate) {
-    if(jdbcTemplate == null){
-      System.out.print("connection is null");
-    }
-
     return jdbcTemplate.query(QUERY_SELECT_ALL,new BeanPropertyRowMapper(Computer.class));
-
   }
 
   @Override
-  public List<Computer> findAllWithLimiter(Connection connection, final String name, final int limit, final int offset) {
+  public List<Computer> findAllWithLimiter(JdbcTemplate jdbcTemplate, final String name, final int limit, final int offset) {
     String query = null;
     if (name == null) {
       query = "SELECT * FROM computer ORDER BY id ASC LIMIT " + limit + " OFFSET " + offset;
@@ -120,34 +64,17 @@ public class ComputerDaoImpl implements ComputerDao {
       // + limit + " WHERE name LIKE '%" + name + "%'";
       query = "SELECT * FROM computer WHERE name LIKE '%" + name + "%'";
     }
-    ResultSet rs = DatabaseHelper.queryGet(connection, query);
-    List<Computer> computerList = new ArrayList<Computer>();
-
-    try {
-      while (rs.next()) {
-        Computer computer = MysqlComputerMapper.resultSetIntoComputer(rs);
-        computerList.add(computer);
-      }
-    } catch (SQLException e) {
-      logger.error(e);
-    }
-
-    try {
-      rs.close();
-    } catch (SQLException error) {
-      logger.error(error);
-    }
+    List<Computer> computerList = jdbcTemplate.query(query,new BeanPropertyRowMapper(Computer.class));
     return computerList;
   }
 
   @Override
-  public boolean deleteComputer(Connection connection ,long id) {
-    String query = QUERY_DELETE.concat(Integer.valueOf((int) id).toString());
-    return DatabaseHelper.queryPost(connection, query);
+  public boolean deleteComputer(JdbcTemplate jdbcTemplate ,long id) {
+    return ( jdbcTemplate.queryForObject(QUERY_DELETE + Integer.valueOf((int) id).toString(),Integer.class) > 0);
   }
 
   @Override
-  public boolean addComputer(Connection connection, Computer computer) {
+  public boolean addComputer(JdbcTemplate jdbcTemplate, Computer computer) {
     StringBuilder insertSQLBuilder = new StringBuilder();
     insertSQLBuilder.append(" INSERT INTO computer (name,introduced,discontinued,company_id)");
     insertSQLBuilder.append(" VALUES ( '");
@@ -168,11 +95,15 @@ public class ComputerDaoImpl implements ComputerDao {
     insertSQLBuilder.append(");");
 
     String query = insertSQLBuilder.toString();
-    return DatabaseHelper.queryPost(connection, query);
+    try {
+      return DatabaseHelper.queryPost(jdbcTemplate.getDataSource().getConnection(), query);
+    } catch (SQLException e) {
+      return false;
+    }
   }
 
   @Override
-  public boolean updateComputer(Connection connection,Computer computer) {
+  public boolean updateComputer(JdbcTemplate jdbcTemplate,Computer computer) {
     StringBuilder insertSQLBuilder = new StringBuilder();
 
     insertSQLBuilder.append(" UPDATE computer ");
@@ -194,6 +125,11 @@ public class ComputerDaoImpl implements ComputerDao {
 
     System.out.println(insertSQLBuilder.toString());
     String query = insertSQLBuilder.toString();
-    return DatabaseHelper.queryPost(connection, query);
+    try {
+      return DatabaseHelper.queryPost(jdbcTemplate.getDataSource().getConnection(), query);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 }

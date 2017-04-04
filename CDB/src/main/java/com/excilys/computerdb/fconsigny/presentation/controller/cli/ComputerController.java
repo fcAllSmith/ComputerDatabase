@@ -65,7 +65,7 @@ public class ComputerController {
     try {
       computerDto = ComputerDtoMapper
           .transformToDto(computerServices.getUniqueComputer(id));
-    } catch (BeansException | ServiceException exception) {
+    } catch (BeansException exception) {
       this.view.showText(exception.toString());
     } 
 

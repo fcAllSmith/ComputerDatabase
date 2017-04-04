@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.storage.connection.datasource;
+package com.excilys.computerdb.fconsigny.storage.database;
 
 import java.sql.Connection;
 import java.sql.SQLException;
