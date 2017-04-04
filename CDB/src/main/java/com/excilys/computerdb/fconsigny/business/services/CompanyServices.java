@@ -2,65 +2,44 @@ package com.excilys.computerdb.fconsigny.business.services;
 
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.factory.CompanyFactory;
-import com.excilys.computerdb.fconsigny.business.mapper.CompanyDtoMapper;
-import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
+import com.excilys.computerdb.fconsigny.business.model.Company;
 import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
-import com.excilys.computerdb.fconsigny.storage.database.IMysqlDatasource;
-import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
+import com.excilys.computerdb.fconsigny.storage.datasource.JdbcDataSource;
 
-import java.sql.SQLException;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-@Transactional
+@Service ("companyServices")
 public class CompanyServices implements ICompanyServices {
 
   private final CompanyDao companyDao = CompanyFactory.getCompanyDao() ;
       
   @Autowired
-  IMysqlDatasource datasource;
+  JdbcDataSource datasource;
   
-  JdbcTemplate jdbcTemplate; 
-  
+  private JdbcTemplate jdbc;
+    
   public CompanyServices(){
 
   }
 
-  public CompanyDto getUniqueCompany(final long id) throws ServiceException {
-    CompanyDto companyDto = null; 
-    try {
-      companyDto =  CompanyDtoMapper.transformToDto(companyDao.findById(datasource.getConnection(),id));
-    } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage());
-    } finally {
-      try {
-        datasource.closeConnection(datasource.getConnection());
-      } catch (SQLException | DatabaseException e) {
-        throw new ServiceException (e.toString());
-      }
-    }
-    return companyDto;
+  @Transactional(readOnly=true)
+  public Company getUniqueCompany(final long id) throws ServiceException {
+    return companyDao.findById(jdbc, id);
   }
 
-  public List<CompanyDto> getAllCompanies() throws ServiceException {
-    List<CompanyDto> companyDtoList = null; 
-    try {
-      companyDtoList =  CompanyDtoMapper.transformListToDto(companyDao.findAll(datasource.getConnection()));
-    } catch (DatabaseException databaseException) {
-      throw new ServiceException(databaseException.getMessage()); 
-    } finally {
-      try {
-        datasource.closeConnection(datasource.getConnection());
-      } catch (SQLException | DatabaseException e) {
-        throw new ServiceException (e.toString());
-      }
-    }
-    
-    return companyDtoList;
+  @Transactional(readOnly=true)
+  public List<Company> getAllCompanies() throws ServiceException {
+    return companyDao.findAll(jdbc);
+  }
+  
+  public void setDataSource(DataSource dataSource) {
+    this.jdbc = new JdbcTemplate(dataSource);
   }
 }

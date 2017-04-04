@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdb.fconsigny.business.model.Computer;
+import com.excilys.computerdb.fconsigny.presentation.component.IPage;
 
 @Repository
 public interface ComputerDao {
@@ -22,5 +23,5 @@ public interface ComputerDao {
 
   public boolean deleteComputer(JdbcTemplate jdbcTemplate, final long id);
   
-  public int getCount(JdbcTemplate jdbcTemplate);
+  public int getCount(JdbcTemplate jdbcTemplate, IPage page);
 }

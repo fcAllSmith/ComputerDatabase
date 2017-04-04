@@ -1,6 +1,8 @@
 package com.excilys.computerdb.fconsigny.presentation.controller.cli;
 
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
+import com.excilys.computerdb.fconsigny.business.mapper.CompanyDtoMapper;
+import com.excilys.computerdb.fconsigny.business.model.Company;
 import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
@@ -26,7 +28,7 @@ public class CompanyController {
   }
 
   public void loadListCompany() {
-    List<CompanyDto> companyList = null;
+    List<Company> companyList = null;
     try {
       companyList = this.companyServices.getAllCompanies();
     } catch (ServiceException exception) {
@@ -36,16 +38,18 @@ public class CompanyController {
     if (companyList == null || companyList.isEmpty()) {
       this.view.showText("No company found");
     } else {
-      for (CompanyDto company : companyList) {
-        this.view.showText(company.toString());
+      for (Company company : companyList) {
+        CompanyDto companyDto = CompanyDtoMapper.transformToDto(company);
+        this.view.showText(companyDto.toString());
       }
     }
   }
 
   public void loadCompanyById(final String strInput) {
     try {
-      CompanyDto company = this.companyServices.getUniqueCompany(Integer.parseInt(strInput));
-      this.view.showText(company.toString());
+      Company company = this.companyServices.getUniqueCompany(Integer.parseInt(strInput));
+      CompanyDto companyDto = CompanyDtoMapper.transformToDto(company);
+      this.view.showText(companyDto.toString());
     } catch (NumberFormatException e) {
       this.view.showText("Wrong input command");
     } catch (ServiceException exception) {

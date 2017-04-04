@@ -1,7 +1,8 @@
 package com.excilys.computerdb.fconsigny.business.services;
 
-import java.sql.SQLException;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,73 +14,36 @@ import com.excilys.computerdb.fconsigny.business.factory.ComputerFactory;
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.presentation.component.IPage;
 import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
-import com.excilys.computerdb.fconsigny.storage.database.IMysqlDatasource;
-import com.excilys.computerdb.fconsigny.storage.exceptions.DatabaseException;
+import com.excilys.computerdb.fconsigny.storage.datasource.JdbcDataSource;
 
 @Service("pageService")
 @Transactional
 public class PageServices implements IPageServices {
 
   private final ComputerDao computerDao = ComputerFactory.getComputerDao();
-  JdbcTemplate jdbcTemplate; 
-
+  private JdbcTemplate jdbc;
+  
   @Autowired
-  IMysqlDatasource datasource;
+  JdbcDataSource datasource;
 
   @Autowired
   public PageServices(){}
 
   @Override
   public List<Computer> getComputer(IPage page) throws ServiceException {
-    List<Computer> computerList = null; 
-    try {
-      page.setMaxCount(computerDao.getCount(getSelfConnection()));
-      computerList =  computerDao.findAllWithLimiter(getSelfConnection(), null, page.getLimite(), page.getOffset());
-    } finally {
-      try {
-        datasource.closeConnection(datasource.getConnection());
-      } catch (SQLException | DatabaseException e) {
-        throw new ServiceException (e.toString());
-      }
-    }
-    
-    return computerList;
+
+    page.setMaxCount(computerDao.getCount(jdbc,page));
+    return computerDao.findAllWithLimiter(jdbc,null, page.getLimite(), page.getOffset());
   }
 
   @Override
   public List<Computer> getComputerFilterCompany(IPage page) throws ServiceException {
-    List<Computer> computerList = null;
-    try {
-      computerList =  computerDao.findAllWithLimiter(getSelfConnection(), null, page.getLimite(),page.getOffset());
-      datasource.getConnection().commit();
-    } catch (SQLException | DatabaseException e) {
-      throw new ServiceException("Service unreachable");
-    }  finally {
-      try {
-        datasource.closeConnection(datasource.getConnection());
-      } catch (SQLException | DatabaseException e) {
-        throw new ServiceException (e.toString());
-      }
-    }
-    
-    return computerList; 
+    page.setMaxCount(computerDao.getCount(jdbc,page));
+    return computerDao.findAllWithLimiter(jdbc,null, page.getLimite(), page.getOffset());
   }
   
-  private JdbcTemplate getSelfConnection(){
-
-    try {
-      if(this.jdbcTemplate == null || jdbcTemplate.getDataSource().getConnection().isClosed()){
-        try {
-          this.jdbcTemplate = new JdbcTemplate(datasource.getDataSource());
-        } catch (ClassNotFoundException e) {
-          return null;
-        }
-      }
-    } catch (SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-
-    return jdbcTemplate;
+  public void setDataSource(DataSource dataSource) {
+    this.jdbc = new JdbcTemplate(dataSource);
   }
+
 }
