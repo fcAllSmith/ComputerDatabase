@@ -1,20 +1,14 @@
 package com.excilys.computerdb.fconsigny.storage.dao;
 
 import java.util.List;
-import java.util.Properties;
-
-import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.hibernate.query.Query;
+import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
-import com.excilys.computerdb.fconsigny.business.model.Company;
 import com.excilys.computerdb.fconsigny.storage.entity.EntityCompany;
-import com.excilys.computerdb.fconsigny.utils.property.FilePropertyLoader;
 
 @Repository
 public class CompanyDaoImpl implements CompanyDao {
@@ -32,10 +26,8 @@ public class CompanyDaoImpl implements CompanyDao {
     String query = properties.getProperty("SELECT_ALL");
     return (List<Company>) jdbc.queryForObject(query,  new BeanPropertyRowMapper(Company.class)); */
 
-    Query query  = session.createQuery("select id,name from company");
-    List<EntityCompany> companyList = (List<EntityCompany>) query.getResultList();
-    return companyList;
-    
+    Query<EntityCompany> query  = session.createQuery("from " + EntityCompany.class.getName(), EntityCompany.class);
+    return (List<EntityCompany>) query.getResultList();
     //Transaction t = session.beginTransaction() ; 
   }
 
@@ -46,9 +38,9 @@ public class CompanyDaoImpl implements CompanyDao {
     String query = properties.getProperty("SELECT_BY_ID");
     return (Company) jdbc.queryForObject(query,  new BeanPropertyRowMapper(Company.class));*/
     
-    Query query = session.createQuery("select id,nale from company where id = :id "); 
+    org.hibernate.Query query = session.createQuery("select id,nale from company where id = :id "); 
     query.setParameter(":id", id);
-    return (EntityCompany) query.getSingleResult();
+    return (EntityCompany) ((Query) query).getSingleResult();
   }
   
 }

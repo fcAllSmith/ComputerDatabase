@@ -36,18 +36,20 @@ public class CompanyServices implements ICompanyServices {
 
   //@Transactional(readOnly=true)
   public Company getUniqueCompany(final long id) throws ServiceException {
-    Session session = (Session) HibernateUtil.getSessionFactory();
+    Session session = HibernateUtil.getSessionFactory().openSession();
     EntityCompany entiyCompany =  companyDao.findById(session, id);
     return new Company((long)entiyCompany.getId(),entiyCompany.getName());
   }
 
   //@Transactional(readOnly=true)
   public List<Company> getAllCompanies() throws ServiceException {
-    Session session = (Session) HibernateUtil.getSessionFactory();
-    List<EntityCompany> entiyCompany =  companyDao.findAll(session);
     
     List<Company> companyList = new ArrayList<Company>(); 
-    for(EntityCompany entity : entiyCompany){
+    Session session =  HibernateUtil.getSessionFactory().openSession();
+    List<EntityCompany> entityCompany =  companyDao.findAll(session);
+    
+    for(EntityCompany entity : entityCompany){
+      System.out.println(" ID : " + entity.getId() + " - " + " name : " + " " + entity.getName());
       companyList.add(new Company((long)entity.getId(),entity.getName()));
     }
     
