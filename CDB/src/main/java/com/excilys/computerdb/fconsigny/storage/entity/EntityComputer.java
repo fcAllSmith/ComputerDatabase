@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+* Mirror of the entity into the database
+*/
 @Entity
 @Table(name = "computer")
 public class EntityComputer {

@@ -5,12 +5,16 @@ import com.excilys.computerdb.fconsigny.business.factory.CompanyFactory;
 import com.excilys.computerdb.fconsigny.business.model.Company;
 import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
 import com.excilys.computerdb.fconsigny.storage.datasource.JdbcDataSource;
+import com.excilys.computerdb.fconsigny.storage.entity.EntityCompany;
+import com.excilys.computerdb.fconsigny.utils.hibernate.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -32,12 +36,22 @@ public class CompanyServices implements ICompanyServices {
 
   //@Transactional(readOnly=true)
   public Company getUniqueCompany(final long id) throws ServiceException {
-    return companyDao.findById(jdbc, id);
+    Session session = (Session) HibernateUtil.getSessionFactory();
+    EntityCompany entiyCompany =  companyDao.findById(session, id);
+    return new Company((long)entiyCompany.getId(),entiyCompany.getName());
   }
 
   //@Transactional(readOnly=true)
   public List<Company> getAllCompanies() throws ServiceException {
-    return companyDao.findAll(jdbc);
+    Session session = (Session) HibernateUtil.getSessionFactory();
+    List<EntityCompany> entiyCompany =  companyDao.findAll(session);
+    
+    List<Company> companyList = new ArrayList<Company>(); 
+    for(EntityCompany entity : entiyCompany){
+      companyList.add(new Company((long)entity.getId(),entity.getName()));
+    }
+    
+    return companyList;
   }
   
   public void setDataSource(DataSource dataSource) {

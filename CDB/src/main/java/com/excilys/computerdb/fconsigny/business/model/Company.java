@@ -9,6 +9,11 @@ public class Company {
     this.id = id;
   }
 
+  public Company(long id, String name) {
+    this.id = id ; 
+    this.name = name; 
+  }
+
   public long getId() {
     return this.id;
   }
