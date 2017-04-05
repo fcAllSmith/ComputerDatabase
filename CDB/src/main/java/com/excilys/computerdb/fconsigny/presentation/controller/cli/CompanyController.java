@@ -4,11 +4,14 @@ import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.CompanyDtoMapper;
 import com.excilys.computerdb.fconsigny.business.model.Company;
 import com.excilys.computerdb.fconsigny.business.services.CompanyServices;
+import com.excilys.computerdb.fconsigny.business.services.ICompanyServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.CompanyDto;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewCompany;
 
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,10 +19,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CompanyController {
 
-  private  IApp view;
+  private  UiViewCompany view;
   
   @Autowired
-  private CompanyServices companyServices;
+  private ICompanyServices companyServices;
 
   public CompanyController() {}
   

@@ -23,7 +23,7 @@ public class CompanyDaoImpl implements CompanyDao {
   @Override
   public List<Company> findAll(JdbcTemplate jdbc) {
     
-    Properties properties = FilePropertyLoader.loadSqlProperties(this, PROPERTY_FILE);
+    Properties properties = FilePropertyLoader.loadSqlProperties(CompanyDaoImpl.class, PROPERTY_FILE);
     String query = properties.getProperty("SELECT_ALL");
     return (List<Company>) jdbc.queryForObject(query,  new BeanPropertyRowMapper(Company.class));
   }
@@ -31,7 +31,7 @@ public class CompanyDaoImpl implements CompanyDao {
   @Override
   public Company findById(JdbcTemplate jdbc, final long id) {
     
-    Properties properties = FilePropertyLoader.loadSqlProperties(this, PROPERTY_FILE);
+    Properties properties = FilePropertyLoader.loadSqlProperties(CompanyDaoImpl.class, PROPERTY_FILE);
     String query = properties.getProperty("SELECT_BY_ID");
     return (Company) jdbc.queryForObject(query,  new BeanPropertyRowMapper(Company.class));
   }

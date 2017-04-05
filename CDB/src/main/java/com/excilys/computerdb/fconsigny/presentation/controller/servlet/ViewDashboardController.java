@@ -3,6 +3,7 @@ package com.excilys.computerdb.fconsigny.presentation.controller.servlet;
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
 import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
 import com.excilys.computerdb.fconsigny.presentation.view.servlet.path.ViewPathBuilder;
 
@@ -29,7 +30,7 @@ public class ViewDashboardController extends HttpServlet implements Servlet {
   private static Logger logger = Logger.getLogger(ViewDashboardController.class);
 
   @Autowired
-  ComputerServices computerServices;
+  IComputerServices computerServices;
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

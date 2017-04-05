@@ -9,22 +9,22 @@ import com.excilys.computerdb.fconsigny.presentation.view.cli.IApp;
 import com.excilys.computerdb.fconsigny.presentation.view.cli.UiViewComputer;
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
-import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.business.model.Computer;
+import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
 
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 @Component
 public class ComputerController {
 
   private static Logger logger = Logger.getLogger(ComputerController.class);
-  private  UiViewComputer view;
+  private UiViewComputer view;
 
   @Autowired
-  ComputerServices computerServices; 
+  IComputerServices computerServices; 
 
   public ComputerController() {}
 
@@ -62,13 +62,14 @@ public class ComputerController {
   public void loadDtoComputerById(final String strInputId) {
     int id = Integer.parseInt(strInputId);
     ComputerDto computerDto = null;
-    try {
-      computerDto = ComputerDtoMapper
-          .transformToDto(computerServices.getUniqueComputer(id));
-    } catch (BeansException exception) {
-      this.view.showText(exception.toString());
-    } 
-
+    
+      try {
+        Computer  computer = computerServices.getUniqueComputer(id);
+        computerDto = ComputerDtoMapper.transformToDto(computer);
+      } catch ( Exception exception) {
+        this.view.showText(exception.toString());
+      }
+    
     if (computerDto != null) {
       this.view.showText(computerDto.toString());
     } else {

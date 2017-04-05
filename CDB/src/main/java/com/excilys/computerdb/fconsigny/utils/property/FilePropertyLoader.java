@@ -31,10 +31,10 @@ public class FilePropertyLoader {
     }
   }
   
-  public static Properties loadSqlProperties(Object c , String fileName) {
+  public static Properties loadSqlProperties(Class c , String fileName) {
     try {
       Properties properties = new Properties();
-      ClassLoader classLoader = c.getClass().getClassLoader();
+      ClassLoader classLoader = c.getClassLoader();
       File configFile = new File(classLoader.getResource("properties/sql/"+fileName).getFile());
       properties.load(new FileInputStream(configFile));
       return properties;

@@ -13,13 +13,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CliLauncher {
 
   public static void main(String[] args) {
-  //  ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-   // context.refresh();
-  //  Application app = new Application();
-    //AnnotationConfigApplicationContext a =  new AnnotationConfigApplicationContext(ApplicationConfig.class);
     
     new UiViewLauncher().createView(null);
-    //a.close();
-    //a.destroy();
+
   }
 }

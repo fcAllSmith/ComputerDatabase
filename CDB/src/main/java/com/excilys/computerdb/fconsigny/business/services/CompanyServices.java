@@ -8,6 +8,7 @@ import com.excilys.computerdb.fconsigny.storage.datasource.JdbcDataSource;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service ("companyServices")
+@Service
 public class CompanyServices implements ICompanyServices {
 
   private final CompanyDao companyDao = CompanyFactory.getCompanyDao() ;
@@ -29,12 +30,12 @@ public class CompanyServices implements ICompanyServices {
 
   }
 
-  @Transactional(readOnly=true)
+  //@Transactional(readOnly=true)
   public Company getUniqueCompany(final long id) throws ServiceException {
     return companyDao.findById(jdbc, id);
   }
 
-  @Transactional(readOnly=true)
+  //@Transactional(readOnly=true)
   public List<Company> getAllCompanies() throws ServiceException {
     return companyDao.findAll(jdbc);
   }

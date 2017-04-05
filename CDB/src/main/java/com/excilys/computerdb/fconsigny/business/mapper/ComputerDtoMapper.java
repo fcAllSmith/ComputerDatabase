@@ -52,7 +52,7 @@ public class ComputerDtoMapper {
 
   public static Computer transformToComputer(ComputerDto computerDto) {
 
-    Computer computer = new Computer(computerDto.getId());
+    Computer computer = new Computer((int)computerDto.getId());
     computer.setName(computerDto.getName());
 
     if (ValidateEntries.isDate(computerDto.getIntroduced())) {

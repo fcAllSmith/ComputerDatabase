@@ -11,12 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
+import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
 
 @Controller
 public class ViewDashboardController{
 
   @Autowired
-  ComputerServices computerServices;
+  IComputerServices computerServices;
 
   /**
    * Request mapping for user

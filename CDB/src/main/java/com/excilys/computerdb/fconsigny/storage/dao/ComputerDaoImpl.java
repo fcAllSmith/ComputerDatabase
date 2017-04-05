@@ -1,7 +1,6 @@
 package com.excilys.computerdb.fconsigny.storage.dao;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Properties;
 
@@ -36,7 +35,7 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public Computer findById( JdbcTemplate jdbcTemplate, final long id){
-    Properties properties = FilePropertyLoader.loadSqlProperties(this, PROPERTY_FILE);
+    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String query = properties.getProperty("QUERY_SELECT_BY_ID");
     Object[] params = {id};
     System.out.println(query);
@@ -45,60 +44,49 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public List<Computer> findAll(JdbcTemplate jdbcTemplate) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(this, PROPERTY_FILE);
+    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String query = properties.getProperty("QUERY_SELECT_ALL");
     return jdbcTemplate.query(query,new BeanPropertyRowMapper<Computer>(Computer.class));
   }
 
   @Override
   public List<Computer> findAllWithLimiter(JdbcTemplate jdbcTemplate, String name, final int limit, final int offset) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(this, PROPERTY_FILE);   
+    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);   
 
     if (name == null) {
       String query = properties.getProperty("QUERY_SELECT_WITH_LIMITER");
       Object[] params = {limit,offset};
       return jdbcTemplate.query(query,new BeanPropertyRowMapper<Computer>(Computer.class),params);
     } else {
-      
-      
+
       Object[] params = {limit,offset,name};
-      
       String query = properties.getProperty("QUERY_SELECT_WITH_LIMITER_AND_FILTER");
-      
       return  jdbcTemplate.query(query,new BeanPropertyRowMapper<Computer>(Computer.class),params);
     }
   }
 
   @Override
   public boolean deleteComputer(JdbcTemplate jdbcTemplate ,long id) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(this, PROPERTY_FILE);
+    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String query = properties.getProperty("QUERY_DELETE"); 
-    return ( jdbcTemplate.queryForObject(query,Integer.class,id) > 0);
+    Object[] params = {id};
+    return ( jdbcTemplate.queryForObject(query,Integer.class,params) > 0);
   }
 
   @Override
   public boolean addComputer(JdbcTemplate jdbcTemplate, Computer computer) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(this, PROPERTY_FILE);
+    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String query = properties.getProperty("QUERY_ADD"); 
-    return ( jdbcTemplate.queryForObject(query,Integer.class,
-        computer.getName(),
-        computer.getIntroduced(),
-        computer.getDiscontinued(),
-        computer.getCompany().getId()
-        ) > 0); 
+    Object[] params  = {computer.getName(),computer.getIntroduced(),computer.getDiscontinued(),computer.getCompany().getId()}; 
+    return ( jdbcTemplate.query(query,new BeanPropertyRowMapper<Computer>(Computer.class),params) != null); 
   }
 
   @Override
   public boolean updateComputer(JdbcTemplate jdbcTemplate,Computer computer) {
 
-    Properties properties = FilePropertyLoader.loadSqlProperties(this, PROPERTY_FILE);
+    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String query = properties.getProperty("QUERY_UPDATE"); 
-    return  jdbcTemplate.queryForObject(query, Integer.class,
-        computer.getName(),
-        computer.getIntroduced(),
-        computer.getDiscontinued(),
-        computer.getCompany().getId(),
-        computer.getId()
-        ) > 0 ;
+    Object[] params = {computer.getName(),computer.getIntroduced(),computer.getDiscontinued(),computer.getCompany().getId(),computer.getId()};
+    return  jdbcTemplate.query(query,new BeanPropertyRowMapper<Computer>(Computer.class),params) != null ;
   }
 }

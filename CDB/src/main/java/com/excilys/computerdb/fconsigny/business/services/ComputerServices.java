@@ -31,19 +31,19 @@ public class ComputerServices implements IComputerServices {
    
   }
 
-  @Transactional(readOnly=true)
+  //@Transactional(readOnly=true)
   public Computer getUniqueComputer(final long id) {
     setDataSource(dataSource.getDataSource());
     return computerDao.findById(jdbc,id);
   }
 
-  @Transactional(readOnly = true)
+ // @Transactional(readOnly = true)
   public List<Computer> getAllComputers() throws ServiceException {
     setDataSource(dataSource.getDataSource());
     return computerDao.findAll(jdbc); 
   }
 
-  @Transactional(readOnly = true)
+  //@Transactional(readOnly = true)
   public List<Computer> getAllComputersWithLimiter (final int offset, final int limit, final String name) throws ServiceException {
     setDataSource(dataSource.getDataSource());
     return computerDao.findAllWithLimiter(jdbc,name, limit, offset);
@@ -60,13 +60,13 @@ public class ComputerServices implements IComputerServices {
     return computerDao.addComputer(jdbc,computer);
   }
 
-  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
+  //@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean editComptuter(final Computer computer) throws ServiceException {
     setDataSource(dataSource.getDataSource());
     return computerDao.updateComputer(jdbc,computer);
   }
 
-  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
+  //@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean deleteComputer(final long id) throws ServiceException{
     setDataSource(dataSource.getDataSource());
     return computerDao.deleteComputer(jdbc, id);

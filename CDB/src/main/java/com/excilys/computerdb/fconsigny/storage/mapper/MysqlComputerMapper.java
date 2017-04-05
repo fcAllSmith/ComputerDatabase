@@ -20,7 +20,7 @@ public abstract class MysqlComputerMapper extends MysqlComputerValidator {
   public static Computer resultSetIntoComputer(final ResultSet resultSet) {
     MysqlComputerValidator validator = new MysqlComputerValidator();
     try {
-      Computer computer = new Computer(validator.setValidId(resultSet.getInt(ComputerDaoImpl.COL_ID)));
+      Computer computer = new Computer((int)validator.setValidId(resultSet.getInt(ComputerDaoImpl.COL_ID)));
       computer.setName(validator.setValidName(resultSet.getString(ComputerDaoImpl.COL_NAME)));
       computer.setIntroduced(validator.setValideDate((resultSet.getTimestamp(ComputerDaoImpl.COL_INTRODUCED))));
       computer.setDiscontinued(validator.setValideDate((resultSet.getTimestamp(ComputerDaoImpl.COL_DISCONTINUED))));

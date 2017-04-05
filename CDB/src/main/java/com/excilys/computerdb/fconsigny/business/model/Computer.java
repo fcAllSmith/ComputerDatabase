@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Computer {
 
-  private  long id;
+  private  int id;
   private String name;
   private LocalDateTime introduced;
   private LocalDateTime discontinued;
@@ -14,7 +14,7 @@ public class Computer {
     
   }
 
-  public Computer(final long id) {
+  public Computer(final int id) {
     this.id = id;
   }
 
