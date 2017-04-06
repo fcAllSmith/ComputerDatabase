@@ -26,14 +26,9 @@ public class ComputerServices implements IComputerServices {
 
   private final ComputerDao computerDao = ComputerFactory.getComputerDao();
 
-  @Autowired
-  JdbcDataSource dataSource;
-
   public ComputerServices() {
    
   }
-
-  //@Transactional(readOnly=true)
   public Computer getUniqueComputer(final long id) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     EntityComputer entity = computerDao.findById(session, id);
@@ -42,7 +37,6 @@ public class ComputerServices implements IComputerServices {
     
   }
 
- // @Transactional(readOnly = true)
   public List<Computer> getAllComputers() throws ServiceException {
     Session session = HibernateUtil.getSessionFactory().openSession(); 
     List<EntityComputer> entityList = computerDao.findAll(session);
@@ -54,7 +48,6 @@ public class ComputerServices implements IComputerServices {
     return computerList; 
   }
 
-  //@Transactional(readOnly = true)
   public List<Computer> getAllComputersWithLimiter (final int offset, final int limit, final String name) throws ServiceException {
     Session session = HibernateUtil.getSessionFactory().openSession(); 
     List<EntityComputer> entityList = computerDao.findAllWithLimiter(session, name, limit, offset);
@@ -72,17 +65,14 @@ public class ComputerServices implements IComputerServices {
    * @param computerDto
    * @return true if successful.
    */
-  //@Transactional(readOnly = true)
   public boolean saveComputer(final Computer computer) throws ServiceException {
     return false;
   }
 
-  //@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean editComptuter(final Computer computer) throws ServiceException {
    return false;
   }
 
-  //@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean deleteComputer(final long id) throws ServiceException{
   return false;
   }

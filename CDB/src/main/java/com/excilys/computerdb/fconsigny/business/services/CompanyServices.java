@@ -25,23 +25,16 @@ public class CompanyServices implements ICompanyServices {
 
   private final CompanyDao companyDao = CompanyFactory.getCompanyDao() ;
       
-  @Autowired
-  JdbcDataSource datasource;
-  
-  private JdbcTemplate jdbc;
-    
   public CompanyServices(){
 
   }
 
-  @Transactional(readOnly=true)
   public Company getUniqueCompany(final long id) throws ServiceException {
     Session session = HibernateUtil.getSessionFactory().openSession();
     EntityCompany entiyCompany =  companyDao.findById(session, id);
     return new Company((long)entiyCompany.getId(),entiyCompany.getName());
   }
 
-  //@Transactional(readOnly=true)
   public List<Company> getAllCompanies() throws ServiceException {
     
     List<Company> companyList = new ArrayList<Company>(); 
@@ -56,7 +49,4 @@ public class CompanyServices implements ICompanyServices {
     return companyList;
   }
   
-  public void setDataSource(DataSource dataSource) {
-    this.jdbc = new JdbcTemplate(dataSource);
-  }
 }

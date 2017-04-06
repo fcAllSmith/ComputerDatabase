@@ -24,10 +24,6 @@ import com.excilys.computerdb.fconsigny.utils.hibernate.HibernateUtil;
 public class PageServices implements IPageServices {
 
   private final ComputerDao computerDao = ComputerFactory.getComputerDao();
-  private JdbcTemplate jdbc;
-
-  @Autowired
-  JdbcDataSource datasource;
 
   @Autowired
   public PageServices(){}
@@ -45,8 +41,8 @@ public class PageServices implements IPageServices {
       computer.setIntroduced(entity.getIntroduced());
       computer.setDiscontinued(entity.getDiscontinued());
       computerList.add(computer);
-
     }
+    
     return computerList;
   }
 
@@ -55,10 +51,6 @@ public class PageServices implements IPageServices {
     Session session = HibernateUtil.getSessionFactory().openSession(); 
     List<EntityComputer> entityList = computerDao.findAllWithLimiter(session, null, page.getLimite(), page.getOffset());
     return null;
-  }
-
-  public void setDataSource(DataSource dataSource) {
-    this.jdbc = new JdbcTemplate(dataSource);
   }
 
 }
