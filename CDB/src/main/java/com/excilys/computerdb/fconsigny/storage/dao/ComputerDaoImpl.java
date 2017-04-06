@@ -7,6 +7,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.hibernate.type.LongType;
 
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.presentation.component.IPage;
@@ -28,8 +29,8 @@ public class ComputerDaoImpl implements ComputerDao {
   public int getCount(Session session) {
     Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String str_query = properties.getProperty("QUERY_GET_COUNT");
-    Query<Integer> query = session.createQuery(str_query,Integer.class);
-    return query.getSingleResult();
+    Query query = session.createQuery(str_query);
+    return query.getFirstResult();
   }
 
   @Override
@@ -38,7 +39,7 @@ public class ComputerDaoImpl implements ComputerDao {
     String str_query = properties.getProperty("QUERY_SELECT_BY_ID");
     Query<EntityComputer> query = session.createQuery(str_query,EntityComputer.class)
         .setParameter("id", ((Number) id).intValue() ); 
-    
+
     return query.getSingleResult();
 
   }
@@ -54,14 +55,19 @@ public class ComputerDaoImpl implements ComputerDao {
   @Override
   public List<EntityComputer> findAllWithLimiter(Session session, String name, final int limit, final int offset) {
     Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);   
+    String str_query; 
 
     if (name == null) {
-      String str_query = properties.getProperty("QUERY_SELECT_WITH_LIMITER");
-    } else {
-      String str_query = properties.getProperty("QUERY_SELECT_WITH_LIMITER_AND_FILTER");
-    }
+      str_query = properties.getProperty("QUERY_SELECT_WITH_LIMITER");
 
-    return null;
+    } else {
+      str_query = properties.getProperty("QUERY_SELECT_WITH_LIMITER_AND_FILTER");
+    }
+    
+    Query<EntityComputer> query = session.createQuery(str_query,EntityComputer.class)
+        .setFirstResult(offset).setMaxResults(limit); 
+
+    return query.getResultList();
   }
 
   @Override

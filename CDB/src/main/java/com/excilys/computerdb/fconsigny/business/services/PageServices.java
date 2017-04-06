@@ -1,9 +1,11 @@
 package com.excilys.computerdb.fconsigny.business.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -15,14 +17,15 @@ import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.presentation.component.IPage;
 import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
 import com.excilys.computerdb.fconsigny.storage.datasource.JdbcDataSource;
+import com.excilys.computerdb.fconsigny.storage.entity.EntityComputer;
+import com.excilys.computerdb.fconsigny.utils.hibernate.HibernateUtil;
 
 @Service("pageService")
-@Transactional
 public class PageServices implements IPageServices {
 
   private final ComputerDao computerDao = ComputerFactory.getComputerDao();
   private JdbcTemplate jdbc;
-  
+
   @Autowired
   JdbcDataSource datasource;
 
@@ -31,19 +34,25 @@ public class PageServices implements IPageServices {
 
   @Override
   public List<Computer> getComputer(IPage page) throws ServiceException {
+    Session session  = HibernateUtil.getSessionFactory().openSession();
+    page.setMaxCount(computerDao.getCount(session));
+    List<EntityComputer> entityList =  computerDao.findAllWithLimiter(session,null, page.getLimite(), page.getOffset());
+    List<Computer> computerList = new ArrayList<Computer>(); 
 
-    //page.setMaxCount(computerDao.getCount(jdbc,page));
-   // return computerDao.findAllWithLimiter(jdbc,null, page.getLimite(), page.getOffset());
-    return null;
+    for(EntityComputer entity : entityList){
+      computerList.add(new Computer(entity.getId()));
+
+    }
+    return computerList;
   }
 
   @Override
   public List<Computer> getComputerFilterCompany(IPage page) throws ServiceException {
-   // page.setMaxCount(computerDao.getCount(jdbc,page));
-    //return computerDao.findAllWithLimiter(jdbc,null, page.getLimite(), page.getOffset());
+    Session session = HibernateUtil.getSessionFactory().openSession(); 
+    List<EntityComputer> entityList = computerDao.findAllWithLimiter(session, null, page.getLimite(), page.getOffset());
     return null;
   }
-  
+
   public void setDataSource(DataSource dataSource) {
     this.jdbc = new JdbcTemplate(dataSource);
   }

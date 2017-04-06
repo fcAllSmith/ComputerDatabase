@@ -68,7 +68,6 @@ public class PageController {
       setBottomPageFooter();
       this.view.showText(UiViewComponents.BOTTOM_BORDER);
     }
-
   }
 
   public void setBottomPageFooter(){
