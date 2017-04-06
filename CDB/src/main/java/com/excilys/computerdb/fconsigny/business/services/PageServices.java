@@ -40,7 +40,11 @@ public class PageServices implements IPageServices {
     List<Computer> computerList = new ArrayList<Computer>(); 
 
     for(EntityComputer entity : entityList){
-      computerList.add(new Computer(entity.getId()));
+      Computer computer = new Computer(entity.getId()); 
+      computer.setName(entity.getName());
+      computer.setIntroduced(entity.getIntroduced());
+      computer.setDiscontinued(entity.getDiscontinued());
+      computerList.add(computer);
 
     }
     return computerList;

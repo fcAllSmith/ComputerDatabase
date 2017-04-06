@@ -30,7 +30,10 @@ public class ComputerDaoImpl implements ComputerDao {
     Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String str_query = properties.getProperty("QUERY_GET_COUNT");
     Query query = session.createQuery(str_query);
-    return query.getFirstResult();
+    long sizeMax = (long)query.getSingleResult();
+    System.out.println("SIZE MAX");
+
+    return Math.toIntExact(sizeMax);
   }
 
   @Override
