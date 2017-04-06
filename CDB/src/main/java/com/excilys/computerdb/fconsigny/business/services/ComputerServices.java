@@ -37,6 +37,7 @@ public class ComputerServices implements IComputerServices {
   public Computer getUniqueComputer(final long id) {
     Session session = HibernateUtil.getSessionFactory().openSession();
     EntityComputer entity = computerDao.findById(session, id);
+    System.out.println(" " + entity.getCompanyId());
     return fillComputer(entity);
     
   }

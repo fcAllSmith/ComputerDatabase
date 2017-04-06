@@ -36,7 +36,10 @@ public class ComputerDaoImpl implements ComputerDao {
   public EntityComputer findById(Session session, final long id){
     Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String str_query = properties.getProperty("QUERY_SELECT_BY_ID");
-    return null;
+    Query<EntityComputer> query = session.createQuery(str_query,EntityComputer.class)
+        .setParameter("id", ((Number) id).intValue() ); 
+    
+    return query.getSingleResult();
 
   }
 
