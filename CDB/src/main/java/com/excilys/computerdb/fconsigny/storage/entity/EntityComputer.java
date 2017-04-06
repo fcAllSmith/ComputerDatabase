@@ -29,7 +29,7 @@ public class EntityComputer {
   private LocalDateTime discontinued;
   
   @Column(name = "company_id")
-  private int companyId;
+  private Integer company_id = 0;
   
   public EntityComputer(){
     
@@ -68,10 +68,10 @@ public class EntityComputer {
   }
 
   public int getCompanyId() {
-    return companyId;
+    return company_id;
   }
 
   public void setCompanyId(int companyId) {
-    this.companyId = companyId;
+    this.company_id = companyId;
   }
 }
