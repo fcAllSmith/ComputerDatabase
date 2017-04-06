@@ -18,7 +18,7 @@ public abstract class MysqlComputerMapper extends MysqlComputerValidator {
   private static Logger logger = Logger.getLogger(MysqlComputerMapper.class);
 
   public static Computer resultSetIntoComputer(final ResultSet resultSet) {
-    MysqlComputerValidator validator = new MysqlComputerValidator();
+   /* MysqlComputerValidator validator = new MysqlComputerValidator();
     try {
       Computer computer = new Computer((int)validator.setValidId(resultSet.getInt(ComputerDaoImpl.COL_ID)));
       computer.setName(validator.setValidName(resultSet.getString(ComputerDaoImpl.COL_NAME)));
@@ -34,7 +34,7 @@ public abstract class MysqlComputerMapper extends MysqlComputerValidator {
       logger.error(e);
     } catch (ComputerException e) {
       logger.error(e);
-    }
+    }*/
 
     return null;
   }

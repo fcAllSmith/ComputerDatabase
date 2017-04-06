@@ -32,14 +32,16 @@ public class PageServices implements IPageServices {
   @Override
   public List<Computer> getComputer(IPage page) throws ServiceException {
 
-    page.setMaxCount(computerDao.getCount(jdbc,page));
-    return computerDao.findAllWithLimiter(jdbc,null, page.getLimite(), page.getOffset());
+    //page.setMaxCount(computerDao.getCount(jdbc,page));
+   // return computerDao.findAllWithLimiter(jdbc,null, page.getLimite(), page.getOffset());
+    return null;
   }
 
   @Override
   public List<Computer> getComputerFilterCompany(IPage page) throws ServiceException {
-    page.setMaxCount(computerDao.getCount(jdbc,page));
-    return computerDao.findAllWithLimiter(jdbc,null, page.getLimite(), page.getOffset());
+   // page.setMaxCount(computerDao.getCount(jdbc,page));
+    //return computerDao.findAllWithLimiter(jdbc,null, page.getLimite(), page.getOffset());
+    return null;
   }
   
   public void setDataSource(DataSource dataSource) {

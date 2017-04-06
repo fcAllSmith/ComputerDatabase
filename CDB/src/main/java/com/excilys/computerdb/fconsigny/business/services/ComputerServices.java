@@ -5,12 +5,16 @@ import com.excilys.computerdb.fconsigny.business.factory.ComputerFactory;
 import com.excilys.computerdb.fconsigny.business.model.Computer;
 import com.excilys.computerdb.fconsigny.storage.dao.ComputerDao;
 import com.excilys.computerdb.fconsigny.storage.datasource.JdbcDataSource;
+import com.excilys.computerdb.fconsigny.storage.entity.EntityComputer;
+import com.excilys.computerdb.fconsigny.utils.hibernate.HibernateUtil;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -25,28 +29,41 @@ public class ComputerServices implements IComputerServices {
   @Autowired
   JdbcDataSource dataSource;
 
-  private JdbcTemplate jdbc;
-
   public ComputerServices() {
    
   }
 
   //@Transactional(readOnly=true)
   public Computer getUniqueComputer(final long id) {
-    setDataSource(dataSource.getDataSource());
-    return computerDao.findById(jdbc,id);
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    EntityComputer entity = computerDao.findById(session, id);
+    return fillComputer(entity);
+    
   }
 
  // @Transactional(readOnly = true)
   public List<Computer> getAllComputers() throws ServiceException {
-    setDataSource(dataSource.getDataSource());
-    return computerDao.findAll(jdbc); 
+    Session session = HibernateUtil.getSessionFactory().openSession(); 
+    List<EntityComputer> entityList = computerDao.findAll(session);
+    List<Computer> computerList = new ArrayList<Computer>(); 
+    for(EntityComputer entity : entityList){
+      computerList.add(fillComputer(entity));
+    }
+    
+    return computerList; 
   }
 
   //@Transactional(readOnly = true)
   public List<Computer> getAllComputersWithLimiter (final int offset, final int limit, final String name) throws ServiceException {
-    setDataSource(dataSource.getDataSource());
-    return computerDao.findAllWithLimiter(jdbc,name, limit, offset);
+    Session session = HibernateUtil.getSessionFactory().openSession(); 
+    List<EntityComputer> entityList = computerDao.findAllWithLimiter(session, name, limit, offset);
+    List<Computer> computerList = new ArrayList<Computer>() ;
+    
+    for(EntityComputer entity : entityList){
+      computerList.add(fillComputer(entity));
+    }
+    
+    return computerList;
   }
 
   /**
@@ -56,23 +73,22 @@ public class ComputerServices implements IComputerServices {
    */
   //@Transactional(readOnly = true)
   public boolean saveComputer(final Computer computer) throws ServiceException {
-    setDataSource(dataSource.getDataSource());
-    return computerDao.addComputer(jdbc,computer);
+    return false;
   }
 
   //@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean editComptuter(final Computer computer) throws ServiceException {
-    setDataSource(dataSource.getDataSource());
-    return computerDao.updateComputer(jdbc,computer);
+   return false;
   }
 
   //@Transactional(propagation = Propagation.REQUIRED, rollbackFor = SQLException.class)
   public boolean deleteComputer(final long id) throws ServiceException{
-    setDataSource(dataSource.getDataSource());
-    return computerDao.deleteComputer(jdbc, id);
+  return false;
   }
 
-  public void setDataSource(DataSource dataSource) {
-    this.jdbc = new JdbcTemplate(dataSource);
+  public Computer fillComputer(EntityComputer comp){
+    Computer computer = new Computer(comp.getId()); 
+    computer.setName(comp.getName());
+    return computer; 
   }
 }

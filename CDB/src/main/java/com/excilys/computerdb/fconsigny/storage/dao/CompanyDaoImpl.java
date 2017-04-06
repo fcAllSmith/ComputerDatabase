@@ -3,7 +3,6 @@ package com.excilys.computerdb.fconsigny.storage.dao;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;

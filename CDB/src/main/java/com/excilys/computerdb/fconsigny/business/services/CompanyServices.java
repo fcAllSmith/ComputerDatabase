@@ -34,7 +34,7 @@ public class CompanyServices implements ICompanyServices {
 
   }
 
-  //@Transactional(readOnly=true)
+  @Transactional(readOnly=true)
   public Company getUniqueCompany(final long id) throws ServiceException {
     Session session = HibernateUtil.getSessionFactory().openSession();
     EntityCompany entiyCompany =  companyDao.findById(session, id);

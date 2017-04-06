@@ -2,26 +2,26 @@ package com.excilys.computerdb.fconsigny.storage.dao;
 
 import java.util.List;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdb.fconsigny.business.model.Computer;
-import com.excilys.computerdb.fconsigny.presentation.component.IPage;
+import com.excilys.computerdb.fconsigny.storage.entity.EntityComputer;
 
 @Repository
 public interface ComputerDao {
 
-  public Computer findById(JdbcTemplate jdbcTemplate, final long id);
+  public EntityComputer findById(Session session, final long id);
 
-  public List<Computer> findAll(JdbcTemplate jdbcTemplate);
+  public List<EntityComputer> findAll(Session session);
 
-  public List<Computer> findAllWithLimiter(JdbcTemplate jdbcTemplate, final String name, final int limit, final int offset);
+  public List<EntityComputer> findAllWithLimiter(Session session, final String name, final int limit, final int offset);
 
-  public boolean addComputer(JdbcTemplate jdbcTemplate, Computer computer);
+  public boolean addComputer(Session session, Computer computer);
 
-  public boolean updateComputer(JdbcTemplate jdbcTemplate, Computer computer);
+  public boolean updateComputer(Session session, Computer computer);
 
-  public boolean deleteComputer(JdbcTemplate jdbcTemplate, final long id);
+  public boolean deleteComputer(Session session, final long id);
   
-  public int getCount(JdbcTemplate jdbcTemplate, IPage page);
+  public int getCount(Session session);
 }
