@@ -14,7 +14,15 @@ public class Computer {
   public Computer () {
     
   }
-
+  
+  public Computer(final int id, final String name, final LocalDateTime introduced, final LocalDateTime discontinued, final int companyId, final String companyName) {
+    this.id = id; 
+    this.name = name;
+    this.introduced = introduced;
+    this.discontinued = discontinued; 
+    this.company = new Company(companyId,companyName);
+  }
+  
   public Computer(final int id) {
     this.id = id;
   }
@@ -23,12 +31,12 @@ public class Computer {
     this.name = name;
   }
 
-  public void setIntroduced(final LocalDateTime ctime) {
-    this.introduced = ctime;
+  public void setIntroduced(final LocalDateTime introduced) {
+    this.introduced = introduced;
   }
 
-  public void setDiscontinued(final LocalDateTime ptime) {
-    this.discontinued = ptime;
+  public void setDiscontinued(final LocalDateTime discontinued) {
+    this.discontinued = discontinued;
   }
 
   public void setCompany(final Company company) {

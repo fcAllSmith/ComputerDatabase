@@ -11,11 +11,11 @@ import com.excilys.computerdb.fconsigny.storage.entity.EntityComputer;
 @Repository
 public interface ComputerDao {
 
-  public EntityComputer findById(Session session, final long id);
+  public Computer findById(Session session, final long id);
 
-  public List<EntityComputer> findAll(Session session);
+  public List<Computer> findAll(Session session);
 
-  public List<EntityComputer> findAllWithLimiter(Session session, final String name, final int limit, final int offset);
+  public List<Computer> findAllWithLimiter(Session session, final String name, final int limit, final int offset);
 
   public boolean addComputer(Session session, Computer computer);
 

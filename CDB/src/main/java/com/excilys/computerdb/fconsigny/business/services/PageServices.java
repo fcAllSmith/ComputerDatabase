@@ -32,16 +32,8 @@ public class PageServices implements IPageServices {
   public List<Computer> getComputer(IPage page) throws ServiceException {
     Session session  = HibernateUtil.getSessionFactory().openSession();
     page.setMaxCount(computerDao.getCount(session));
-    List<EntityComputer> entityList =  computerDao.findAllWithLimiter(session,null, page.getLimite(), page.getOffset());
-    List<Computer> computerList = new ArrayList<Computer>(); 
+    List<Computer> computerList =  computerDao.findAllWithLimiter(session,null, page.getLimite(), page.getOffset());
 
-    for(EntityComputer entity : entityList){
-      Computer computer = new Computer(entity.getId()); 
-      computer.setName(entity.getName());
-      computer.setIntroduced(entity.getIntroduced());
-      computer.setDiscontinued(entity.getDiscontinued());
-      computerList.add(computer);
-    }
     
     return computerList;
   }
@@ -49,8 +41,8 @@ public class PageServices implements IPageServices {
   @Override
   public List<Computer> getComputerFilterCompany(IPage page) throws ServiceException {
     Session session = HibernateUtil.getSessionFactory().openSession(); 
-    List<EntityComputer> entityList = computerDao.findAllWithLimiter(session, null, page.getLimite(), page.getOffset());
-    return null;
+    List<Computer> entityList = computerDao.findAllWithLimiter(session, null, page.getLimite(), page.getOffset());
+    return entityList;
   }
 
 }
