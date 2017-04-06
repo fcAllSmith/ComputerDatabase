@@ -7,17 +7,14 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.hibernate.type.LongType;
 
 import com.excilys.computerdb.fconsigny.business.model.Computer;
-import com.excilys.computerdb.fconsigny.presentation.component.IPage;
 import com.excilys.computerdb.fconsigny.storage.entity.EntityCompany;
 import com.excilys.computerdb.fconsigny.storage.entity.EntityComputer;
 import com.excilys.computerdb.fconsigny.utils.property.FilePropertyLoader;
 
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -97,7 +94,14 @@ public class ComputerDaoImpl implements ComputerDao {
   public boolean deleteComputer(Session session ,long id) {
     Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String str_query = properties.getProperty("QUERY_DELETE"); 
-    return false;
+    Transaction tx = session.beginTransaction();
+    Query query = session.createQuery(str_query)
+        .setParameter("id", ((Number) id).intValue());
+
+    int result = query.executeUpdate();
+    tx.commit();
+    
+    return (result > 0);
   }
 
   @Override
@@ -109,10 +113,21 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public boolean updateComputer(Session session,Computer computer) {
-
     Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
     String str_query = properties.getProperty("QUERY_UPDATE"); 
-    return false; 
+    Transaction tx = session.beginTransaction();
+
+    Query query = session.createQuery(str_query);
+    query.setParameter("name", computer.getName());
+    query.setParameter("introduced", computer.getIntroduced());
+    query.setParameter("discontinued", computer.getDiscontinued());
+    query.setParameter("company_id", ((Number) computer.getCompany().getId()).intValue());
+    query.setParameter("id", ((Number) computer.getId()).intValue());
+
+    int result = query.executeUpdate();
+    tx.commit();
+
+    return (result > 0); 
   }
 
   private Computer fillComputer(Object[] res){

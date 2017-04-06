@@ -99,7 +99,11 @@ public class ComputerController {
   public void createComputer(final String[] args) {
 
     try {
-      ComputerDto computerDto = fillComputerDto(args);
+      ComputerDto computerDto = new ComputerDto();
+      computerDto.setName(args[0]);
+      computerDto.setIntroduced(args[1]);
+      computerDto.setDiscontinued(args[2]);
+      computerDto.setCompanyId(Integer.parseInt(args[3]));     
       ValidateEntries.verifyEntries(computerDto);
       try {
         if (computerServices.editComptuter(ComputerDtoMapper.transformToComputer(computerDto))) {

@@ -58,11 +58,13 @@ public class ComputerServices implements IComputerServices {
   }
 
   public boolean editComptuter(final Computer computer) throws ServiceException {
-    return false;
+    Session session = HibernateUtil.getSessionFactory().openSession(); 
+    return computerDao.updateComputer(session, computer);
   }
 
   public boolean deleteComputer(final long id) throws ServiceException{
-    return false;
+    Session session = HibernateUtil.getSessionFactory().openSession(); 
+    return computerDao.deleteComputer(session, id);
   }
 
 }
