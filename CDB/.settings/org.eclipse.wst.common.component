@@ -6,6 +6,12 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/module-binding"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/module-cli"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/module-core"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/module-persistence"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/module-service"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/module-webapp"/>
         <property name="context-root" value="CDB"/>
         <property name="java-output-path" value="/CDB/target/classes"/>
     </wb-module>
