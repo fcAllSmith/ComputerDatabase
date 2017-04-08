@@ -1,6 +1,0 @@
-package com.excilys.computerdb.fconsigny.presentation.view.components;
-
-public class IPage<IDto>{
-
-	public IDto getItemByPosition(int position);
-}

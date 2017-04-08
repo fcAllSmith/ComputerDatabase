@@ -1,5 +1,0 @@
-package com.excilys.computerdb.fconsigny.presentation.view.components;
-
-public class IPage<IModel>{
-
-}
