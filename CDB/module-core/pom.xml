@@ -6,7 +6,7 @@
 	<!-- parent coordinates -->
 	<parent>
 		<groupId>com.excilys.formation.fconsigny</groupId>
-		<artifactId>com.excilys.computerdb</artifactId>
+		<artifactId>com.excilys.fconsigny.computerdb</artifactId>
 		<version>0.0.6-SNAPSHOT</version>
 	</parent>
 	
