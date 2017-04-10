@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.excilys.formation.fconsigny</groupId>
-	<artifactId>com.excilys.computerdb</artifactId>
+	<artifactId>com.excilys.fconsigny.computerdb</artifactId>
 	<version>0.0.6-SNAPSHOT</version>
 	<name>ComputerDatabase</name>
 	<packaging>pom</packaging>
@@ -39,6 +39,17 @@
 		<junit.version>3.8.1</junit.version>
 	</properties>
 
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>ComputerDatabase</id>
+			<name>CDB</name>
+			<url>http://localhost:8080/manager/text</url>
+			<layout>default</layout>
+		</repository>
+
+	</distributionManagement>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 
@@ -52,6 +63,7 @@
 					<warName>computerdb</warName>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
@@ -60,6 +72,7 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
@@ -68,17 +81,7 @@
 					<locales>en,fr</locales>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>${tomcat.version}</version>
-				<configuration>
-					<warDirectory>${project.build.directory}/webapp/</warDirectory>
-					<url>http://localhost:8080/manager/text</url>
-					<server>TomcatServer</server>
-					<path>/CDB</path>
-				</configuration>
-			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
