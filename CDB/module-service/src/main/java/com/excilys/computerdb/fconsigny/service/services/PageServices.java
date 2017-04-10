@@ -12,7 +12,7 @@ import src.main.java.com.excilys.computerdb.fconsigny.persistence.dao.ComputerDa
 import src.main.java.com.excilys.computerdb.fconsigny.persistence.entity.EntityComputer;
 import src.main.java.com.excilys.computerdb.fconsigny.service.hibernate.HibernateUtil;
 
-import com.excilys.computerdb.fconsigny.presentation.component.IPage;
+import src.main.java.com.excilys.computerdb.fconsigny.core.components.IPage;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;

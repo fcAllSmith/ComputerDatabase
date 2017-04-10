@@ -6,7 +6,7 @@ import src.main.java.com.excilys.computerdb.fconsigny.core.model.Company;
 
 import src.main.java.com.excilys.computerdb.fconsigny.service.services.CompanyServices;
 import src.main.java.com.excilys.computerdb.fconsigny.service.services.ICompanyServices;
-import src.main.java.com.excilys.computerdb.fconsigny.cli.dto.CompanyDto;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.dto.CompanyDto;
 import src.main.java.com.excilys.computerdb.fconsigny.cli.view.IApp;
 import src.main.java.com.excilys.computerdb.fconsigny.cli.view.UiViewCompany;
 

@@ -2,6 +2,8 @@ package src.main.java.com.excilys.computerdb.fconsigny.persistence.dao;
 
 import java.util.List;
 
+import src.main.java.com.excilys.computerdb.fconsigny.persistence.entity.EntityCompany;
+
 import org.hibernate.Session;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

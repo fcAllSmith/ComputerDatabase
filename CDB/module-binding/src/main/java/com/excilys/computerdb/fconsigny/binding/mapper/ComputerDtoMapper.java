@@ -2,8 +2,8 @@ package src.main.java.com.excilys.computerdb.fconsigny.binding.mapper;
 
 import src.main.java.com.excilys.computerdb.fconsigny.core.model.Company;
 import src.main.java.com.excilys.computerdb.fconsigny.core.model.Computer;
-import src.main.java.com.excilys.computerdb.fconsigny.cli.dto.ComputerDto;
-import com.excilys.computerdb.fconsigny.presentation.validation.ValidateEntries;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.dto.ComputerDto;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.validator.ValidateEntries;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package src.main.java.com.excilys.computerdb.fconsigny.cli.component;
+package src.main.java.com.excilys.computerdb.fconsigny.core.components;
 
 public interface IPage <T> {
 

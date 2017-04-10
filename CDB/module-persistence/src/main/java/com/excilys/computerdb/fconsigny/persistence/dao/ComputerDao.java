@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import src.main.java.com.excilys.computerdb.fconsigny.core.model.Computer;
 
 @Repository
 public interface ComputerDao {

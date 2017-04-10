@@ -1,4 +1,4 @@
-package src.main.java.com.excilys.computerdb.fconsigny.persistence.exceptions;
+package src.main.java.com.excilys.computerdb.fconsigny.binding.exceptions;
 
 public class CompanyException extends Exception {
 

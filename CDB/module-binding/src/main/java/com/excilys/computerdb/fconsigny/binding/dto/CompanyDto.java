@@ -1,4 +1,4 @@
-package src.main.java.com.excilys.computerdb.fconsigny.webapp.dto;
+package src.main.java.com.excilys.computerdb.fconsigny.binding.dto;
 
 public class CompanyDto {
 

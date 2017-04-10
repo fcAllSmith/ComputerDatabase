@@ -1,7 +1,7 @@
 package src.main.java.com.excilys.computerdb.fconsigny.service.factory;
 
-import com.excilys.computerdb.fconsigny.storage.dao.CompanyDao;
-import com.excilys.computerdb.fconsigny.storage.dao.CompanyDaoImpl;
+import src.main.java.com.excilys.computerdb.fconsigny.persistence.dao.CompanyDao;
+import src.main.java.com.excilys.computerdb.fconsigny.persistence.dao.CompanyDaoImpl;
 
 public class CompanyFactory {
   

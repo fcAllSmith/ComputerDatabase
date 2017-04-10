@@ -7,8 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.excilys.computerdb.fconsigny.storage.entity.EntityCompany;
-import com.excilys.computerdb.fconsigny.utils.property.FilePropertyLoader;
+import src.main.java.com.excilys.computerdb.fconsigny.persistence.utils.FilePropertyLoader;
+
+import src.main.java.com.excilys.computerdb.fconsigny.persistence.entity.EntityCompany;
 
 @Repository
 public class CompanyDaoImpl implements CompanyDao {

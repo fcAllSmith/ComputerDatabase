@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.excilys.computerdb.fconsigny.spring.CliConfig;
+import  src.main.java.com.excilys.computerdb.fconsigny.cli.application.*;
 import src.main.java.com.excilys.computerdb.fconsigny.cli.component.AppView;
 
 
@@ -19,7 +19,7 @@ public class UiViewLauncher extends AppView implements IApp {
 
   @Override
   public void createView(final IApp appParentView) {
-    AnnotationConfigApplicationContext a =  new AnnotationConfigApplicationContext(CliConfig.class);
+    AnnotationConfigApplicationContext a =  new AnnotationConfigApplicationContext(ApplicationConfig.class);
     uiViewComputer = a.getBean(UiViewComputer.class);
     uiViewCompany = a.getBean(UiViewCompany.class);
     uiViewPageComputer = a.getBean(UiViewPageComputer.class);

@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.excilys.computerdb.fconsigny.business.exception.ServiceException;
-import com.excilys.computerdb.fconsigny.business.mapper.ComputerDtoMapper;
-import com.excilys.computerdb.fconsigny.business.services.ComputerServices;
-import com.excilys.computerdb.fconsigny.business.services.IComputerServices;
+import src.main.java.com.excilys.computerdb.fconsigny.service.exception.ServiceException;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.mapper.ComputerDtoMapper;
+import src.main.java.com.excilys.computerdb.fconsigny.service.services.IComputerServices;
 
 @Controller
 public class ViewDashboardController{

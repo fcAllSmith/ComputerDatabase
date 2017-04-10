@@ -1,7 +1,7 @@
 package src.main.java.com.excilys.computerdb.fconsigny.binding.mapper;
 
 import src.main.java.com.excilys.computerdb.fconsigny.core.model.Company;
-import src.main.java.com.excilys.computerdb.fconsigny.cli.dto.CompanyDto;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.dto.CompanyDto;
 
 import java.util.ArrayList;
 import java.util.List;

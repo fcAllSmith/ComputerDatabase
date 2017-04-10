@@ -1,4 +1,4 @@
-package src.main.java.com.excilys.computerdb.fconsigny.cli.dto;
+package src.main.java.com.excilys.computerdb.fconsigny.binding.dto;
 
 public class ComputerDto {
 

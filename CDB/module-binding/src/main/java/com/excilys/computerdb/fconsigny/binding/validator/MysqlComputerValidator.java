@@ -1,6 +1,6 @@
 package src.main.java.com.excilys.computerdb.fconsigny.binding.validator;
 
-import com.excilys.computerdb.fconsigny.storage.exceptions.ComputerException;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.exceptions.ComputerException;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

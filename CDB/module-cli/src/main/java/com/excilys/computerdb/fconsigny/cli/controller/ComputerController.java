@@ -1,6 +1,6 @@
 package src.main.java.com.excilys.computerdb.fconsigny.cli.controller;
 
-import src.main.java.com.excilys.computerdb.fconsigny.cli.dto.ComputerDto;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.dto.ComputerDto;
 import src.main.java.com.excilys.computerdb.fconsigny.cli.exception.ComputerArgumentFormatException;
 
 import src.main.java.com.excilys.computerdb.fconsigny.cli.view.IApp;

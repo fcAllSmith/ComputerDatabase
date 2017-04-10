@@ -2,7 +2,8 @@ package src.main.java.com.excilys.computerdb.fconsigny.cli.component;
 
 import java.util.List;
 
-import com.excilys.computerdb.fconsigny.presentation.dto.ComputerDto;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.dto.ComputerDto;
+import src.main.java.com.excilys.computerdb.fconsigny.core.components.IPage;
 
 public class PageCli implements IPage<ComputerDto> {
 

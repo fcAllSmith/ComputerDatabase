@@ -1,4 +1,4 @@
-package src.main.java.com.excilys.computerdb.fconsigny.webapp.validation;
+package src.main.java.com.excilys.computerdb.fconsigny.binding.validator;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import src.main.java.com.excilys.computerdb.fconsigny.binding.dto.ComputerDto;
-import src.main.java.com.excilys.computerdb.fconsigny.webapp.exception.ComputerArgumentFormatException;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.exceptions.ComputerArgumentFormatException;
 
 public class ValidateEntries {
 

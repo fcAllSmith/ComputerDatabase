@@ -11,10 +11,15 @@ import org.hibernate.query.Query;
 
 import org.springframework.stereotype.Repository;
 
+import src.main.java.com.excilys.computerdb.fconsigny.persistence.entity.EntityComputer;
+import src.main.java.com.excilys.computerdb.fconsigny.persistence.entity.EntityCompany;
+
+import src.main.java.com.excilys.computerdb.fconsigny.core.model.Computer;
+import src.main.java.com.excilys.computerdb.fconsigny.persistence.utils.FilePropertyLoader;
+
+
 @Repository
 public class ComputerDaoImpl implements ComputerDao {
-
-  private static Logger logger = Logger.getLogger(ComputerDaoImpl.class);
 
   private static final String PROPERTY_FILE = "computer.properties";
 

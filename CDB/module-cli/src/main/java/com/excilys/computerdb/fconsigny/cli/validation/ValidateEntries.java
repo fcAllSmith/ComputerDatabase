@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import src.main.java.com.excilys.computerdb.fconsigny.cli.dto.ComputerDto;
+import src.main.java.com.excilys.computerdb.fconsigny.binding.dto.ComputerDto;
 import src.main.java.com.excilys.computerdb.fconsigny.cli.exception.ComputerArgumentFormatException;
 
 public class ValidateEntries {

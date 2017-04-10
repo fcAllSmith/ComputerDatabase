@@ -5,7 +5,7 @@ import java.util.List;
 import src.main.java.com.excilys.computerdb.fconsigny.service.exception.ServiceException;
 import src.main.java.com.excilys.computerdb.fconsigny.core.model.Computer;
 
-import com.excilys.computerdb.fconsigny.presentation.component.IPage;
+import src.main.java.com.excilys.computerdb.fconsigny.core.components.IPage;
 
 public interface IPageServices {
   

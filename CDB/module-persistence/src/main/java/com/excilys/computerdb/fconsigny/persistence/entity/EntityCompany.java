@@ -1,4 +1,4 @@
-package com.excilys.computerdb.fconsigny.storage.entity;
+package  src.main.java.com.excilys.computerdb.fconsigny.persistence.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
