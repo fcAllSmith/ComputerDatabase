@@ -15,17 +15,60 @@
 	<groupId>com.excilys.formation.fconsigny</groupId>
 	<artifactId>webapp</artifactId>
 	<version>1.0</version>
-	
+
 	<properties>
 		<hibernate.version>5.2.9.Final</hibernate.version>
 		<spring.version>4.3.7.RELEASE</spring.version>
+		<tomcat.version>2.2</tomcat.version>
 	</properties>
-	
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+					<warName>${rp.build.warname}</warName>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<server>localtomcat</server>
+					<username>user</username>
+					<password>password</password>
+					<update>true</update>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<!-- project dependencies -->
 	<dependencies>
-	
-	<dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.maven</groupId>
+			<artifactId>tomcat7-maven-plugin</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.47</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
@@ -52,6 +95,7 @@
 			<version>4.2.5.RELEASE</version>
 			<scope>compile</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
@@ -65,20 +109,20 @@
 			<version>4.3.7.RELEASE</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.9.Final</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.excilys.formation.fconsigny</groupId>
 			<artifactId>service</artifactId>
 			<version>1.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.excilys.formation.fconsigny</groupId>
 			<artifactId>binding</artifactId>

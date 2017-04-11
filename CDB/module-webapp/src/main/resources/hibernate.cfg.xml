@@ -5,17 +5,19 @@
 
 <hibernate-configuration>
 
-    <!-- a SessionFactory instance listed as /jndi/name -->
-    <session-factory name="java:hibernate/SessionFactory">
-        
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull</property> 
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">pwd</property>
-		        
-        <mapping class="com.excilys.computerdb.fconsigny.persistence.entity.EntityCompany"/>
-        <mapping class="com.excilys.computerdb.fconsigny.persistence.entity.EntityComputer"/>
+	<!-- a SessionFactory instance listed as /jndi/name -->
+	<session-factory name="java:hibernate/SessionFactory">
 
-    </session-factory>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/computer-database-db?zeroDateTimeBehavior=convertToNull</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">pwd</property>
+
+		<mapping
+			class="com.excilys.computerdb.fconsigny.persistence.entity.EntityCompany" />
+		<mapping
+			class="com.excilys.computerdb.fconsigny.persistence.entity.EntityComputer" />
+
+	</session-factory>
 
 </hibernate-configuration>
