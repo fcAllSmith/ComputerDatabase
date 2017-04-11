@@ -7,16 +7,13 @@ public class HibernateUtil {
 	private static SessionFactory sessionFactory = buildSessionFactory();
 
 	private static SessionFactory buildSessionFactory() {
-		try
-		{
-			if (sessionFactory == null)
-			{
+		try {
+			if (sessionFactory == null) {
 				Configuration configuration = new Configuration().configure();
 				sessionFactory = configuration.buildSessionFactory();
 			}
 			return sessionFactory;
-		} catch (Throwable ex)
-		{
+		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
