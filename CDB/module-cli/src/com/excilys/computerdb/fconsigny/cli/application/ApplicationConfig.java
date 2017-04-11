@@ -6,8 +6,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({
-  "src.main.java.com.excilys.computerdb.fconsigny"})
+@ComponentScan({"com.excilys.computerdb.fconsigny"})
 public class ApplicationConfig {    
     
   
