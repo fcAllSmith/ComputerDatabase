@@ -1,6 +1,5 @@
 package com.excilys.computerdb.fconsigny.persistence.dao;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -22,6 +21,8 @@ import com.excilys.computerdb.fconsigny.persistence.utils.FilePropertyLoader;
 public class ComputerDaoImpl implements ComputerDao {
 
   private static final String PROPERTY_FILE = "computer.properties";
+  private static final String QUERY_SELECT_WITH_LIMITER = "from EntityComputer as computer left join EntityCompany as company on computer.company_id = company.id order by computer.name asc";
+
 
   @Override
   public int getCount(Session session) {
@@ -66,24 +67,23 @@ public class ComputerDaoImpl implements ComputerDao {
 
   @Override
   public List<Computer> findAllWithLimiter(Session session, String name, final int limit, final int offset) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);   
-    String str_query; 
-    List<Object[]> query ;
 
-    if (name == null) {
-      str_query = properties.getProperty("QUERY_SELECT_WITH_LIMITER");
-      query = session.createQuery(str_query)
+    List<Object[]> result ;
+    result = session.createQuery(QUERY_SELECT_WITH_LIMITER)
+            .setFirstResult(offset).setMaxResults(limit).list();
+
+  /*  if (name == null) {
+      result = session.createQuery(QUERY_SELECT_WITH_LIMITER)
           .setFirstResult(offset).setMaxResults(limit).list(); 
 
     } else {
-      str_query = properties.getProperty("QUERY_SELECT_WITH_LIMITER_AND_FILTER");
-      query = session.createQuery(str_query)
+      result = session.createQuery(QUERY_SELECT_WITH_LIMITER)
           .setParameter("name",name)
           .setFirstResult(offset).setMaxResults(limit).list(); 
-    }
-
+    }*/
+    
     List<Computer> computerList = new ArrayList<Computer>();
-    for(Object[] res : query){
+    for(Object[] res : result){
       computerList.add(fillComputer(res));
     }
     return computerList;

@@ -4,15 +4,12 @@ import com.excilys.computerdb.fconsigny.service.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.binding.mapper.CompanyDtoMapper;
 import com.excilys.computerdb.fconsigny.core.model.Company;
 
-import com.excilys.computerdb.fconsigny.service.services.CompanyServices;
 import com.excilys.computerdb.fconsigny.service.services.ICompanyServices;
 import com.excilys.computerdb.fconsigny.binding.dto.CompanyDto;
 import com.excilys.computerdb.fconsigny.cli.view.IApp;
 import com.excilys.computerdb.fconsigny.cli.view.UiViewCompany;
 
 import java.util.List;
-
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

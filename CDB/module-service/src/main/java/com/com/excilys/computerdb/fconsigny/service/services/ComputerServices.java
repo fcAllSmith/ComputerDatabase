@@ -4,21 +4,12 @@ import com.excilys.computerdb.fconsigny.service.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.service.factory.ComputerFactory;
 import com.excilys.computerdb.fconsigny.core.model.Computer;
 import com.excilys.computerdb.fconsigny.persistence.dao.ComputerDao;
-import com.excilys.computerdb.fconsigny.persistence.entity.EntityComputer;
 import com.excilys.computerdb.fconsigny.service.hibernate.HibernateUtil;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ComputerServices implements IComputerServices {
@@ -42,7 +33,7 @@ public class ComputerServices implements IComputerServices {
   }
 
   public List<Computer> getAllComputersWithLimiter (final int offset, final int limit, final String name) throws ServiceException {
-    Session session = HibernateUtil.getSessionFactory().openSession(); 
+    Session session = HibernateUtil.getSessionFactory().openSession();  
     List<Computer> computerList = computerDao.findAllWithLimiter(session, name, limit, offset);
     return computerList;
   }

@@ -14,7 +14,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({"com.excilys.computerdb.fconsigny"})
+@ComponentScan({"com.excilys.computerdb.fconsigny.webapp",
+	"com.excilys.computerdb.fconsigny.service"})
 public class WebConfig extends WebMvcConfigurerAdapter {
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
