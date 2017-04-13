@@ -11,10 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.excilys.computerdb.fconsigny.service.exception.ServiceException;
 import com.excilys.computerdb.fconsigny.binding.mapper.ComputerDtoMapper;
 import com.excilys.computerdb.fconsigny.service.services.IComputerServices;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
-public class ViewDashboardController{
-
+public class ViewDashboardController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ViewDashboardController.class);
   @Autowired
   IComputerServices computerServices;
 

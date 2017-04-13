@@ -14,7 +14,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({"com.excilys.computerdb.fconsigny"})
+@ComponentScan({"com.excilys.computerdb.fconsigny.webapp",
+	"com.excilys.computerdb.fconsigny.service"})
+
 public class WebConfig extends WebMvcConfigurerAdapter {
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -30,7 +32,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
   @Bean
   public InternalResourceViewResolver jspViewResolver() {
       InternalResourceViewResolver bean = new InternalResourceViewResolver();
-      bean.setPrefix("/WEB-INF/views/");
+      bean.setPrefix("/view/");
       bean.setSuffix(".jsp");
       return bean;
   }

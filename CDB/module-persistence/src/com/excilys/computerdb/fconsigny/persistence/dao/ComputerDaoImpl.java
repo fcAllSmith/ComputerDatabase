@@ -1,9 +1,7 @@
 package com.excilys.computerdb.fconsigny.persistence.dao;
 
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,142 +13,132 @@ import com.excilys.computerdb.fconsigny.persistence.entity.EntityComputer;
 import com.excilys.computerdb.fconsigny.persistence.entity.EntityCompany;
 
 import com.excilys.computerdb.fconsigny.core.model.Computer;
-import com.excilys.computerdb.fconsigny.persistence.utils.FilePropertyLoader;
-
 
 @Repository
 public class ComputerDaoImpl implements ComputerDao {
 
-  private static final String PROPERTY_FILE = "computer.properties";
+	private static final String QUERY_SELECT_ALL = "from EntityComputer as computer left join EntityCompany as company on computer.company_id = company.id";
+	private static final String	QUERY_SELECT_BY_ID = "from EntityComputer as computer left join EntityCompany as company on computer.company_id = company.id where computer.id = :id";
+	private static final String QUERY_DELETE = "DELETE FROM EntityComputer WHERE id = :id";
+	private static final String QUERY_GET_COUNT = "SELECT COUNT(entityComputer) from EntityComputer as entityComputer";
+	private static final String QUERY_SELECT_WITH_LIMITER_AND_FILTER = "from EntityComputer as computer left join EntityCompany as company on computer.company_id = company.id where computer.name like :searchField group by computer.id order by computer.name asc";
+	private static final String QUERY_SELECT_WITH_LIMITER = "from EntityComputer as computer left join EntityCompany as company on computer.company_id = company.id group by computer.id order by computer.name asc";
+	private static final String QUERY_ADD = "INSERT INTO computer (name,introduced,discontinued,company_id)  VALUES (?,?,?,?)";
+	private static final String QUERY_UPDATE = "update EntityComputer set name = :name, introduced = :introduced, discontinued = :discontinued, company_id = :company_id where id = :id";
 
-  @Override
-  public int getCount(Session session) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
-    String str_query = properties.getProperty("QUERY_GET_COUNT");
-    Query query = session.createQuery(str_query);
-    long sizeMax = (long)query.getSingleResult();
-    System.out.println("SIZE MAX");
+	@Override
+	public int getCount(Session session) {
+		Query query = session.createQuery(QUERY_GET_COUNT);
+		long sizeMax = (long)query.getSingleResult();
+		System.out.println("SIZE MAX");
 
-    return Math.toIntExact(sizeMax);
-  }
+		return Math.toIntExact(sizeMax);
+	}
 
-  @Override
-  public Computer findById(Session session, final long id){
-    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
-    String str_query = properties.getProperty("QUERY_SELECT_BY_ID");
-    List<Object[]> query = session.createQuery(str_query)
-        .setParameter("id", ((Number) id).intValue() ).list(); 
+	@Override
+	public Computer findById(Session session, final long id){
+		List<Object[]> query = session.createQuery(QUERY_SELECT_BY_ID)
+				.setParameter("id", ((Number) id).intValue() ).list(); 
 
-    Computer computer = null;
-    for (Object[] res : query){
-      computer = fillComputer(res);
-    }
-    return computer;
+		Computer computer = null;
+		for (Object[] res : query){
+			computer = fillComputer(res);
+		}
+		return computer;
 
-  }
+	}
 
-  @Override
-  public List<Computer> findAll(Session session) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
-    String str_query = properties.getProperty("QUERY_SELECT_ALL");
+	@Override
+	public List<Computer> findAll(Session session) {
 
-    List<Object[]> result = session.createQuery(str_query).list();
-    List<Computer> computerList = new ArrayList<Computer>();
+		List<Object[]> result = session.createQuery(QUERY_SELECT_ALL).list();
+		List<Computer> computerList = new ArrayList<Computer>();
 
-    for (Object[] res : result ){
-      computerList.add(fillComputer(res));
-    }
+		for (Object[] res : result ){
+			computerList.add(fillComputer(res));
+		}
 
-    return computerList;
-  }
+		return computerList;
+	}
 
-  @Override
-  public List<Computer> findAllWithLimiter(Session session, String name, final int limit, final int offset) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);   
-    String str_query; 
-    List<Object[]> query ;
+	@Override
+	public List<Computer> findAllWithLimiter(Session session, String name, final int limit, final int offset) {
 
-    if (name == null) {
-      str_query = properties.getProperty("QUERY_SELECT_WITH_LIMITER");
-      query = session.createQuery(str_query)
-          .setFirstResult(offset).setMaxResults(limit).list(); 
+		List<Object[]> result ;
 
-    } else {
-      str_query = properties.getProperty("QUERY_SELECT_WITH_LIMITER_AND_FILTER");
-      query = session.createQuery(str_query)
-          .setParameter("name",name)
-          .setFirstResult(offset).setMaxResults(limit).list(); 
-    }
+		if (name == null) {
+			result = session.createQuery(QUERY_SELECT_WITH_LIMITER)
+					.setFirstResult(offset).setMaxResults(limit).list(); 
 
-    List<Computer> computerList = new ArrayList<Computer>();
-    for(Object[] res : query){
-      computerList.add(fillComputer(res));
-    }
-    return computerList;
-  }
+		} else {
+			result = session.createQuery(QUERY_SELECT_WITH_LIMITER_AND_FILTER)
+					.setParameter("searchField",'%'+name+'%')
+					.setFirstResult(offset).setMaxResults(limit).list(); 
+		}
 
-  @Override
-  public boolean deleteComputer(Session session ,long id) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
-    String str_query = properties.getProperty("QUERY_DELETE"); 
-    Transaction tx = session.beginTransaction();
-    Query query = session.createQuery(str_query)
-        .setParameter("id", ((Number) id).intValue());
+		List<Computer> computerList = new ArrayList<Computer>();
+		for(Object[] res : result){
+			computerList.add(fillComputer(res));
+		}
+		return computerList;
+	}
 
-    int result = query.executeUpdate();
-    tx.commit();
-    
-    return (result > 0);
-  }
+	@Override
+	public boolean deleteComputer(Session session ,long id) {
+		Transaction tx = session.beginTransaction();
+		Query query = session.createQuery(QUERY_DELETE)
+				.setParameter("id", ((Number) id).intValue());
 
-  @Override
-  public boolean addComputer(Session session, Computer computer) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
-    String str_query = properties.getProperty("QUERY_ADD"); 
-    return false;
-  }
+		int result = query.executeUpdate();
+		tx.commit();
 
-  @Override
-  public boolean updateComputer(Session session,Computer computer) {
-    Properties properties = FilePropertyLoader.loadSqlProperties(ComputerDaoImpl.class, PROPERTY_FILE);
-    String str_query = properties.getProperty("QUERY_UPDATE"); 
-    Transaction tx = session.beginTransaction();
+		return (result > 0);
+	}
 
-    Query query = session.createQuery(str_query);
-    query.setParameter("name", computer.getName());
-    query.setParameter("introduced", computer.getIntroduced());
-    query.setParameter("discontinued", computer.getDiscontinued());
-    query.setParameter("company_id", ((Number) computer.getCompany().getId()).intValue());
-    query.setParameter("id", ((Number) computer.getId()).intValue());
+	@Override
+	public boolean addComputer(Session session, Computer computer) {
+		return false;
+	}
 
-    int result = query.executeUpdate();
-    tx.commit();
+	@Override
+	public boolean updateComputer(Session session,Computer computer) {
+		Transaction tx = session.beginTransaction();
 
-    return (result > 0); 
-  }
+		Query query = session.createQuery(QUERY_UPDATE);
+		query.setParameter("name", computer.getName());
+		query.setParameter("introduced", computer.getIntroduced());
+		query.setParameter("discontinued", computer.getDiscontinued());
+		query.setParameter("company_id", ((Number) computer.getCompany().getId()).intValue());
+		query.setParameter("id", ((Number) computer.getId()).intValue());
 
-  private Computer fillComputer(Object[] res){
-    EntityComputer entityComputer = (EntityComputer) res[0];
-    Computer computer;
+		int result = query.executeUpdate();
+		tx.commit();
 
-    if(res[1] != null) {
-      EntityCompany entityCompany = (EntityCompany) res[1];
-      computer = new Computer( 
-          entityComputer.getId(),
-          entityComputer.getName(),
-          entityComputer.getIntroduced(),
-          entityComputer.getDiscontinued(),
-          entityCompany.getId(),
-          entityCompany.getName()
-          );
+		return (result > 0); 
+	}
 
-    } else {
-      computer = new Computer(entityComputer.getId());
-      computer.setName(entityComputer.getName());
-      computer.setIntroduced(entityComputer.getIntroduced());
-      computer.setDiscontinued(entityComputer.getDiscontinued());
-    }
+	private Computer fillComputer(Object[] res){
+		EntityComputer entityComputer = (EntityComputer) res[0];
+		Computer computer;
 
-    return computer;
-  }
+		if(res[1] != null) {
+			EntityCompany entityCompany = (EntityCompany) res[1];
+			computer = new Computer( 
+					entityComputer.getId(),
+					entityComputer.getName(),
+					entityComputer.getIntroduced(),
+					entityComputer.getDiscontinued(),
+					entityCompany.getId(),
+					entityCompany.getName()
+					);
+
+		} else {
+			computer = new Computer(entityComputer.getId());
+			computer.setName(entityComputer.getName());
+			computer.setIntroduced(entityComputer.getIntroduced());
+			computer.setDiscontinued(entityComputer.getDiscontinued());
+		}
+
+		return computer;
+	}
 }

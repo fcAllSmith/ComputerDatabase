@@ -12,11 +12,11 @@
 	</parent>
 
 	<!-- project coordinates -->
-	<groupId>com.excilys.formation.fconsigny</groupId>
 	<artifactId>webapp</artifactId>
 	<version>1.0</version>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.version>5.2.9.Final</hibernate.version>
 		<spring.version>4.3.7.RELEASE</spring.version>
 		<tomcat.version>2.2</tomcat.version>
@@ -32,7 +32,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>
 				<configuration>
-					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+					<!-- <packagingExcludes>WEB-INF/web.xml</packagingExcludes> -->
 					<warName>${rp.build.warname}</warName>
 				</configuration>
 			</plugin>
@@ -53,7 +53,9 @@
 	</build>
 
 	<!-- project dependencies -->
-	<dependencies>
+	
+	<dependencyManagement>
+		<dependencies>
 		<dependency>
 			<groupId>org.apache.tomcat.maven</groupId>
 			<artifactId>tomcat7-maven-plugin</artifactId>
@@ -93,6 +95,13 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>4.2.5.RELEASE</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 			<scope>compile</scope>
 		</dependency>
 
@@ -128,6 +137,8 @@
 			<artifactId>binding</artifactId>
 			<version>1.0</version>
 		</dependency>
+		
 	</dependencies>
+	</dependencyManagement>
 
 </project>
